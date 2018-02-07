@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EMPLEADO</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/ext/jquery.js"></script>
+<script src="../js/ext/bootstrap.min.js"></script>
+<script src="../js/ext/angular.min.js" type="text/javascript"></script>
+<script src="../js/app.js" type="text/javascript"></script>
+<script src="../js/controller/EmpleadoController.js"
+	type="text/javascript"></script>
+<script src="../js/service/EmpleadoService.js" type="text/javascript"></script>
+<link href="../css/base.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container" data-ng-app="app"
+		data-ng-controller="empleadoController">
+		<br>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar-menu">
+							<span class="sr-only">Menu</span> <span class="icon-bar"></span>
+							<span class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+						<a href="../index.html" class="navbar-brand">Inicio</a>
+					</div>
+					<div class="collapse navbar-collapse " id="navbar-menu">
+						<ul class="nav navbar-nav">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Maestros <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/finca.html">Fincas</a></li>
+									<li><a href="../pages/bloque.html">Bloques</a></li>
+									<li><a href="../pages/cama.html">Camas</a></li>
+									<li><a href="../pages/color.html">Colores</a></li>
+									<li><a href="../pages/tipo.html">Tipos de Flor</a></li>
+									<li><a href="../pages/producto.html">Productos</a></li>
+									<li><a href="../pages/breeder.html">Breeders</a></li>
+									<li><a href="../pages/planta.html">Esquejes</a></li>
+									<li><a href="../pages/codigorf.html">Código RedFlor</a></li>
+									<li><a href="../pages/empleado.html">Empleado</a></li>
+									<li><a href="../pages/auditoria.html">Auditorías</a></li>
+									<li><a href="../pages/temperatura.html">Temperatura en
+											bloque</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Movimientos <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/siembra.html">Siembra</a></li>
+									<li><a href="../pages/cosecha.html">Cosecha</a></li>
+									<li><a href="../pages/ingreso.html">CuartoFrio</a></li>
+									<li><a href="../index.html">Enraizamiento</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="../pages/ciclo.html">Inventariado</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="../pages/registro.html"><span
+									class="glyphicon glyphicon-user"></span> Registrar</a></li>
+							<li><a href="../pages/login.html"><span
+									class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+							<li><a href="../pages/index.html"><span
+									class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="row content">
+				<div class="col-sm-3">
+					<div class="container">
+						<br> <input type="text" id="empleadoId" name="empleadoId"
+							data-ng-model="id" required></input> <br> <br> <input
+							type="button" class="btn btn-primary" id="empleadoSearch"
+							name="empleadoSearch" value="Buscar"
+							data-ng-click="empleadoSearch(id)"></input> <a href="#alerta_borrar1"
+							class="btn btn-danger" data-toggle="modal">Eliminar</a>
+						<div class="modal fade" id="alerta_borrar1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<h4 class="modal-title">PRECAUCION</h4>
+									</div>
+									<div class="modal-body">
+										<p1>Cuidado estas a punto de borrar un registro de un
+										empleado en la base de datos.¿seguro deseas continuar?</p1>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary"
+											data-dismiss="modal">CERRAR</button>
+										<input type="button" class="btn btn-danger"
+											id="deleteEmpleado" name="deleteEmpleado" value="BORRAR"
+											data-ng-click="deleteEmpleado(id)"></input>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br /> <br />
+
+						<div data-ng-show="mostrarDatosEmpleado" id="empleadoList">
+							<p>Tipo documento: {{empleadoOut.tipodoc}}</p>
+							<p>Documento: {{empleadoOut.documento}}</p>
+							<p>Nombre: {{empleadoOut.nombre}}</p>
+							<p>Apellido: {{empleadoOut.apellido}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<br> <input type="button" class="btn btn-primary"
+						id="empleadoList" name="empleadoList" value="Listado empleados"
+						data-ng-click="getListEmpleado()"></input<br /> <br>
+					<div data-ng-show="empleadoList.length != 0">
+						<br />
+						<table class="table" id="datosBasicos">
+							<thead>
+								<tr>
+									<th>Tipo Documento</th>
+									<th>Documento</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="item in empleadoList | orderBy:'id'">
+									<td>{{item.tipodoc}}</td>
+									<td>{{item.documento}}</td>
+									<td>{{item.nombre}}</td>
+									<td>{{item.apellido}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br /> <br />
+				<div class="col-sm-3">
+					<div class="form-group">
+						<table id="datosBasicos">
+							<tr>
+								<td>Identificación</td>
+								<td><input type="text" class="form-control" id="id"
+									name="id" data-ng-model="empleadoIn.id"
+									placeholder="Identificador interno" min="0" disabled /></td>
+							</tr>
+							<tr>
+								<td>Tipo Documento</td>
+								<td><select class="form-control" id="tipodoc"
+									name="tipodoc" data-ng-model="empleadoIn.tipodoc">
+										<option>Tarjeta de identidad</option>
+										<option>Cédula de ciudadanía</option>
+										<option>Tarjeta de extranjería</option>
+										<option>Cédula de extranjería</option>
+										<option>NIT</option>
+										<option>Pasaporte</option>
+										<option>Documento de identificación extranjero</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td>Documento</td>
+								<td><input type="text" class="form-control" id="documento"
+									name="documento" data-ng-model="empleadoIn.documento"
+									placeholder="Documento de identificacion" /></td>
+							<tr>
+								<td>Nombres</td>
+								<td><input type="text" class="form-control" id="nombre"
+									name="nombre" data-ng-model="empleadoIn.nombre"
+									placeholder="Nombres" /></td>
+							<tr>
+								<td>Apellidos</td>
+								<td><input type="text" class="form-control" id="apellido"
+									name="apellido" data-ng-model="empleadoIn.apellido"
+									placeholder="Apellidos" /></td>
+						</table>
+					</div>
+					<br /> <input type="button" class="btn btn-primary" id="guardar"
+						name="saveBtn" value="Guardar"
+						data-ng-click="saveEmpleado(empleadoIn)" />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

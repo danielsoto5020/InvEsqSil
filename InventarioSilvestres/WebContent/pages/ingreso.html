@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PLANTA</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/ext/jquery.js"></script>
+<script src="../js/ext/bootstrap.min.js"></script>
+<script src="../js/ext/angular.min.js" type="text/javascript"></script>
+<script src="../js/app.js" type="text/javascript"></script>
+<script src="../js/controller/PlantaController.js"
+	type="text/javascript"></script>
+<script src="../js/service/PlantaService.js" type="text/javascript"></script>
+<link href="../css/base.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container" data-ng-app="app"
+		data-ng-controller="plantaController">
+		<br>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar-menu">
+							<span class="sr-only">Menu</span> <span class="icon-bar"></span>
+							<span class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+						<a href="../index.html" class="navbar-brand">Inicio</a>
+					</div>
+					<div class="collapse navbar-collapse " id="navbar-menu">
+						<ul class="nav navbar-nav">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Maestros <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/finca.html">Fincas</a></li>
+									<li><a href="../pages/bloque.html">Bloques</a></li>
+									<li><a href="../pages/cama.html">Camas</a></li>
+									<li><a href="../pages/color.html">Colores</a></li>
+									<li><a href="../pages/tipo.html">Tipos de Flor</a></li>
+									<li><a href="../pages/producto.html">Productos</a></li>
+									<li><a href="../pages/breeder.html">Breeders</a></li>
+									<li><a href="../pages/planta.html">Esquejes</a></li>
+									<li><a href="../pages/codigorf.html">Código RedFlor</a></li>
+									<li><a href="../pages/empleado.html">Empleado</a></li>
+									<li><a href="../pages/auditoria.html">Auditorías</a></li>
+									<li><a href="../pages/temperatura.html">Temperatura en
+											bloque</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Movimientos <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/siembra.html">Siembra</a></li>
+									<li><a href="../pages/cosecha.html">Cosecha</a></li>
+									<li><a href="../pages/ingreso.html">CuartoFrio</a></li>
+									<li><a href="../index.html">Enraizamiento</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="../pages/ciclo.html">Inventariado</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="../pages/registro.html"><span
+									class="glyphicon glyphicon-user"></span> Registrar</a></li>
+							<li><a href="../pages/login.html"><span
+									class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+							<li><a href="../pages/index.html"><span
+									class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="row content">
+				<div class="col-sm-3">
+					<div class="container">
+						<br> <input type="text" id="plantaId" name="plantaId"
+							data-ng-model="id" required></input> <br> <br> <input
+							type="button" class="btn btn-primary" id="plantaSearch"
+							name="plantaSearch" value="Buscar" data-ng-click="plantaSearch(id)"></input>
+						<a href="#alerta_borrar1" class="btn btn-danger"
+							data-toggle="modal">Eliminar</a>
+						<div class="modal fade" id="alerta_borrar1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<h4 class="modal-title">PRECAUCION</h4>
+									</div>
+									<div class="modal-body">
+										<p1>Cuidado estas a punto de borrar un registro de 
+										una ingreso en la base de datos.¿seguro deseas continuar?</p1>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary"
+											data-dismiss="modal">CERRAR</button>
+										<input type="button" class="btn btn-danger" id="deletePlanta"
+											name="deletePlanta" value="BORRAR"
+											data-ng-click="deletePlanta(id)"></input>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br /> <br>
+						<div data-ng-show="mostrarDatosPlanta" id="plantaList">
+							<p>Cama: {{plantaOut.productividad}}</p>
+							<p>Variedad: {{plantaOut.nombre}}</p>
+							<p>Empleado: {{plantaOut.flush}}</p>
+							<p>Cantidad: {{plantaOut.flush}}</p>
+							<p>Fecha in: {{plantaOut.flush}}</p>
+							<p>Ubicación: {{plantaOut.flush}}</p>
+							<p>Fecha out: {{plantaOut.flush}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<br> <input type="button" class="btn btn-primary"
+						id="plantaList" name="plantaList" value="Lista de Variedades"
+						data-ng-click="getListPlanta()"></input> <input type="text"
+						data-ng-model="search"> <br>
+					<div data-ng-show="plantaList.length != 0">
+						<br />
+						<table class="table" id="datosBasicos">
+							<thead>
+								<tr>
+									<th>Cama</th>
+									<th>Variedad</th>
+									<th>Empleado</th>
+									<th>Cantidad</th>
+									<th>Fecha ingreso</th>
+									<th>Ubicación</th>
+									<th>Fecha salida</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="item in plantaList | filter:search">
+									<td>{{item.cama}}</td>
+									<td>{{item.variedad}}</td>
+									<td>{{item.empleado}}</td>
+									<td>{{item.cantidad}}</td>
+									<td>{{item.fecha}}</td>
+									<td>{{item.ubiacion}}</td>									
+									<td>{{item.fecha}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<table id="datosBasicos">
+							<tr>
+								<td>Identificador</td>
+								<td><input type="number" class="form-control" id="id"
+									name="id" data-ng-model="plantaIn.id"
+									placeholder="Identificador interno" min="0" disabled /></td>
+							</tr>
+							<tr>
+								<td>Cama</td>
+								<td><input type="text" class="form-control" id="renombre"
+									name="renombre" data-ng-model="plantaIn.renombre"
+									placeholder="Renombre" /></td>
+							</tr>
+							<tr>
+								<td>Variedad</td>
+								<td><input type="text" class="form-control" id="nombre"
+									name="nombre" data-ng-model="plantaIn.nombre"
+									placeholder="Nombre de la variedad" /></td>
+							</tr>
+							<tr>
+								<td>Empleado</td>
+								<td><input type="number" class="form-control"
+									id="esquejecf" name="esquejecf"
+									data-ng-model="plantaIn.esquejecf"
+									placeholder="Duracion del esqueje en Cuarto Frio" min="0" /></td>
+							</tr>
+							<tr>
+								<td>Cantidad</td>
+								<td><input type="number" class="form-control"
+									id="productividad" name="productividad"
+									data-ng-model="plantaIn.productividad"
+									placeholder="Productividad del esqueje" min="0" /></td>
+							</tr>
+							<tr>
+								<td>Fecha de ingresa</td>
+								<td><input type="datetime" class="form-control" id="fecha"
+									name="fecha" data-ng-model="siembraIn.fecha"
+									data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
+							</tr>
+							<tr>
+								<td>Ubicación en cf</td>
+								<td><input type="number" class="form-control"
+									id="siembra" name="siembra"
+									data-ng-model="plantaIn.siembra"
+									placeholder="bloque/fila/columna/caja" min="0" /></td>
+							</tr>
+							<tr>
+								<td>fecha vencimiento</td>
+								<td><input type="number" class="form-control"
+									id="siembra" name="siembra"
+									data-ng-model="plantaIn.siembra"
+									placeholder="fecha limite" min="0" /></td>
+							</tr>
+							<tr>
+								<td>código cosecha</td>
+								<td><input type="number" class="form-control"
+									id="siembra" name="siembra"
+									data-ng-model="plantaIn.siembra"
+									placeholder="codigo barras" min="0" /></td>
+							</tr>
+						</table>
+					</div>
+					<br /> <input type="button" class="btn btn-primary" id="guardar"
+						name="saveBtn" value="Guardar"
+						data-ng-click="savePlanta(plantaIn)" />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

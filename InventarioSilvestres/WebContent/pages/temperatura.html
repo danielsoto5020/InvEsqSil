@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TEMPERATURA</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/ext/jquery.js"></script>
+<script src="../js/ext/bootstrap.min.js"></script>
+<script src="../js/ext/angular.min.js" type="text/javascript"></script>
+<script src="../js/app.js" type="text/javascript"></script>
+<script src="../js/controller/TemperaturaController.js"
+	type="text/javascript"></script>
+<script src="../js/service/TemperaturaService.js" type="text/javascript"></script>
+<link href="../css/base.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container" data-ng-app="app"
+		data-ng-controller="temperaturaController">
+		<br>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar-menu">
+							<span class="sr-only">Menu</span> <span class="icon-bar"></span>
+							<span class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+						<a href="../index.html" class="navbar-brand">Inicio</a>
+					</div>
+					<div class="collapse navbar-collapse " id="navbar-menu">
+						<ul class="nav navbar-nav">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Maestros <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/finca.html">Fincas</a></li>
+									<li><a href="../pages/bloque.html">Bloques</a></li>
+									<li><a href="../pages/cama.html">Camas</a></li>
+									<li><a href="../pages/color.html">Colores</a></li>
+									<li><a href="../pages/tipo.html">Tipos de Flor</a></li>
+									<li><a href="../pages/producto.html">Productos</a></li>
+									<li><a href="../pages/breeder.html">Breeders</a></li>
+									<li><a href="../pages/planta.html">Esquejes</a></li>
+									<li><a href="../pages/codigorf.html">Código RedFlor</a></li>
+									<li><a href="../pages/empleado.html">Empleado</a></li>
+									<li><a href="../pages/auditoria.html">Auditorías</a></li>
+									<li><a href="../pages/temperatura.html">Temperatura en
+											bloque</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Movimientos <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/siembra.html">Siembra</a></li>
+									<li><a href="../pages/cosecha.html">Cosecha</a></li>
+									<li><a href="../pages/ingreso.html">CuartoFrio</a></li>
+									<li><a href="../index.html">Enraizamiento</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="../pages/ciclo.html">Inventariado</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="../pages/registro.html"><span
+									class="glyphicon glyphicon-user"></span> Registrar</a></li>
+							<li><a href="../pages/login.html"><span
+									class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+							<li><a href="../pages/index.html"><span
+									class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="row content">
+				<div class="col-sm-3">
+					<div class="container">
+						<br> <input type="text" id="temperaturaId"
+							name="temperaturaId" data-ng-model="id" required></input> <br>
+						<br> <input type="button" class="btn btn-primary"
+							id="temperaturaSearch" name="temperaturaSearch" value="Buscar"
+							data-ng-click="temperaturaSearch(id)"></input> <a
+							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
+						<div class="modal fade" id="alerta_borrar1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<h4 class="modal-title">PRECAUCION</h4>
+									</div>
+									<div class="modal-body">
+										<p>Cuidado estas a punto de borrar un registro de
+										temperatura en la base de datos.¿seguro deseas continuar?</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary"
+											data-dismiss="modal">CERRAR</button>
+										<input type="button" class="btn btn-danger"
+											id="deleteTemperatura" name="deleteTemperatura"
+											value="BORRAR" data-ng-click="deleteTemperatura(id)"></input>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br /> <br>
+						<div data-data-ng-show="mostrarDatosTemperatura"
+							id="temperaturaList">
+							<p>Temperatura en centígrados: {{temperaturaOut.valor}}</p>
+							<p>Fecha: {{temperaturaOut.fecha}}</p>
+							<p>Sector: {{temperaturaOut.sector}}</p>
+							<p>Ubicación: {{temperaturaOut.lugar}}</p>
+							<p>Bloque: {{temperaturaOut.bloque}}</p>
+							<p>Id persona: {{temperaturaOut.persona}}</p>
+							<p>nombre: {{temperaturaOut.npersona}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<br> <input type="button" class="btn btn-primary"
+						id="temperaturaList" name="temperaturaList"
+						value="Lista de Temperatura" data-ng-click="getListTemperatura()"></input>
+					<input type="text" data-ng-model="search"> <br>
+					<div data-ng-show="temperaturaList.length != 0">
+						<br />
+						<table class="table" id="datosBasicos">
+							<thead>
+								<tr>
+									<th>Centígrados</th>
+									<th>Fecha</th>
+									<th>Sector</th>
+									<th>Ubicación</th>
+									<th>Bloque</th>
+									<th>Id persona</th>
+									<th>Nombre persona</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="item in temperaturaList | filter:search">
+									<td>{{item.valor}}</td>
+									<td>{{item.fecha | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+									<td>{{item.sector}}</td>
+									<td>{{item.lugar}}</td>
+									<td>{{item.bloque}}</td>
+									<td>{{item.persona}}</td>
+									<td>{{item.npersona}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br /> <br />
+				<div class="col-sm-3">
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="temperaturaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificación</td>
+									<td><input type="text" class="form-control" id="id"
+										name="id" data-ng-model="temperaturaIn.id"
+										placeholder="Identificacion(Barcode)" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Centígrados</td>
+									<td><input type="text" class="form-control" id="valor"
+										name="valor" data-ng-model="temperaturaIn.valor"
+										placeholder="-100 a 100" min="-100" max="100" /></td>
+								</tr>
+								<tr>
+									<td>Fecha</td>
+									<td><input type="datetime" class="form-control" id="fecha"
+										name="fecha" data-ng-model="temperaturaIn.fecha"
+										data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
+								</tr>
+								<tr>
+									<td>Sector</td>
+									<td><input type="text" class="form-control" id="sector"
+										name="sector" data-ng-model="temperaturaIn.sector"
+										placeholder="Sector en Bloque" /></td>
+								</tr>
+								<tr>
+									<td>Punto de lectura</td>
+									<td><select class="form-control" id="lugar" name="lugar"
+										data-ng-model="temperaturaIn.lugar">
+											<option>Ambiente</option>
+											<option>Esqueje</option>
+											<option>OTRO</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>Bloque</td>
+									<td><input type="number" class="form-control"
+										id="observacion" name="observacion"
+										data-ng-model="temperaturaIn.bloque" placeholder="Bloque"
+										min="0" /></td>
+								</tr>
+								<tr>
+									<td>Persona</td>
+									<td><input type="number" class="form-control" id="persona"
+										name="persona" data-ng-model="temperaturaIn.persona"
+										placeholder="usuario" min="0" /></td>
+								</tr>
+							</table><br>
+							<input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveTemperatura(temperaturaIn)" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

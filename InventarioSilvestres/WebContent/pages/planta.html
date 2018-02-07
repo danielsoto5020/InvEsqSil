@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PLANTA</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/ext/jquery.js"></script>
+<script src="../js/ext/bootstrap.min.js"></script>
+<script src="../js/ext/angular.min.js" type="text/javascript"></script>
+<script src="../js/app.js" type="text/javascript"></script>
+<script src="../js/controller/PlantaController.js"
+	type="text/javascript"></script>
+<script src="../js/service/PlantaService.js" type="text/javascript"></script>
+<link href="../css/base.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container" data-ng-app="app"
+		data-ng-controller="plantaController">
+		<br>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar-menu">
+							<span class="sr-only">Menu</span> <span class="icon-bar"></span>
+							<span class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+						<a href="../index.html" class="navbar-brand">Inicio</a>
+					</div>
+					<div class="collapse navbar-collapse " id="navbar-menu">
+						<ul class="nav navbar-nav">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Maestros <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/finca.html">Fincas</a></li>
+									<li><a href="../pages/bloque.html">Bloques</a></li>
+									<li><a href="../pages/cama.html">Camas</a></li>
+									<li><a href="../pages/color.html">Colores</a></li>
+									<li><a href="../pages/tipo.html">Tipos de Flor</a></li>
+									<li><a href="../pages/producto.html">Productos</a></li>
+									<li><a href="../pages/breeder.html">Breeders</a></li>
+									<li><a href="../pages/planta.html">Esquejes</a></li>
+									<li><a href="../pages/codigorf.html">Código RedFlor</a></li>
+									<li><a href="../pages/empleado.html">Empleado</a></li>
+									<li><a href="../pages/auditoria.html">Auditorías</a></li>
+									<li><a href="../pages/temperatura.html">Temperatura en
+											bloque</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Movimientos <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/siembra.html">Siembra</a></li>
+									<li><a href="../pages/cosecha.html">Cosecha</a></li>
+									<li><a href="../pages/ingreso.html">CuartoFrio</a></li>
+									<li><a href="../index.html">Enraizamiento</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="../pages/ciclo.html">Inventariado</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="../pages/registro.html"><span
+									class="glyphicon glyphicon-user"></span> Registrar</a></li>
+							<li><a href="../pages/login.html"><span
+									class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+							<li><a href="../pages/index.html"><span
+									class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="row content">
+				<div class="col-sm-3">
+					<div class="container">
+						<br> <input type="text" id="plantaId" name="plantaId"
+							data-ng-model="id" required></input> <br> <br> <input
+							type="button" class="btn btn-primary" id="plantaSearch"
+							name="plantaSearch" value="Buscar"
+							data-ng-click="plantaSearch(id)"></input> <a
+							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
+						<div class="modal fade" id="alerta_borrar1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<h4 class="modal-title">PRECAUCION</h4>
+									</div>
+									<div class="modal-body">
+										<p>Cuidado estas a punto de borrar un registro de una
+										variedad en la base de datos.¿seguro deseas continuar?</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary"
+											data-dismiss="modal">CERRAR</button>
+										<input type="button" class="btn btn-danger" id="deletePlanta"
+											name="deletePlanta" value="BORRAR"
+											data-ng-click="deletePlanta(id)"></input>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br /> <br>
+						<div data-ng-show="mostrarDatosPlanta" id="plantaList">
+							<p>Variedad: {{plantaOut.nombre}}</p>
+							<p>Renombre: {{plantaOut.renombre}}</p>
+							<p>Duración en CF: {{plantaOut.esquejecf}}</p>
+							<p>Productividad: {{plantaOut.productividad}}</p>
+							<p>1er Flush: {{plantaOut.flush}}</p>
+							<p>Media Flush: {{plantaOut.flushs}}</p>
+							<p>Color 1: {{plantaOut.colores}}</p>
+							<p>Color 2: {{plantaOut.colorus}}</p>
+							<p>Breeder: {{plantaOut.nbreeder}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<br> <input type="button" class="btn btn-primary"
+						id="plantaList" name="plantaList" value="Lista de Variedades"
+						data-ng-click="getListPlanta()"></input> <input type="text"
+						data-ng-model="search"> <br>
+					<div data-ng-show="plantaList.length != 0">
+						<br />
+						<table class="table" id="datosBasicos" class="table ">
+							<thead>
+								<tr>
+									<th>Variedad</th>
+									<th>Renombre</th>
+									<th>Duración en CF</th>
+									<th>Productividad</th>
+									<th>1er flush</th>
+									<th>% Flushs</th>
+									<th>Color 1</th>
+									<th>Color 2</th>
+									<th>Breeder</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="item in plantaList | filter:search">
+									<td>{{item.nombre}}</td>
+									<td>{{item.renombre}}</td>
+									<td>{{item.esquejecf}}</td>
+									<td>{{item.productividad}}</td>
+									<td>{{item.flush}}</td>
+									<td>{{item.flushs}}</td>
+									<td>{{item.colores}}</td>
+									<td>{{item.colorus}}</td>
+									<td>{{item.nbreeder}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br /> <br />
+				<div class="col-sm-3">
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="plantaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificador</td>
+									<td><input type="number" class="form-control" id="id"
+										name="id" data-ng-model="plantaIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Variedad</td>
+									<td><input type="text" class="form-control" id="nombre"
+										name="nombre" data-ng-model="plantaIn.nombre"
+										placeholder="Nombre de la variedad" /></td>
+								</tr>
+								<tr>
+									<td>Renombre</td>
+									<td><input type="text" class="form-control" id="renombre"
+										name="renombre" data-ng-model="plantaIn.renombre"
+										placeholder="Renombre" /></td>
+								</tr>
+								<tr>
+									<td>Duración en Cuarto Frió</td>
+									<td><input type="number" class="form-control"
+										id="esquejecf" name="esquejecf"
+										data-ng-model="plantaIn.esquejecf"
+										placeholder="Duracion del esqueje en Cuarto Frio" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Productividad</td>
+									<td><input type="number" class="form-control"
+										id="productividad" name="productividad"
+										data-ng-model="plantaIn.productividad"
+										placeholder="Productividad del esqueje" min="0" /></td>
+								</tr>
+								<tr>
+									<td>1er Flush</td>
+									<td><input type="number" class="form-control" id="flush"
+										name="flush" data-ng-model="plantaIn.flush"
+										placeholder="Primer flush" min="0" /></td>
+								</tr>
+								<tr>
+									<td>N. Flushs</td>
+									<td><input type="number" class="form-control" id="flushs"
+										name="flushs" data-ng-model="plantaIn.flushs"
+										placeholder="media entre flush" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Color 1</td>
+									<td><input type="number" class="form-control" id="color"
+										name="color" data-ng-model="plantaIn.color1"
+										placeholder="Color1" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Color 2</td>
+									<td><input type="number" class="form-control" id="color"
+										name="color" data-ng-model="plantaIn.color2"
+										placeholder="Color2" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Breeder</td>
+									<td><input type="number" class="form-control" id="breeder"
+										name="breeder" data-ng-model="plantaIn.breeder"
+										placeholder="Breeder" /></td>
+								</tr>
+							</table><br>
+							<input type="button" class="btn btn-primary"
+								id="guardar" name="saveBtn" value="Guardar"
+								data-ng-click="savePlanta(plantaIn)" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

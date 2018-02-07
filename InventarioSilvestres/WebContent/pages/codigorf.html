@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RedFlor</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/ext/jquery.js"></script>
+<script src="../js/ext/bootstrap.min.js"></script>
+<script src="../js/ext/angular.min.js" type="text/javascript"></script>
+<script src="../js/app.js" type="text/javascript"></script>
+<script src="../js/controller/CodigorfController.js"
+	type="text/javascript"></script>
+<script src="../js/service/CodigorfService.js" type="text/javascript"></script>
+<link href="../css/base.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container" data-ng-app="app"
+		data-ng-controller="codigorfController">
+		<br>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar-menu">
+							<span class="sr-only">Menu</span> <span class="icon-bar"></span>
+							<span class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+						<a href="../index.html" class="navbar-brand">Inicio</a>
+					</div>
+					<div class="collapse navbar-collapse " id="navbar-menu">
+						<ul class="nav navbar-nav">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Maestros <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/finca.html">Fincas</a></li>
+									<li><a href="../pages/bloque.html">Bloques</a></li>
+									<li><a href="../pages/cama.html">Camas</a></li>
+									<li><a href="../pages/color.html">Colores</a></li>
+									<li><a href="../pages/tipo.html">Tipos de Flor</a></li>
+									<li><a href="../pages/producto.html">Productos</a></li>
+									<li><a href="../pages/breeder.html">Breeders</a></li>
+									<li><a href="../pages/planta.html">Esquejes</a></li>
+									<li><a href="../pages/codigorf.html">Codigo RedFlor</a></li>
+									<li><a href="../pages/empleado.html">Empleado</a></li>
+									<li><a href="../pages/auditoria.html">Auditorias</a></li>
+									<li><a href="../pages/temperatura.html">Temperatura en
+											bloque</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button"> Movimientos <span
+									class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="../pages/siembra.html">Siembra</a></li>
+									<li><a href="../pages/cosecha.html">Cosecha</a></li>
+									<li><a href="../pages/ingreso.html">CuartoFrio</a></li>
+									<li><a href="../index.html">Enraizamiento</a></li>
+								</ul></li>
+							<li class="dropdown"><a href="../pages/ciclo.html">Inventariado</a>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="../pages/registro.html"><span
+									class="glyphicon glyphicon-user"></span> Registrar</a></li>
+							<li><a href="../pages/login.html"><span
+									class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+							<li><a href="../pages/index.html"><span
+									class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="row content">
+				<div class="col-sm-3">
+					<div class="container">
+						<br> <input type="text" id="codigorfId" name="codigorfId"
+							data-ng-model="id" required></input> <br> <br> <input
+							type="button" class="btn btn-primary" id="codigorfSearch"
+							name="codigorfSearch" value="Buscar"
+							data-ng-click="codigorfSearch(id)"></input> <a
+							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
+						<div class="modal fade" id="alerta_borrar1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<h4 class="modal-title">PRECAUCION</h4>
+									</div>
+									<div class="modal-body">
+										<p1>Cuidado estas a punto de borrar un color en la base
+										de datos.¿seguro deseas continuar?</p1>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary"
+											data-dismiss="modal">CERRAR</button>
+										<input type="button" class="btn btn-danger"
+											id="deleteCodigorf" name="deleteCodigorf" value="BORRAR"
+											data-ng-click="deleteCodigorf(id)"></input>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br /> <br />
+
+						<div data-ng-show="mostrarDatosCodigorf" id="codigorfList">
+							<p>Id: {{codigorfOut.id}}</p>
+							<p>Código RedFlor: {{codigorfOut.codigo}}</p>
+							<p>Id. Planta: {{codigorfOut.planta}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<br> <input type="button" class="btn btn-primary"
+						id="codigorfList" name="codigorfList"
+						value="Listado de Codigos RF" data-ng-click="getListCodigorf()"></input<br />
+					<br>
+					<div data-ng-show="codigorfList.length != 0">
+						<br />
+						<table class="table" id="datosBasicos">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Código RedFlor</th>
+									<th>Id. Planta</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="item in codigorfList | orderBy:'id'">
+									<td>{{item.id}}</td>
+									<td>{{item.codigo}}</td>
+									<td>{{item.planta}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br /> <br />
+				<div class="col-sm-3">
+					<div class="form-group">
+						<table id="datosBasicos">
+							<tr>
+								<td>Id. Interno</td>
+								<td><input type="text" class="form-control" id="id"
+									name="id" data-ng-model="codigorfIn.id"
+									placeholder="Identificador interno" min="0" disabled /></td>
+							</tr>
+							<tr>
+								<td>Código RF</td>
+								<td><input type="text" class="form-control" id="codigo"
+									name="codigo" data-ng-model="cdigorfIn.codigo"
+									placeholder="Codigo de Red Flor" /></td>
+							</tr>
+							<tr>
+								<td>Id. Variedad</td>
+								<td><input type="text" class="form-control" id="planta"
+									name="planta" data-ng-model="codigorfIn.planta"
+									placeholder="Identificador de la variedad" /></td>
+							</tr>
+						</table>
+					</div>
+					<br /> <input type="button" class="btn btn-primary" id="guardar"
+						name="saveBtn" value="Guardar"
+						data-ng-click="saveCodigorf(codigorfIn)" />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
