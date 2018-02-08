@@ -45,9 +45,9 @@
 									<li><a href="../pages/producto.html">Productos</a></li>
 									<li><a href="../pages/breeder.html">Breeders</a></li>
 									<li><a href="../pages/planta.html">Esquejes</a></li>
-									<li><a href="../pages/codigorf.html">Codigo RedFlor</a></li>
+									<li><a href="../pages/codigorf.html">Código RedFlor</a></li>
 									<li><a href="../pages/empleado.html">Empleado</a></li>
-									<li><a href="../pages/auditoria.html">Auditorias</a></li>
+									<li><a href="../pages/auditoria.html">Auditorías</a></li>
 									<li><a href="../pages/temperatura.html">Temperatura en
 											bloque</a></li>
 								</ul></li>
@@ -95,32 +95,32 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p1>Cuidado estas a punto de borrar un proceso de una
-										planta en la base de datos.¿seguro deseas continuar?</p1>
+										<p>Cuidado estas a punto de borrar un proceso de una
+										planta en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
 											data-dismiss="modal">CERRAR</button>
 										<input type="button" class="btn btn-danger" id="deleteProceso"
 											name="deleteProceso" value="BORRAR"
-											ng-click="deleteProceso(id)"></input>
+											data-ng-click="deleteProceso(id)"></input>
 									</div>
 								</div>
 							</div>
 						</div>
 						<br /> <br>
-						<div ng-show="mostrarDatosProceso" id="procesoList">
-							<p>Identificacion: {{procesoOut.id}}</p>
+						<div data-ng-show="mostrarDatosProceso" id="procesoList">
+							<p>Identificación: {{procesoOut.id}}</p>
 							<p>Nombre del Proceso: {{procesoOut.nombre}}</p>
-							<p>Parsona Encargada: {{procesoOut.persona}}</p>
+							<p>Persona Encargada: {{procesoOut.persona}}</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<br> <input type="button" class="btn btn-primary"
 						id="procesoList" name="procesoList" value="Lista de Procesos"
-						ng-click="getListProceso()"></input><br /> <br>
-					<div ng-show="procesoList.length != 0">
+						data-ng-click="getListProceso()"></input><br /> <br>
+					<div data-ng-show="procesoList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
 							<thead>
@@ -131,7 +131,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="item in procesoList | orderBy:'id'">
+								<tr data-ng-repeat="item in procesoList | orderBy:'id'">
 									<td>{{item.id}}</td>
 									<td>{{item.nombre}}</td>
 									<td>{{item.persona}}</td>

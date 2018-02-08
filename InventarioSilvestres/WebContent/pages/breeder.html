@@ -82,9 +82,9 @@
 					<div class="container">
 						<br> <input type="text" id="breederId" name="breederId"
 							type="button" class="btn btn-primary" id="breederSearch"
-							name="breederSearch" value="Buscar" data-ng-click="breederSearch(id)"></input>
-						<a href="#alerta_borrar1" class="btn btn-danger"
-							data-toggle="modal">Eliminar</a>
+							name="breederSearch" value="Buscar"
+							data-ng-click="breederSearch(id)"></input> <a
+							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
 						<div class="modal fade" id="alerta_borrar1">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -94,8 +94,8 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p1>Cuidado estas a punto de borrar un registro de un
-										breeder en la base de datos.¿seguro deseas continuar?</p1>
+										<p>Cuidado estas a punto de borrar un registro de un
+											breeder en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -134,7 +134,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr data-ng-repeat="item in breederList | orderBy:'id'">
+								<tr data-ng-repeat="item in breederList | orderBy:'item.nombre'">
 									<td>{{item.nombre}}</td>
 									<td>{{item.telefono1}}</td>
 									<td>{{item.correo}}</td>
@@ -158,13 +158,14 @@
 							<tr>
 								<td>Nombre</td>
 								<td><input type="text" class="form-control" id="nombre"
-									name="nombre" data-ng-model="breederIn.nombre" placeholder="Nombre" />
-								</td>
+									name="nombre" data-ng-model="breederIn.nombre"
+									placeholder="Nombre" /></td>
 							</tr>
 							<tr>
 								<td>Teléfono</td>
 								<td><input type="number" class="form-control"
-									id="telefono1" name="telefono1" data-ng-model="breederIn.telefono1"
+									id="telefono1" name="telefono1"
+									data-ng-model="breederIn.telefono1"
 									placeholder="Telefono principal" /></td>
 							</tr>
 							<tr>
@@ -186,9 +187,10 @@
 									placeholder="nombre del contacto" /></td>
 							</tr>
 						</table>
+						<br /> <input type="button" class="btn btn-primary" id="guardar"
+							name="saveBtn" value="Guardar"
+							data-ng-click="saveBreeder(breederIn)" />
 					</div>
-					<br /> <input type="button" class="btn btn-primary" id="guardar"
-						name="saveBtn" value="Guardar" data-ng-click="saveBreeder(breederIn)" />
 				</div>
 			</div>
 		</div>
