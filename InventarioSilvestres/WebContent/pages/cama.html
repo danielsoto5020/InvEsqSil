@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>CAMA</title>
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	content="width=device-width, initial-scale=1.0, maximum-scale=10, minimum-scale=0.1">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/ext/jquery.js"></script>
 <script src="../js/ext/bootstrap.min.js"></script>
@@ -121,38 +121,40 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<br> <input type="button" class="btn btn-primary"
-						id="camaList" name="camaList" value="Lista de Cama"
-						data-ng-click="getListCama()"></input<br /> <input type="text"
-						data-ng-model="search"> <br>
-					<div data-ng-show="camaList.length != 0">
-						<br />
-						<table class="table" id="datosBasicos">
-							<thead>
-								<tr>
-									<th>Bloque</th>
-									<th>Numero</th>
-									<th>Ancho</th>
-									<th>largo</th>
-									<th>Líneas</th>
-									<th>Esquejes por Línea</th>
-									<th>Estado</th>
-									<th>Esterilización</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr data-ng-repeat="item in camaList | filter:search">
-									<td>{{item.bloque}}</td>
-									<td>{{item.numero}}</td>
-									<td>{{item.ancho}}</td>
-									<td>{{item.largo}}</td>
-									<td>{{item.lineas}}</td>
-									<td>{{item.nlinea}}</td>
-									<td>{{item.estado}}</td>
-									<td>{{item.esterilizacion | date:'yyyy/MM/dd HH:mm:ss'}}</td>
-								</tr>
-							</tbody>
-						</table>
+					<div class="table-responsive">
+						<br> <input type="button" class="btn btn-primary"
+							id="camaList" name="camaList" value="Lista de Cama"
+							data-ng-click="getListCama()"></input<br /> <input type="text"
+							data-ng-model="search"> <br>
+						<div data-ng-show="camaList.length != 0">
+							<br />
+							<table class="table table-responsive table-fixed" id="datosBasicos">
+								<thead>
+									<tr>
+										<th>Bloque</th>
+										<th>Numero</th>
+										<th>Ancho</th>
+										<th>largo</th>
+										<th>Líneas</th>
+										<th>Esquejes por Línea</th>
+										<th>Estado</th>
+										<th>Esterilización</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="item in camaList | filter:search">
+										<td>{{item.bloque}}</td>
+										<td>{{item.numero}}</td>
+										<td>{{item.ancho}}</td>
+										<td>{{item.largo}}</td>
+										<td>{{item.lineas}}</td>
+										<td>{{item.nlinea}}</td>
+										<td>{{item.estado}}</td>
+										<td>{{item.esterilizacion | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 				<br /> <br />
