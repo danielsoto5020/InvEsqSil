@@ -96,7 +96,7 @@
 									</div>
 									<div class="modal-body">
 										<p>Cuidado estas a punto de borrar un registro de una
-										variedad en la base de datos.¿seguro deseas continuar?</p>
+											variedad en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -122,45 +122,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
-					<br> <input type="button" class="btn btn-primary"
-						id="plantaList" name="plantaList" value="Lista de Variedades"
-						data-ng-click="getListPlanta()"></input> <input type="text"
-						data-ng-model="search"> <br>
-					<div data-ng-show="plantaList.length != 0">
-						<br />
-						<table class="table" id="datosBasicos">
-							<thead>
-								<tr>
-									<th>Variedad</th>
-									<th>Renombre</th>
-									<th>Duración en CF</th>
-									<th>Productividad</th>
-									<th>1er flush</th>
-									<th>% Flushs</th>
-									<th>Color 1</th>
-									<th>Color 2</th>
-									<th>Breeder</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr data-ng-repeat="item in plantaList | filter:search">
-									<td>{{item.nombre}}</td>
-									<td>{{item.renombre}}</td>
-									<td>{{item.esquejecf}}</td>
-									<td>{{item.productividad}}</td>
-									<td>{{item.flush}}</td>
-									<td>{{item.flushs}}</td>
-									<td>{{item.colores}}</td>
-									<td>{{item.colorus}}</td>
-									<td>{{item.nbreeder}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<br /> <br />
-				<div class="col-sm-3">
+				<div class="col-sm-9">
+					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
 							name="plantaList" data-ng-hide="showForm"
@@ -229,11 +192,46 @@
 										name="breeder" data-ng-model="plantaIn.breeder"
 										placeholder="Breeder" /></td>
 								</tr>
-							</table><br>
-							<input type="button" class="btn btn-primary"
+							</table>
+							<br> <input type="button" class="btn btn-primary"
 								id="guardar" name="saveBtn" value="Guardar"
 								data-ng-click="savePlanta(plantaIn)" />
 						</div>
+					</div>
+					<br> <input type="button" class="btn btn-primary"
+						id="plantaList" name="plantaList" value="Lista de Variedades"
+						data-ng-click="getListPlanta()"></input> <input type="text"
+						data-ng-model="search"> <br>
+					<div data-ng-show="plantaList.length != 0">
+						<br />
+						<table class="table" id="datosBasicos">
+							<thead>
+								<tr>
+									<th>Variedad</th>
+									<th>Renombre</th>
+									<th>Duración en CF</th>
+									<th>Productividad</th>
+									<th>1er flush</th>
+									<th>% Flushs</th>
+									<th>Color 1</th>
+									<th>Color 2</th>
+									<th>Breeder</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="item in plantaList | filter:search">
+									<td>{{item.nombre}}</td>
+									<td>{{item.renombre}}</td>
+									<td>{{item.esquejecf}}</td>
+									<td>{{item.productividad}}</td>
+									<td>{{item.flush}}</td>
+									<td>{{item.flushs}}</td>
+									<td>{{item.colores}}</td>
+									<td>{{item.colorus}}</td>
+									<td>{{item.nbreeder}}</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
