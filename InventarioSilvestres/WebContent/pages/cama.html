@@ -198,17 +198,20 @@
 								<table class="table" id="datosBasicos">
 									<thead>
 										<tr>
-											<th>Bloque</th>
-											<th>Numero</th>
+											<th>Bloque  #  </th>
+											<th> N.</th>
 											<th>Ancho</th>
 											<th>largo</th>
 											<th>Líneas</th>
-											<th>Esquejes por Línea</th>
+											<th>E X L</th>
 											<th>Estado</th>
-											<th>Esterilización</th>
+											<th>Fecha ultima Esterilización</th>
 										</tr>
 									</thead>
 									<tbody>
+										<tr>
+											<td colspan="8">&nbsp;</td>
+										</tr>
 										<tr data-ng-repeat="item in camaList | filter:search">
 											<td>{{'BLOQUE '+item.bloque}}</td>
 											<td>{{item.numero}}</td>
