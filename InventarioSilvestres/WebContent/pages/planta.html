@@ -207,18 +207,21 @@
 						<table class="table" id="datosBasicos">
 							<thead>
 								<tr>
-									<th>Variedad</th>
+									<th>Nombre de la Variedad</th>
 									<th>Renombre</th>
-									<th>Duración en CF</th>
-									<th>Productividad</th>
-									<th>1er flush</th>
-									<th>% Flushs</th>
+									<th>Frió</th>
+									<th>%</th>
+									<th>1 F</th>
+									<th>2 F</th>
 									<th>Color 1</th>
 									<th>Color 2</th>
-									<th>Breeder</th>
+									<th>Breeder u origen</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="9">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in plantaList | filter:search">
 									<td>{{item.nombre}}</td>
 									<td>{{item.renombre}}</td>
