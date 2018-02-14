@@ -120,107 +120,109 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
-					<div class="table-responsive">
-						<br> <input type="button" class="btn btn-primary"
-							id="camaList" name="camaList" value="Lista de Cama"
-							data-ng-click="getListCama()"></input<br /> <input type="text"
-							data-ng-model="search"> <br>
-						<div data-ng-show="camaList.length != 0">
-							<br />
-							<table class="table" id="datosBasicos">
-								<thead>
-									<tr>
-										<th>Bloque</th>
-										<th>Numero</th>
-										<th>Ancho</th>
-										<th>largo</th>
-										<th>Líneas</th>
-										<th>Esquejes por Línea</th>
-										<th>Estado</th>
-										<th>Esterilización</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr data-ng-repeat="item in camaList | filter:search">
-										<td>{{'BLOQUE '+item.bloque}}</td>
-										<td>{{item.numero}}</td>
-										<td>{{item.ancho+' cm'}}</td>
-										<td>{{item.largo+' cm'}}</td>
-										<td>{{item.lineas}}</td>
-										<td>{{item.nlinea}}</td>
-										<td>{{item.estado}}</td>
-										<td>{{item.esterilizacion | date:'yyyy/MM/dd HH:mm:ss'}}</td>
-									</tr>
-								</tbody>
+				<div class="col-sm-9">
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="camaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificación</td>
+									<td><input type="text" class="form-control" id="id"
+										name="id" data-ng-model="camaIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Bloque</td>
+									<td><input type="number" class="form-control" id="bloque"
+										name="bloque" data-ng-model="camaIn.bloque"
+										placeholder="Bloque" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Numero</td>
+									<td><input type="text" class="form-control" id="numero"
+										name="numero" data-ng-model="camaIn.numero"
+										placeholder="Numero" /></td>
+								</tr>
+								<tr>
+									<td>Ancho</td>
+									<td><input type="number" class="form-control" id="ancho"
+										name="ancho" data-ng-model="camaIn.ancho"
+										placeholder="Ancho en metros" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Largo</td>
+									<td><input type="number" class="form-control" id="largo"
+										name="largo" data-ng-model="camaIn.largo"
+										placeholder="Largo en metros" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Líneas</td>
+									<td><input type="number" class="form-control" id="lineas"
+										name="lineas" data-ng-model="camaIn.lineas"
+										placeholder="Lienas totales de la cama" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Esquejes por Línea</td>
+									<td><input type="number" class="form-control" id="nlinea"
+										name="nlinea" data-ng-model="camaIn.nlinea"
+										placeholder="Esquejes por cada linea" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Estado</td>
+									<td><select class="form-control" id="estado" name="estado"
+										data-ng-model="camaIn.estado">
+											<option>Vacía</option>
+											<option>Producción</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>Fecha de Esterilización</td>
+									<td><input type="datetime" class="form-control"
+										id="esterilizacion" name="esterilizacion"
+										data-ng-model="camaIn.esterilizacion"
+										data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
+								</tr>
 							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar" data-ng-click="saveCama(camaIn)" />
 						</div>
-					</div>
-				</div>
-				<br /> <br />
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Identificación</td>
-								<td><input type="text" class="form-control" id="id"
-									name="id" data-ng-model="camaIn.id"
-									placeholder="Identificador interno" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Bloque</td>
-								<td><input type="number" class="form-control" id="bloque"
-									name="bloque" data-ng-model="camaIn.bloque"
-									placeholder="Bloque" min="0" /></td>
-							</tr>
-							<tr>
-								<td>Numero</td>
-								<td><input type="text" class="form-control" id="numero"
-									name="numero" data-ng-model="camaIn.numero"
-									placeholder="Numero" /></td>
-							</tr>
-							<tr>
-								<td>Ancho</td>
-								<td><input type="number" class="form-control" id="ancho"
-									name="ancho" data-ng-model="camaIn.ancho"
-									placeholder="Ancho en metros" min="0" /></td>
-							</tr>
-							<tr>
-								<td>Largo</td>
-								<td><input type="number" class="form-control" id="largo"
-									name="largo" data-ng-model="camaIn.largo"
-									placeholder="Largo en metros" min="0" /></td>
-							</tr>
-							<tr>
-								<td>Líneas</td>
-								<td><input type="number" class="form-control" id="lineas"
-									name="lineas" data-ng-model="camaIn.lineas"
-									placeholder="Lienas totales de la cama" min="0" /></td>
-							</tr>
-							<tr>
-								<td>Esquejes por Línea</td>
-								<td><input type="number" class="form-control" id="nlinea"
-									name="nlinea" data-ng-model="camaIn.nlinea"
-									placeholder="Esquejes por cada linea" min="0" /></td>
-							</tr>
-							<tr>
-								<td>Estado</td>
-								<td><select class="form-control" id="estado" name="estado"
-									data-ng-model="camaIn.estado">
-										<option>Vacía</option>
-										<option>Producción</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>Fecha de Esterilización</td>
-								<td><input type="datetime" class="form-control"
-									id="esterilizacion" name="esterilizacion"
-									data-ng-model="camaIn.esterilizacion"
-									data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
-							</tr>
-						</table>
-						<br /> <input type="button" class="btn btn-primary" id="guardar"
-							name="saveBtn" value="Guardar" data-ng-click="saveCama(camaIn)" />
+						<div class="table-responsive">
+							<br> <input type="button" class="btn btn-primary"
+								id="camaList" name="camaList" value="Lista de Cama"
+								data-ng-click="getListCama()"></input<br /> <input type="text"
+								data-ng-model="search"> <br>
+							<div data-ng-show="camaList.length != 0">
+								<br />
+								<table class="table" id="datosBasicos">
+									<thead>
+										<tr>
+											<th>Bloque</th>
+											<th>Numero</th>
+											<th>Ancho</th>
+											<th>largo</th>
+											<th>Líneas</th>
+											<th>Esquejes por Línea</th>
+											<th>Estado</th>
+											<th>Esterilización</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-ng-repeat="item in camaList | filter:search">
+											<td>{{'BLOQUE '+item.bloque}}</td>
+											<td>{{item.numero}}</td>
+											<td>{{item.ancho+' cm'}}</td>
+											<td>{{item.largo+' cm'}}</td>
+											<td>{{item.lineas}}</td>
+											<td>{{item.nlinea}}</td>
+											<td>{{item.estado}}</td>
+											<td>{{item.esterilizacion | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

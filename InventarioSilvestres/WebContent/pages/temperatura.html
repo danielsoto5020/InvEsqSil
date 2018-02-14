@@ -121,43 +121,37 @@
 						</div>
 					</div>
 				</div>
-				<iframe src="https://open.spotify.com/embed/user/12143385073/playlist/0Qc34QKH6Q5sIGAGbH0Ez3"
-              width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 				<div class="col-sm-9">
-					<br> <input type="button" class="btn btn-primary"
-						id="temperaturaList" name="temperaturaList"
-						value="Lista de Temperatura" data-ng-click="getListTemperatura()"></input>
-					<input type="text" data-ng-model="search">
-					<div class="container">
-						<button type="button" class="btn btn-info btn-lg"
-							data-toggle="modal" data-target="#myModal">Crear</button>
-						<div class="modal fade" id="myModal" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h2 class="modal-title">Registrar Temperatura</h2>
-									</div>
-									<div class="modal-body">
-										<label for="id">Identificacion:</label><input type="text"
-											class="form-control" id="id" name="id"
-											data-ng-model="temperaturaIn.id"
-											placeholder="Identificacion(Barcode)" min="0" disabled /> <input
-											type="text" class="form-control" id="id" name="id"
-											data-ng-model="temperaturaIn.na"
-											placeholder="Identificacion(Barcode)" min="0" />
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-										<input class="btn btn-primary" type="reset" value="Reset" data-ng-click="reset()">
-										<input type="button" class="btn btn-primary" id="guardar"
-											name="saveBtn" value="Guardar"
-											data-ng-click="saveTemperatura(temperaturaIn)" />
-									</div>
-								</div>
+<!-- 					<div class="container"> -->
+<!-- 						<button type="button" class="btn btn-info btn-lg" -->
+<!-- 							data-toggle="modal" data-target="#myModal">Crear</button> -->
+<!-- 						<div class="modal fade" id="myModal" role="dialog"> -->
+<!-- 							<div class="modal-dialog"> -->
+<!-- 								<div class="modal-content"> -->
+<!-- 									<div class="modal-header"> -->
+<!-- 										<button type="button" class="close" data-dismiss="modal">&times;</button> -->
+<!-- 										<h2 class="modal-title">Registrar Temperatura</h2> -->
+<!-- 									</div> -->
+<!-- 									<div class="modal-body"> -->
+<!-- 										<label for="id">Identificacion:</label><input type="text" -->
+<!-- 											class="form-control" id="id" name="id" -->
+<!-- 											data-ng-model="temperaturaIn.id" -->
+<!-- 											placeholder="Identificacion(Barcode)" min="0" disabled /> <input -->
+<!-- 											type="text" class="form-control" id="id" name="id" -->
+<!-- 											data-ng-model="temperaturaIn.na" -->
+<!-- 											placeholder="Identificacion(Barcode)" min="0" /> -->
+<!-- 										<button type="button" class="btn btn-default" -->
+<!-- 											data-dismiss="modal">Close</button> -->
+<!-- 										<input class="btn btn-primary" type="reset" value="Reset" data-ng-click="reset()"> -->
+<!-- 										<input type="button" class="btn btn-primary" id="guardar" -->
+<!-- 											name="saveBtn" value="Guardar" -->
+<!-- 											data-ng-click="saveTemperatura(temperaturaIn)" /> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 
-							</div>
-						</div>
-					</div>
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
 							name="temperaturaList" data-ng-hide="showForm"
@@ -217,6 +211,10 @@
 						</div>
 					</div>
 					<br>
+					<br> <input type="button" class="btn btn-primary"
+						id="temperaturaList" name="temperaturaList"
+						value="Lista de Temperatura" data-ng-click="getListTemperatura()"></input>
+					<input type="text" data-ng-model="search">
 					<div data-ng-show="temperaturaList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
