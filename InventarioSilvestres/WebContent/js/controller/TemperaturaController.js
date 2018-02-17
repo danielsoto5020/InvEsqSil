@@ -51,9 +51,6 @@ app.controller( "temperaturaController", [ "$scope", "temperaturaService",
 
 							$scope.temperaturaIn = {};
 							$scope.saveTemperatura = function(temperaturaIn) {
-								if (temperaturaIn.fecha === null) {
-									temperaturaIn.fecha = date;
-								}
 								temperatura = {
 									"valor" : temperaturaIn.valor,
 									"fecha" : temperaturaIn.fecha,
@@ -69,6 +66,7 @@ app.controller( "temperaturaController", [ "$scope", "temperaturaService",
 										temperaturaIn).then(function(message) {
 									alert(message.data);
 								})
+								$scope.temperaturaIn = {};
 
 							}
 							$scope.temperaturaIn = {};
@@ -86,5 +84,6 @@ app.controller( "temperaturaController", [ "$scope", "temperaturaService",
 										temperaturaIn).then(function(message) {
 									alert(message.data);
 								});
+								
 							}
 						} ]);
