@@ -80,11 +80,11 @@
 			<div class="row content">
 				<div class="col-sm-3">
 					<div class="container">
-						<br> <input type="text" id="plantaId" name="plantaId"
+						<br> <input type="text" id="siembraId" name="siembraId"
 							data-ng-model="id" required></input> <br> <br> <input
-							type="button" class="btn btn-primary" id="plantaSearch"
-							name="plantaSearch" value="Buscar"
-							data-ng-click="plantaSearch(id)"></input> <a
+							type="button" class="btn btn-primary" id="siembraSearch"
+							name="siembraSearch" value="Buscar"
+							data-ng-click="siembraSearch(id)"></input> <a
 							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
 						<div class="modal fade" id="alerta_borrar1">
 							<div class="modal-dialog">
@@ -101,15 +101,15 @@
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
 											data-dismiss="modal">CERRAR</button>
-										<input type="button" class="btn btn-danger" id="deletePlanta"
-											name="deletePlanta" value="BORRAR"
-											data-ng-click="deletePlanta(id)"></input>
+										<input type="button" class="btn btn-danger" id="deleteSiembra"
+											name="deleteSiembra" value="BORRAR"
+											data-ng-click="deleteSiembra(id)"></input>
 									</div>
 								</div>
 							</div>
 						</div>
 						<br /> <br>
-						<div data-ng-show="mostrarDatosPlanta" id="plantaList">
+						<div data-ng-show="mostrarDatosSiembra" id="siembraList">
 							<p>Variedad: {{siembraOut.variedad}}</p>
 							<p>Cama: {{siembraOut.cama}}</p>
 							<p>Empleado: {{siembraOut.empleado}}</p>
@@ -120,12 +120,75 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
-					<br> <input type="button" class="btn btn-primary"
-						id="plantaList" name="plantaList" value="Lista de Variedades"
-						data-ng-click="getListPlanta()"></input> <input type="text"
+				<div class="col-sm-9">
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="temperaturaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificador</td>
+									<td><input type="number" class="form-control" id="id"
+										name="id" data-ng-model="siembraIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Variedad</td>
+									<td><input type="text" class="form-control" id="variedad"
+										name="variedad" data-ng-model="siembraIn.variedad"
+										placeholder="Nombre de la variedad" /></td>
+								</tr>
+								<tr>
+									<td>Cama</td>
+									<td><input type="number" class="form-control" id="cama"
+										name="cama" data-ng-model="siembraIn.cama"
+										placeholder="Codigo Cama" /></td>
+								</tr>
+								<tr>
+									<td>Empleado</td>
+									<td><input type="number" class="form-control"
+										id="empleado" name="empleado"
+										data-ng-model="siembraIn.empleado"
+										placeholder="Codigo empleado" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Cantidad</td>
+									<td><input type="number" class="form-control"
+										id="cantidad" name="cantidad"
+										data-ng-model="siembraIn.cantidad"
+										placeholder="cantidad sembrada" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Esterilización</td>
+									<td><input type="checkbox" class="form-check-input"
+										id="esterilizacion" data-ng-model="siembraIn.esterilizacion">
+									</td>
+								</tr>
+								<tr>
+									<td>Fecha de siembra</td>
+									<td><input type="datetime" class="form-control" id="fecha"
+										name="fecha" data-ng-model="siembraIn.fecha"
+										data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
+								</tr>
+								<tr>
+									<td>Observación</td>
+									<td><textarea class="form-control" rows="3"
+											id="observacion" name="observacion"
+											data-ng-model="siembraIn.fecha"
+											placeholder="observaciones de la siembra..."></textarea></td>
+								</tr>
+							</table>
+						</div>
+						<br /> <input type="button" class="btn btn-primary" id="guardar"
+							name="saveBtn" value="Guardar"
+							data-ng-click="saveSiembra(siembraIn)" />
+					</div>
+					<br> <br> <input type="button" class="btn btn-primary"
+						id="siembraList" name="siembraList" value="Lista de Variedades"
+						data-ng-click="getListSiembra()"></input> <input type="text"
 						data-ng-model="search"> <br>
-					<div data-ng-show="plantaList.length != 0">
+					<div data-ng-show="siembraList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
 							<thead>
@@ -136,10 +199,14 @@
 									<th>Cantidad</th>
 									<th>Esterilización</th>
 									<th>Fecha siembra</th>
-									<th>Observación</th>
+									<th>Observación</th>									
+									<th>Acción</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="8">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in siembraList | filter:search">
 									<td>{{item.variedad}}</td>
 									<td>{{item.cama}}</td>
@@ -148,69 +215,14 @@
 									<td>{{item.esterilizacion}}</td>
 									<td>{{item.fecha}}</td>
 									<td>{{item.observacion}}</td>
+									<td><a href="#edit_modal" data-ng-click="editar(item)"
+										modal><i class="glyphicon glyphicon-edit">edit</i></a> <a
+										href="#edit_modal" data-ng-click="editar(item)" modal><i
+											class="glyphicon glyphicon-remove">delete</i></a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Identificador</td>
-								<td><input type="number" class="form-control" id="id"
-									name="id" data-ng-model="siembraIn.id"
-									placeholder="Identificador interno" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Variedad</td>
-								<td><input type="text" class="form-control" id="variedad"
-									name="variedad" data-ng-model="siembraIn.variedad"
-									placeholder="Nombre de la variedad" /></td>
-							</tr>
-							<tr>
-								<td>Cama</td>
-								<td><input type="number" class="form-control" id="cama"
-									name="cama" data-ng-model="siembraIn.cama"
-									placeholder="Codigo Cama" /></td>
-							</tr>
-							<tr>
-								<td>Empleado</td>
-								<td><input type="number" class="form-control"
-									id="empleado" name="empleado"
-									data-ng-model="siembraIn.empleado"
-									placeholder="Codigo empleado" min="0" /></td>
-							</tr>
-							<tr>
-								<td>Cantidad</td>
-								<td><input type="number" class="form-control" id="cantidad"
-									name="cantidad" data-ng-model="siembraIn.cantidad"
-									placeholder="cantidad sembrada" min="0" /></td>
-							</tr>
-							<tr>
-								<td>Esterilización</td>
-								<td><input type="checkbox" class="form-check-input"
-									id="esterilizacion" data-ng-model="siembraIn.esterilizacion">
-								</td>
-							</tr>
-							<tr>
-								<td>Fecha de siembra</td>
-								<td><input type="datetime" class="form-control" id="fecha"
-									name="fecha" data-ng-model="siembraIn.fecha"
-									data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
-							</tr>
-							<tr>
-								<td>Observación</td>
-								<td><textarea class="form-control" rows="3"
-										id="observacion" name="observacion"
-										data-ng-model="siembraIn.fecha"
-										placeholder="observaciones de la siembra..."></textarea></td>
-							</tr>
-						</table>
-					</div>
-					<br /> <input type="button" class="btn btn-primary" id="guardar"
-						name="saveBtn" value="Guardar"
-						data-ng-click="savePlanta(plantaIn)" />
 				</div>
 			</div>
 		</div>

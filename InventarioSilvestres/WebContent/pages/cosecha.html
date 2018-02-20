@@ -83,9 +83,9 @@
 						<br> <input type="text" id="plantaId" name="plantaId"
 							data-ng-model="id" required></input> <br> <br> <input
 							type="button" class="btn btn-primary" id="plantaSearch"
-							name="plantaSearch" value="Buscar" data-ng-click="plantaSearch(id)"></input>
-						<a href="#alerta_borrar1" class="btn btn-danger"
-							data-toggle="modal">Eliminar</a>
+							name="plantaSearch" value="Buscar"
+							data-ng-click="plantaSearch(id)"></input> <a
+							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
 						<div class="modal fade" id="alerta_borrar1">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -95,8 +95,8 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p1>Cuidado estas a punto de borrar un registro de 
-										una cosecha en la base de datos.¿seguro deseas continuar?</p1>
+										<p1>Cuidado estas a punto de borrar un registro de una
+										cosecha en la base de datos.¿seguro deseas continuar?</p1>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -190,9 +190,8 @@
 							</tr>
 							<tr>
 								<td>Siembra</td>
-								<td><input type="number" class="form-control"
-									id="siembra" name="siembra"
-									data-ng-model="plantaIn.siembra"
+								<td><input type="number" class="form-control" id="siembra"
+									name="siembra" data-ng-model="plantaIn.siembra"
 									placeholder="Siembra" min="0" /></td>
 							</tr>
 						</table>
