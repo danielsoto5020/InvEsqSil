@@ -110,13 +110,13 @@
 						</div>
 						<br /> <br>
 						<div data-ng-show="mostrarDatosPlanta" id="plantaList">
-							<p>Variedad: {{plantaOut.nombre}}</p>
-							<p>Cama: {{plantaOut.productividad}}</p>
-							<p>Empleado: {{plantaOut.flush}}</p>
-							<p>Cantidad: {{plantaOut.flush}}</p>
-							<p>Esterilización: {{plantaOut.flush}}</p>
-							<p>Fecha: {{plantaOut.flush}}</p>
-							<p>Observación: {{plantaOut.flush}}</p>
+							<p>Variedad: {{siembraOut.variedad}}</p>
+							<p>Cama: {{siembraOut.cama}}</p>
+							<p>Empleado: {{siembraOut.empleado}}</p>
+							<p>Cantidad: {{siembraOut.cantidad}}</p>
+							<p>Esterilización: {{siembraOut.esterilizacion}}</p>
+							<p>Fecha: {{siembraOut.fecha}}</p>
+							<p>Observación: {{siembraOut.observacion}}</p>
 						</div>
 					</div>
 				</div>
@@ -140,7 +140,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr data-ng-repeat="item in plantaList | filter:search">
+								<tr data-ng-repeat="item in siembraList | filter:search">
 									<td>{{item.variedad}}</td>
 									<td>{{item.cama}}</td>
 									<td>{{item.empleado}}</td>
@@ -159,42 +159,39 @@
 							<tr>
 								<td>Identificador</td>
 								<td><input type="number" class="form-control" id="id"
-									name="id" data-ng-model="plantaIn.id"
+									name="id" data-ng-model="siembraIn.id"
 									placeholder="Identificador interno" min="0" disabled /></td>
 							</tr>
 							<tr>
 								<td>Variedad</td>
-								<td><input type="text" class="form-control" id="nombre"
-									name="nombre" data-ng-model="plantaIn.nombre"
+								<td><input type="text" class="form-control" id="variedad"
+									name="variedad" data-ng-model="siembraIn.variedad"
 									placeholder="Nombre de la variedad" /></td>
 							</tr>
 							<tr>
 								<td>Cama</td>
-								<td><input type="text" class="form-control" id="renombre"
-									name="renombre" data-ng-model="plantaIn.renombre"
-									placeholder="Renombre" /></td>
+								<td><input type="number" class="form-control" id="cama"
+									name="cama" data-ng-model="siembraIn.cama"
+									placeholder="Codigo Cama" /></td>
 							</tr>
 							<tr>
 								<td>Empleado</td>
 								<td><input type="number" class="form-control"
-									id="esquejecf" name="esquejecf"
-									data-ng-model="plantaIn.esquejecf"
-									placeholder="Duracion del esqueje en Cuarto Frio" min="0" /></td>
+									id="empleado" name="empleado"
+									data-ng-model="siembraIn.empleado"
+									placeholder="Codigo empleado" min="0" /></td>
 							</tr>
 							<tr>
 								<td>Cantidad</td>
-								<td><input type="number" class="form-control"
-									id="productividad" name="productividad"
-									data-ng-model="plantaIn.productividad"
-									placeholder="Productividad del esqueje" min="0" /></td>
+								<td><input type="number" class="form-control" id="cantidad"
+									name="cantidad" data-ng-model="siembraIn.cantidad"
+									placeholder="cantidad sembrada" min="0" /></td>
 							</tr>
 							<tr>
 								<td>Esterilización</td>
-								<td><select class="form-control" id="lugar" name="lugar"
-									data-ng-model="temperaturaIn.lugar">
-										<option>Si</option>
-										<option>No</option>
-								</select></td>
+								<td><input type="checkbox" class="form-check-input"
+									id="esterilizacion" data-ng-model="siembraIn.esterilizacion">
+								</td>
 							</tr>
 							<tr>
 								<td>Fecha de siembra</td>
