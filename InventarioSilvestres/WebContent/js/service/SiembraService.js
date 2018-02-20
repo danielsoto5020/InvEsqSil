@@ -29,7 +29,7 @@ app.factory("siembraService", function($q, $http) {
 			});
 		},
 		saveSiembra: function(siembraIn){
-			return $http.post('http://CSistemas04:8080/InventarioSilvestres/rest/siembra/crear-siembra', temperaturaIn).then(function(data){
+			return $http.post('http://CSistemas04:8080/InventarioSilvestres/rest/siembra/crear-siembra', simebraIn).then(function(data){
 				var msg=angular.fromJson(data);
 				return msg;
 			}).catch(function(data){
@@ -37,7 +37,7 @@ app.factory("siembraService", function($q, $http) {
 			})
 		},
 		updateSiembra: function(siembraIn){
-			return $http.post('http://CSistemas04:8080/InventarioSilvestres/rest/siembra/actualizar-siembra', temperaturaIn).then(function(data){
+			return $http.post('http://CSistemas04:8080/InventarioSilvestres/rest/siembra/actualizar-siembra', siembraIn).then(function(data){
 				var msg=angular.fromJson(data);
 				return msg;
 			}).catch(function(data){
