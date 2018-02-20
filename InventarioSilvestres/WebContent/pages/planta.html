@@ -215,8 +215,8 @@
 									<th>2 F</th>
 									<th>Color 1</th>
 									<th>Color 2</th>
-									<th>Breeder u origen</th>									
-									<th>Acción</th>
+									<th>Breeder del clon</th>									
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -233,7 +233,7 @@
 									<td>{{item.colores}}</td>
 									<td>{{item.colorus}}</td>
 									<td>{{item.nbreeder}}</td>
-									<td><a href="#edit_modal" data-ng-click="savePlanta(item)"
+									<td><a href="#edit_modal" data-ng-click="savePlanta(plantaIn)"
 										modal><i class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
 										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
 											class="glyphicon glyphicon-remove"></i></a></td>
