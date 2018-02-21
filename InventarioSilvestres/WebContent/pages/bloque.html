@@ -96,7 +96,7 @@
 									</div>
 									<div class="modal-body">
 										<p>Cuidado estas a punto de borrar un registro de un
-										bloque en la base de datos.¿seguro deseas continuar?</p>
+											bloque en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -116,62 +116,97 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="plantaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificación</td>
+									<td><input type="text" class="form-control" id="id"
+										name="id" data-ng-model="bloqueIn.id"
+										placeholder="Identificador" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Nombre</td>
+									<td><input type="text" class="form-control" id="nombre"
+										name="nombre" data-ng-model="bloqueIn.nombre"
+										placeholder="Nombre" /></td>
+								</tr>
+								<tr>
+									<td>N. Camas</td>
+									<td><input type="number" class="form-control" id="ncama"
+										name="ncama" data-ng-model="bloqueIn.ncama"
+										placeholder="Numero de camas" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Finca</td>
+									<td><input type="text" class="form-control" id="finca"
+										name="finca" data-ng-model="bloqueIn.finca"
+										placeholder="Id Finca" /></td>
+								</tr>
+							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveBloque(bloqueIn)" />
+						</div>
+					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="bloqueList" name="bloqueList" value="Lista de Bloques"
-						data-ng-click="getListBloque()"></input<br /> <br>
+						data-ng-click="getListBloque()"></input> <input
+						type="text" data-ng-model="search"> <br>
 					<div data-ng-show="bloqueList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
 							<thead>
 								<tr>
-									<th>Nombre</th>
+									<th>Nombre Bloque</th>
 									<th>N. Camas</th>
 									<th>Finca</th>
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="4">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in bloqueList | orderBy:'id'">
 									<td>{{'BLOQUE '+item.nombre}}</td>
 									<td>{{item.ncama}}</td>
 									<td>{{item.finca}}</td>
+									<td><a href="#edit_modal"
+										data-ng-click="updateBloque(item)" modal><i
+											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
-					</div>
-				</div>
-				<br /> <br />
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Identificación</td>
-								<td><input type="text" class="form-control" id="id"
-									name="id" data-ng-model="bloqueIn.id"
-									placeholder="Identificador" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Nombre</td>
-								<td><input type="text" class="form-control" id="nombre"
-									name="nombre" data-ng-model="bloqueIn.nombre"
-									placeholder="Nombre" /></td>
-							</tr>
-							<tr>
-								<td>N. Camas</td>
-								<td><input type="number" class="form-control" id="ncama"
-									name="ncama" data-ng-model="bloqueIn.ncama"
-									placeholder="Numero de camas" min="0" /></td>
-							</tr>
-							<tr>
-								<td>Finca</td>
-								<td><input type="text" class="form-control" id="finca"
-									name="finca" data-ng-model="bloqueIn.finca"
-									placeholder="Id Finca" /></td>
-							</tr>
-						</table>
-						<br /> <input type="button" class="btn btn-primary" id="guardar"
-							name="saveBtn" value="Guardar"
-							data-ng-click="saveBloque(bloqueIn)" />
+						<div class="modal fade" id="alerta_borrar1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<h4 class="modal-title">PRECAUCION</h4>
+									</div>
+									<div class="modal-body">
+										<p>Cuidado estas a punto de borrar un registro de un
+											bloque en la base de datos.¿seguro deseas continuar?</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary"
+											data-dismiss="modal">CERRAR</button>
+										<input type="button" class="btn btn-danger" id="deleteBloque"
+											name="deleteBloque" value="BORRAR"
+											data-ng-click="deleteBloque(id)"></input>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
