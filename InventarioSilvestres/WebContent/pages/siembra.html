@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PLANTA</title>
+<title>SIEMBRA</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -10,14 +10,14 @@
 <script src="../js/ext/bootstrap.min.js"></script>
 <script src="../js/ext/angular.min.js" type="text/javascript"></script>
 <script src="../js/app.js" type="text/javascript"></script>
-<script src="../js/controller/PlantaController.js"
+<script src="../js/controller/SiembraController.js"
 	type="text/javascript"></script>
-<script src="../js/service/PlantaService.js" type="text/javascript"></script>
+<script src="../js/service/SiembraService.js" type="text/javascript"></script>
 <link href="../css/base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="container" data-ng-app="app"
-		data-ng-controller="plantaController">
+		data-ng-controller="siembraController">
 		<br>
 		<header>
 			<nav class="navbar navbar-default navbar-fixed-top">
@@ -215,7 +215,7 @@
 									<td>{{item.esterilizacion}}</td>
 									<td>{{item.fecha}}</td>
 									<td>{{item.observacion}}</td>
-									<td><a href="#edit_modal" data-ng-click="editar(item)"
+									<td><a href="#edit_modal" data-ng-click="updateSiembra(item)"
 										modal><i class="glyphicon glyphicon-edit">edit</i></a> <a
 										href="#edit_modal" data-ng-click="editar(item)" modal><i
 											class="glyphicon glyphicon-remove">delete</i></a></td>

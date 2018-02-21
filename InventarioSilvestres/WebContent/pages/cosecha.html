@@ -10,9 +10,9 @@
 <script src="../js/ext/bootstrap.min.js"></script>
 <script src="../js/ext/angular.min.js" type="text/javascript"></script>
 <script src="../js/app.js" type="text/javascript"></script>
-<script src="../js/controller/PlantaController.js"
+<script src="../js/controller/CosechaController.js"
 	type="text/javascript"></script>
-<script src="../js/service/PlantaService.js" type="text/javascript"></script>
+<script src="../js/service/CosechaService.js" type="text/javascript"></script>
 <link href="../css/base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -95,8 +95,8 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p1>Cuidado estas a punto de borrar un registro de una
-										cosecha en la base de datos.¿seguro deseas continuar?</p1>
+										<p>Cuidado estas a punto de borrar un registro de una
+										cosecha en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -122,7 +122,7 @@
 					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
-							name="plantaList" data-ng-hide="showForm"
+							name="cosechaList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">

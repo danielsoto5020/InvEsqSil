@@ -45,9 +45,9 @@
 									<li><a href="../pages/producto.html">Productos</a></li>
 									<li><a href="../pages/breeder.html">Breeders</a></li>
 									<li><a href="../pages/planta.html">Esquejes</a></li>
-									<li><a href="../pages/codigorf.html">Codigo RedFlor</a></li>
+									<li><a href="../pages/codigorf.html">Código RedFlor</a></li>
 									<li><a href="../pages/empleado.html">Empleado</a></li>
-									<li><a href="../pages/auditoria.html">Auditorias</a></li>
+									<li><a href="../pages/auditoria.html">Auditorías</a></li>
 									<li><a href="../pages/temperatura.html">Temperatura en
 											bloque</a></li>
 								</ul></li>
@@ -79,9 +79,10 @@
 		<div class="container">
 			<div class="row content">
 				<div class="col-sm-3">
-				<br>
+					<br>
 					<div class="container">
 						<br> <input type="text" id="breederId" name="breederId"
+							data-ng-model="id" required></input> <br> <br> <input
 							type="button" class="btn btn-primary" id="breederSearch"
 							name="breederSearch" value="Buscar"
 							data-ng-click="breederSearch(id)"></input> <a
@@ -122,7 +123,7 @@
 					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
-							name="plantaList" data-ng-hide="showForm"
+							name="breederList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">

@@ -94,8 +94,8 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p1>Cuidado estas a punto de borrar un color en la base
-										de datos.¿seguro deseas continuar?</p1>
+										<p>Cuidado estas a punto de borrar un color en la base
+										de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -120,7 +120,7 @@
 					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
-							name="plantaList" data-ng-hide="showForm"
+							name="colorList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
@@ -165,7 +165,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="10">&nbsp;</td>
+									<td colspan="4">&nbsp;</td>
 								</tr>
 								<tr data-ng-repeat="item in colorList | orderBy:'id'">
 									<td>{{item.id}}</td>
@@ -181,8 +181,8 @@
 						</table>
 					</div>
 				</div>
-
 			</div>
 		</div>
+	</div>
 </body>
 </html>

@@ -25,10 +25,8 @@
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed"
 							data-toggle="collapse" data-target="#navbar-menu">
-							<span class="sr-only">Menu</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span> 
-							<span class="icon-bar"></span>
+							<span class="sr-only">Menu</span> <span class="icon-bar"></span>
+							<span class="icon-bar"></span> <span class="icon-bar"></span>
 						</button>
 						<a href="../index.html" class="navbar-brand">Inicio</a>
 					</div>
@@ -97,8 +95,8 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p>Cuidado estas a punto de borrar un Producto en la
-										base de datos.¿seguro deseas continuar?</p>
+										<p>Cuidado estas a punto de borrar un Producto en la base
+											de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -118,10 +116,36 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="plantaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificador</td>
+									<td><input type="text" class="form-control" id="id"
+										name="id" data-ng-model="productoIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Producto</td>
+									<td><input type="text" class="form-control" id="nombre"
+										name="nombre" data-ng-model="productoIn.nombre"
+										placeholder="Nombre en Español" /></td>
+								</tr>
+							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveProducto(productoIn)" />
+						</div>
+					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="productoList" name="productoList" value="Listado de Productos"
-						data-ng-click="getListProducto()"></input<br /> <br>
+						data-ng-click="getListProducto()"></input> <input type="text"
+						data-ng-model="search"> <br>
 					<div data-ng-show="productoList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
@@ -129,38 +153,25 @@
 								<tr>
 									<th>Identificador</th>
 									<th>Producto</th>
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="3">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in productoList | orderBy:'id'">
 									<td>{{item.id}}</td>
 									<td>{{item.nombre}}</td>
+									<td><a href="#edit_modal"
+										data-ng-click="updatePlanta(plantaIn)" modal><i
+											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<br /> <br />
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Identificador</td>
-								<td><input type="text" class="form-control" id="id"
-									name="id" data-ng-model="productoIn.id"
-									placeholder="Identificador interno" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Producto</td>
-								<td><input type="text" class="form-control" id="nombre"
-									name="nombre" data-ng-model="productoIn.nombre"
-									placeholder="Nombre en Español" /></td>
-							</tr>
-						</table>
-					</div>
-					<br /> <input type="button" class="btn btn-primary" id="guardar"
-						name="saveBtn" value="Guardar"
-						data-ng-click="saveProducto(productoIn)" />
 				</div>
 			</div>
 		</div>
