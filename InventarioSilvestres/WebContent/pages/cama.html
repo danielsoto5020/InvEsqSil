@@ -191,7 +191,7 @@
 						<div class="table-responsive">
 							<br> <input type="button" class="btn btn-primary"
 								id="camaList" name="camaList" value="Lista de Cama"
-								data-ng-click="getListCama()"></input<br /> <input type="text"
+								data-ng-click="getListCama()"></input> <input type="text"
 								data-ng-model="search"> <br>
 							<div data-ng-show="camaList.length != 0">
 								<br />
@@ -206,11 +206,12 @@
 											<th>E X L</th>
 											<th>Estado</th>
 											<th>Fecha ultima Esterilización</th>
+											<th>Editar/Eliminar</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td colspan="8">&nbsp;</td>
+											<td colspan="9">&nbsp;</td>
 										</tr>
 										<tr data-ng-repeat="item in camaList | filter:search">
 											<td>{{'BLOQUE '+item.bloque}}</td>
@@ -221,6 +222,11 @@
 											<td>{{item.nlinea}}</td>
 											<td>{{item.estado}}</td>
 											<td>{{item.esterilizacion | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+											<td><a href="#edit_modal"
+												data-ng-click="savePlanta(plantaIn)" modal><i
+													class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+												href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+													class="glyphicon glyphicon-remove"></i></a></td>
 										</tr>
 									</tbody>
 								</table>

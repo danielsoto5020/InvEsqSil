@@ -58,6 +58,7 @@ app.controller("camaController", [ "$scope", "camaService",
 				camaService.saveCama(camaIn).then(function(message) {
 					alert(message.data);
 				})
+				$scope.camaIn = {};
 			}
 			$scope.camaIn = {};
 			$scope.updateCama = function(camaIn) {

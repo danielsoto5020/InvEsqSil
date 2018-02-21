@@ -46,7 +46,7 @@ app.controller("bloqueController", [ "$scope", "bloqueService",
 				bloqueService.saveBloque(bloqueIn).then(function(message) {
 					alert(message.data);
 				})
-				$scope.temperaturaIn = {};
+				$scope.bloqueIn = {}
 			}
 			$scope.bloqueIn = {};
 			$scope.updateBloque = function(bloqueIn) {

@@ -116,10 +116,42 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="plantaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificador</td>
+									<td><input type="text" class="form-control" id="id"
+										name="id" data-ng-model="colorIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Nombre Español</td>
+									<td><input type="text" class="form-control" id="nombre"
+										name="nombre" data-ng-model="colorIn.nombre"
+										placeholder="Nombre en Español" /></td>
+								</tr>
+								<tr>
+									<td>Nombre Inglés</td>
+									<td><input type="text" class="form-control" id="name"
+										name="name" data-ng-model="colorIn.name"
+										placeholder="Nombre en Ingles" /></td>
+								</tr>
+							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveColor(colorIn)" />
+						</div>
+					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="colorList" name="colorList" value="Listado de Colores"
-						data-ng-click="getListColor()"></input<br /> <br>
+						data-ng-click="getListColor()"></input> <input type="text"
+						data-ng-model="search"> <br>
 					<div data-ng-show="colorList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
@@ -128,47 +160,29 @@
 									<th>Identificador</th>
 									<th>Nombre Español</th>
 									<th>Nombre Inglés</th>
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="10">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in colorList | orderBy:'id'">
 									<td>{{item.id}}</td>
 									<td>{{item.nombre}}</td>
 									<td>{{item.name}}</td>
+									<td><a href="#edit_modal"
+										data-ng-click="savePlanta(plantaIn)" modal><i
+											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<br /> <br />
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Identificador</td>
-								<td><input type="text" class="form-control" id="id"
-									name="id" data-ng-model="colorIn.id"
-									placeholder="Identificador interno" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Nombre Español</td>
-								<td><input type="text" class="form-control" id="nombre"
-									name="nombre" data-ng-model="colorIn.nombre"
-									placeholder="Nombre en Español" /></td>
-							</tr>
-							<tr>
-								<td>Nombre Inglés</td>
-								<td><input type="text" class="form-control" id="name"
-									name="name" data-ng-model="colorIn.name"
-									placeholder="Nombre en Ingles" /></td>
-							</tr>
-						</table>
-					</div>
-					<br /> <input type="button" class="btn btn-primary" id="guardar"
-						name="saveBtn" value="Guardar" data-ng-click="saveColor(colorIn)" />
-				</div>
+
 			</div>
 		</div>
-	</div>
 </body>
 </html>

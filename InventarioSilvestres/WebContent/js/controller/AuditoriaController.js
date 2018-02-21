@@ -63,7 +63,7 @@ app.controller("auditoriaController", [
 						function(message) {
 							alert(message.data);
 						})
-						$scope.temperaturaIn = {};
+						$scope.auditoriaIn = {};
 			}
 			$scope.auditoriaIn = {};
 			$scope.updateAuditoria = function(auditoriaIn) {

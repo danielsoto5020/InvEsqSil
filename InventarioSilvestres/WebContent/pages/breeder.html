@@ -79,6 +79,7 @@
 		<div class="container">
 			<div class="row content">
 				<div class="col-sm-3">
+				<br>
 					<div class="container">
 						<br> <input type="text" id="breederId" name="breederId"
 							type="button" class="btn btn-primary" id="breederSearch"
@@ -117,10 +118,61 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="plantaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificación</td>
+									<td><input type="number" class="form-control" id="id"
+										name="id" data-ng-model="breederIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Nombre</td>
+									<td><input type="text" class="form-control" id="nombre"
+										name="nombre" data-ng-model="breederIn.nombre"
+										placeholder="Nombre" /></td>
+								</tr>
+								<tr>
+									<td>Teléfono</td>
+									<td><input type="number" class="form-control"
+										id="telefono1" name="telefono1"
+										data-ng-model="breederIn.telefono1"
+										placeholder="Telefono principal" /></td>
+								</tr>
+								<tr>
+									<td>Correo</td>
+									<td><input type="email" class="form-control" id="correo"
+										name="correo" data-ng-model="breederIn.correo"
+										placeholder="breeder@correo.com" /></td>
+								</tr>
+								<tr>
+									<td>web</td>
+									<td><input type="text" class="form-control" id="web"
+										name="web" data-ng-model="breederIn.web"
+										placeholder="Pagina web del breeder" /></td>
+								</tr>
+								<tr>
+									<td>nombre contacto</td>
+									<td><input type="text" class="form-control" id="contacto"
+										name="contacto" data-ng-model="breederIn.contacto"
+										placeholder="nombre del contacto" /></td>
+								</tr>
+							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveBreeder(breederIn)" />
+						</div>
+					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="breederList" name="breederList" value="Lista de Breeders"
-						data-ng-click="getListBreeder()"></input><br /> <br>
+						data-ng-click="getListBreeder()"></input><input type="text"
+						data-ng-model="search"> <br>
 					<div data-ng-show="breederList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
@@ -131,65 +183,27 @@
 									<th>Correo</th>
 									<th>web</th>
 									<th>nombre contacto</th>
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="6">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in breederList | orderBy:'item.nombre'">
 									<td>{{item.nombre}}</td>
 									<td>{{item.telefono1}}</td>
 									<td>{{item.correo}}</td>
 									<td>{{item.web}}</td>
 									<td>{{item.contacto}}</td>
+									<td><a href="#edit_modal"
+										data-ng-click="savePlanta(plantaIn)" modal><i
+											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
-					</div>
-				</div>
-				<br /> <br />
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Identificación</td>
-								<td><input type="number" class="form-control" id="id"
-									name="id" data-ng-model="breederIn.id"
-									placeholder="Identificador interno" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Nombre</td>
-								<td><input type="text" class="form-control" id="nombre"
-									name="nombre" data-ng-model="breederIn.nombre"
-									placeholder="Nombre" /></td>
-							</tr>
-							<tr>
-								<td>Teléfono</td>
-								<td><input type="number" class="form-control"
-									id="telefono1" name="telefono1"
-									data-ng-model="breederIn.telefono1"
-									placeholder="Telefono principal" /></td>
-							</tr>
-							<tr>
-								<td>Correo</td>
-								<td><input type="email" class="form-control" id="correo"
-									name="correo" data-ng-model="breederIn.correo"
-									placeholder="breeder@correo.com" /></td>
-							</tr>
-							<tr>
-								<td>web</td>
-								<td><input type="text" class="form-control" id="web"
-									name="web" data-ng-model="breederIn.web"
-									placeholder="Pagina web del breeder" /></td>
-							</tr>
-							<tr>
-								<td>nombre contacto</td>
-								<td><input type="text" class="form-control" id="contacto"
-									name="contacto" data-ng-model="breederIn.contacto"
-									placeholder="nombre del contacto" /></td>
-							</tr>
-						</table>
-						<br /> <input type="button" class="btn btn-primary" id="guardar"
-							name="saveBtn" value="Guardar"
-							data-ng-click="saveBreeder(breederIn)" />
 					</div>
 				</div>
 			</div>
