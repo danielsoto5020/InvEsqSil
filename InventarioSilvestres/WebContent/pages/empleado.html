@@ -84,8 +84,8 @@
 							data-ng-model="id" required></input> <br> <br> <input
 							type="button" class="btn btn-primary" id="empleadoSearch"
 							name="empleadoSearch" value="Buscar"
-							data-ng-click="empleadoSearch(id)"></input> <a href="#alerta_borrar1"
-							class="btn btn-danger" data-toggle="modal">Eliminar</a>
+							data-ng-click="empleadoSearch(id)"></input> <a
+							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
 						<div class="modal fade" id="alerta_borrar1">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -96,7 +96,7 @@
 									</div>
 									<div class="modal-body">
 										<p>Cuidado estas a punto de borrar un registro de un
-										empleado en la base de datos.¿seguro deseas continuar?</p>
+											empleado en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -118,75 +118,88 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="plantaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificación</td>
+									<td><input type="text" class="form-control" id="id"
+										name="id" data-ng-model="empleadoIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Tipo Documento</td>
+									<td><select class="form-control" id="tipodoc"
+										name="tipodoc" data-ng-model="empleadoIn.tipodoc">
+											<option>Tarjeta de identidad</option>
+											<option>Cédula de ciudadanía</option>
+											<option>Tarjeta de extranjería</option>
+											<option>Cédula de extranjería</option>
+											<option>NIT</option>
+											<option>Pasaporte</option>
+											<option>Documento de identificación extranjero</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>Documento</td>
+									<td><input type="text" class="form-control" id="documento"
+										name="documento" data-ng-model="empleadoIn.documento"
+										placeholder="Documento de identificacion" /></td>
+								<tr>
+									<td>Nombres</td>
+									<td><input type="text" class="form-control" id="nombre"
+										name="nombre" data-ng-model="empleadoIn.nombre"
+										placeholder="Nombres" /></td>
+								<tr>
+									<td>Apellidos</td>
+									<td><input type="text" class="form-control" id="apellido"
+										name="apellido" data-ng-model="empleadoIn.apellido"
+										placeholder="Apellidos" /></td>
+							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveEmpleado(empleadoIn)" />
+						</div>
+					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="empleadoList" name="empleadoList" value="Listado empleados"
-						data-ng-click="getListEmpleado()"></input<br /> <br>
+						data-ng-click="getListEmpleado()"></input> <input type="text"
+						data-ng-model="search"> <br>
 					<div data-ng-show="empleadoList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
 							<thead>
 								<tr>
-									<th>Tipo Documento</th>
+									<th>Tipo de documento</th>
 									<th>Documento</th>
 									<th>Nombre</th>
 									<th>Apellido</th>
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="5">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in empleadoList | orderBy:'id'">
 									<td>{{item.tipodoc}}</td>
 									<td>{{item.documento}}</td>
 									<td>{{item.nombre}}</td>
 									<td>{{item.apellido}}</td>
+									<td><a href="#edit_modal"
+										data-ng-click="updateEmpleado(empleadoIn)" modal><i
+											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<br /> <br />
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Identificación</td>
-								<td><input type="text" class="form-control" id="id"
-									name="id" data-ng-model="empleadoIn.id"
-									placeholder="Identificador interno" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Tipo Documento</td>
-								<td><select class="form-control" id="tipodoc"
-									name="tipodoc" data-ng-model="empleadoIn.tipodoc">
-										<option>Tarjeta de identidad</option>
-										<option>Cédula de ciudadanía</option>
-										<option>Tarjeta de extranjería</option>
-										<option>Cédula de extranjería</option>
-										<option>NIT</option>
-										<option>Pasaporte</option>
-										<option>Documento de identificación extranjero</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>Documento</td>
-								<td><input type="text" class="form-control" id="documento"
-									name="documento" data-ng-model="empleadoIn.documento"
-									placeholder="Documento de identificacion" /></td>
-							<tr>
-								<td>Nombres</td>
-								<td><input type="text" class="form-control" id="nombre"
-									name="nombre" data-ng-model="empleadoIn.nombre"
-									placeholder="Nombres" /></td>
-							<tr>
-								<td>Apellidos</td>
-								<td><input type="text" class="form-control" id="apellido"
-									name="apellido" data-ng-model="empleadoIn.apellido"
-									placeholder="Apellidos" /></td>
-						</table>
-					</div>
-					<br /> <input type="button" class="btn btn-primary" id="guardar"
-						name="saveBtn" value="Guardar"
-						data-ng-click="saveEmpleado(empleadoIn)" />
 				</div>
 			</div>
 		</div>

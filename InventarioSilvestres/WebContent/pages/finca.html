@@ -95,13 +95,14 @@
 									</div>
 									<div class="modal-body">
 										<p>Cuidado estas a punto de borrar un registro de una
-										finca en la base de datos.¿seguro deseas continuar?</p>
+											finca en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
 											data-dismiss="modal">CERRAR</button>
 										<input type="button" class="btn btn-danger" id="deleteFinca"
-											name="deleteFinca" value="BORRAR" data-ng-click="deleteFinca(id)"></input>
+											name="deleteFinca" value="BORRAR"
+											data-ng-click="deleteFinca(id)"></input>
 									</div>
 								</div>
 							</div>
@@ -115,10 +116,48 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="plantaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Identificación</td>
+									<td><input type="text" class="form-control" id="id"
+										name="id" data-ng-model="fincaIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Nombre</td>
+									<td><input type="text" class="form-control" id="nombre"
+										name="nombre" data-ng-model="fincaIn.nombre"
+										placeholder="Nombre" /></td>
+								</tr>
+								<tr>
+									<td>Ubicación</td>
+									<td><input type="text" class="form-control" id="ubicacion"
+										name="ubicacion" data-ng-model="fincaIn.ubicacion"
+										placeholder="Ubicacion" /></td>
+								</tr>
+								<tr>
+									<td>Teléfono</td>
+									<td><input type="tel" class="form-control" id="telefono1"
+										name="telefono1" data-ng-model="fincaIn.telefono1"
+										placeholder="Telefono 1" /></td>
+								</tr>
+							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveFinca(fincaIn)" />
+						</div>
+					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="fincaList" name="fincaList" value="Listado de Fincas"
-						data-ng-click="getListFinca()"></input<br /> <br>
+						data-ng-click="getListFinca()"></input> <input type="text"
+						data-ng-model="search"> <br>
 					<div data-ng-show="fincaList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
@@ -127,50 +166,26 @@
 									<th>Nombre</th>
 									<th>Ubicación</th>
 									<th>Teléfono</th>
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="4">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in fincaList | orderBy:'id'">
 									<td>{{item.nombre}}</td>
 									<td>{{item.ubicacion}}</td>
 									<td>{{item.telefono1}}</td>
+									<td><a href="#edit_modal"
+										data-ng-click="updateFinca(item)" modal><i
+											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<br /> <br />
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Identificación</td>
-								<td><input type="text" class="form-control" id="id"
-									name="id" data-ng-model="fincaIn.id"
-									placeholder="Identificador interno" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Nombre</td>
-								<td><input type="text" class="form-control" id="nombre"
-									name="nombre" data-ng-model="fincaIn.nombre"
-									placeholder="Nombre" /></td>
-							</tr>
-							<tr>
-								<td>Ubicación</td>
-								<td><input type="text" class="form-control" id="ubicacion"
-									name="ubicacion" data-ng-model="fincaIn.ubicacion"
-									placeholder="Ubicacion" /></td>
-							</tr>
-							<tr>
-								<td>Teléfono</td>
-								<td><input type="tel" class="form-control" id="telefono1"
-									name="telefono1" data-ng-model="fincaIn.telefono1"
-									placeholder="Telefono 1" /></td>
-							</tr>
-						</table>
-					</div>
-					<br /> <input type="button" class="btn btn-primary" id="guardar"
-						name="saveBtn" value="Guardar" data-ng-click="saveFinca(fincaIn)" />
 				</div>
 			</div>
 		</div>
