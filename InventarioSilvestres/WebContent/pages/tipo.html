@@ -158,7 +158,7 @@
 								<tr>
 									<td colspan="3">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in tipoList | orderBy:'id'">
+								<tr data-ng-repeat="item in tipoList | orderBy:'+nombre'">
 									<td>{{item.id}}</td>
 									<td>{{item.nombre}}</td>
 									<td><a href="#edit_modal"

@@ -207,7 +207,7 @@
 								<tr>
 									<td colspan="8">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in siembraList | filter:search">
+								<tr data-ng-repeat="item in siembraList | filter:search | orderBy:'+fecha'">
 									<td>{{item.variedad}}</td>
 									<td>{{item.cama}}</td>
 									<td>{{item.empleado}}</td>

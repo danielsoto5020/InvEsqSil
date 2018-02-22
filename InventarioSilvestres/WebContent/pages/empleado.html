@@ -186,7 +186,7 @@
 								<tr>
 									<td colspan="5">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in empleadoList | orderBy:'id'">
+								<tr data-ng-repeat="item in empleadoList | orderBy:'+nombre' | filter:search">
 									<td>{{item.tipodoc}}</td>
 									<td>{{item.documento}}</td>
 									<td>{{item.nombre}}</td>

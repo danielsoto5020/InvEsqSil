@@ -157,7 +157,7 @@
 						<table class="table" id="datosBasicos">
 							<thead>
 								<tr>
-									<th>Identificador</th>
+									<th>Id</th>
 									<th>Nombre Español</th>
 									<th>Nombre Inglés</th>
 									<th>Editar/Eliminar</th>
@@ -167,7 +167,7 @@
 								<tr>
 									<td colspan="4">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in colorList | orderBy:'id'">
+								<tr data-ng-repeat="item in colorList | orderBy:'+nombre' | filter:search"">
 									<td>{{item.id}}</td>
 									<td>{{item.nombre}}</td>
 									<td>{{item.name}}</td>

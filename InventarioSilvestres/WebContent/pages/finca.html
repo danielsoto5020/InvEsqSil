@@ -173,7 +173,7 @@
 								<tr>
 									<td colspan="4">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in fincaList | orderBy:'id'">
+								<tr data-ng-repeat="item in fincaList | orderBy:'+nombre' | filter:search">
 									<td>{{item.nombre}}</td>
 									<td>{{item.ubicacion}}</td>
 									<td>{{item.telefono1}}</td>

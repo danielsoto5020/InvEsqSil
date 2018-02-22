@@ -191,7 +191,7 @@
 								<tr>
 									<td colspan="6">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in breederList | orderBy:'item.nombre'">
+								<tr data-ng-repeat="item in breederList | orderBy:'+nombre' | filter:search"">
 									<td>{{item.nombre}}</td>
 									<td>{{item.telefono1}}</td>
 									<td>{{item.correo}}</td>

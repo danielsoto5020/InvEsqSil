@@ -173,7 +173,7 @@
 								<tr>
 									<td colspan="4">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in bloqueList | orderBy:'id'">
+								<tr data-ng-repeat="item in bloqueList | orderBy:'+nombre' | filter:search"">
 									<td>{{'BLOQUE '+item.nombre}}</td>
 									<td>{{item.ncama}}</td>
 									<td>{{item.finca}}</td>

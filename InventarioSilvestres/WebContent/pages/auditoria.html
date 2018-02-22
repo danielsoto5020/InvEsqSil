@@ -198,7 +198,7 @@
 								<tr>
 									<td colspan="7">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in auditoriaList | orderBy:'id'">
+								<tr data-ng-repeat="item in auditoriaList | orderBy:'id' | filter:search"">
 									<td>{{item.tabla}}</td>
 									<td>{{item.columna}}</td>
 									<td>{{item.valor}}</td>
