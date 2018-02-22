@@ -1,7 +1,4 @@
-app
-		.controller(
-				"codigorfController",
-				[
+app.controller("codigorfController", [
 						"$scope",
 						"codigorfService",
 						function codigorfController($scope, codigorfService) {
@@ -57,7 +54,7 @@ app
 										function(message) {
 											alert(message.data);
 										})
-										$scope.codigorfIn = {};
+								$scope.codigorfIn = {};
 							}
 							$scope.codigorfIn = {};
 							$scope.updateCodigorf = function(codigorfIn) {
