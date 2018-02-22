@@ -95,8 +95,8 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p>Cuidado estas a punto de borrar un codigo de red flor en la base
-										de datos.¿seguro deseas continuar?</p>
+										<p>Cuidado estas a punto de borrar un codigo de red flor
+											en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -117,11 +117,42 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="plantaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Id. Interno</td>
+									<td><input type="text" class="form-control" id="id"
+										name="id" data-ng-model="codigorfIn.id"
+										placeholder="Identificador interno" min="0" disabled /></td>
+								</tr>
+								<tr>
+									<td>Código RF</td>
+									<td><input type="text" class="form-control" id="codigo"
+										name="codigo" data-ng-model="cdigorfIn.codigo"
+										placeholder="Codigo de Red Flor" /></td>
+								</tr>
+								<tr>
+									<td>Id. Variedad</td>
+									<td><input type="text" class="form-control" id="planta"
+										name="planta" data-ng-model="codigorfIn.planta"
+										placeholder="Identificador de la variedad" /></td>
+								</tr>
+							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveCodigorf(codigorfIn)" />
+						</div>
+					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="codigorfList" name="codigorfList"
-						value="Listado de Codigos RF" data-ng-click="getListCodigorf()"></input<br />
-					<br>
+						value="Listado de Codigos RF" data-ng-click="getListCodigorf()"></input><input
+						type="text" data-ng-model="search"> <br> <br>
 					<div data-ng-show="codigorfList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
@@ -129,44 +160,26 @@
 								<tr>
 									<th>Código RedFlor</th>
 									<th>Id. Planta</th>
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr data-ng-repeat="item in codigorfList | orderBy:'item.planta'">
+								<tr>
+									<td colspan="3">&nbsp;</td>
+								</tr>
+								<tr
+									data-ng-repeat="item in codigorfList | orderBy:'+planta' | filter:search">
 									<td>{{item.codigo}}</td>
 									<td>{{item.planta}}</td>
+									<td><a href="#edit_modal"
+										data-ng-click="updatePlanta(plantaIn)" modal><i
+											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<br /> <br />
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Id. Interno</td>
-								<td><input type="text" class="form-control" id="id"
-									name="id" data-ng-model="codigorfIn.id"
-									placeholder="Identificador interno" min="0" disabled /></td>
-							</tr>
-							<tr>
-								<td>Código RF</td>
-								<td><input type="text" class="form-control" id="codigo"
-									name="codigo" data-ng-model="cdigorfIn.codigo"
-									placeholder="Codigo de Red Flor" /></td>
-							</tr>
-							<tr>
-								<td>Id. Variedad</td>
-								<td><input type="text" class="form-control" id="planta"
-									name="planta" data-ng-model="codigorfIn.planta"
-									placeholder="Identificador de la variedad" /></td>
-							</tr>
-						</table>
-					</div>
-					<br /> <input type="button" class="btn btn-primary" id="guardar"
-						name="saveBtn" value="Guardar"
-						data-ng-click="saveCodigorf(codigorfIn)" />
 				</div>
 			</div>
 		</div>
