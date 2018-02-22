@@ -45,7 +45,7 @@ app.controller("productoController", [
 						function(message) {
 							alert(message.data);
 						})
-						$scope.productoIn = {};
+				$scope.productoIn = {};
 			}
 			$scope.productoIn = {};
 			$scope.updateProducto = function(productoIn) {
