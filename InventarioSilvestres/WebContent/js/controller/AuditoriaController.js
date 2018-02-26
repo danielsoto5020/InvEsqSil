@@ -13,8 +13,8 @@ app.controller("auditoriaController", [
 						"operacion" : message.data.operacion,
 						"oldvalor" : message.data.oldvalor,
 						"newvalor" : message.data.newvalor,
-						"fecha" : message.data.fecha,
-						"usuario" : message.data.usuario
+						"usuario" : message.data.usuario,
+						"fecha" : message.data.fecha
 					};
 					if (message.data.id == null) {
 						alert("Auditoria no registrada");
@@ -53,8 +53,8 @@ app.controller("auditoriaController", [
 					"operacion" : auditoriaIn.operacion,
 					"oldvalor" : auditoriaIn.oldvalor,
 					"newvalor" : auditoriaIn.newvalor,
-					"fecha" : auditoriaIn.fecha,
-					"usuario" : auditoriaIn.usuario
+					"usuario" : auditoriaIn.usuario,
+					"fecha" : auditoriaIn.fecha
 				};
 
 				$scope.showForm = false;
@@ -73,8 +73,8 @@ app.controller("auditoriaController", [
 					"operacion" : auditoriaIn.operacion,
 					"oldvalor" : auditoriaIn.oldvalor,
 					"newvalor" : auditoriaIn.newvalor,
-					"fecha" : auditoriaIn.fecha,
-					"usuario" : auditoriaIn.usuario
+					"usuario" : auditoriaIn.usuario,
+					"fecha" : auditoriaIn.fecha
 				};
 				auditoriaService.updateAuditoria(auditoriaIn).then(
 						function(message) {
