@@ -40,8 +40,8 @@ public class AuditoriaDAO implements IAuditoriaDAO {
 		auditoriaDTO.setId(resultado.getInt("id_auditoria"));
 		auditoriaDTO.setTabla(resultado.getString("tabla_auditoria"));
 		auditoriaDTO.setOperacion(resultado.getString("operacion_auditoria"));
-		auditoriaDTO.setOldValor(resultado.getString("old_valor_auditoria"));
-		auditoriaDTO.setNewValor(resultado.getString("new_valor_auditoria"));
+		auditoriaDTO.setOldvalor(resultado.getString("old_valor_auditoria"));
+		auditoriaDTO.setNewvalor(resultado.getString("new_valor_auditoria"));
 		auditoriaDTO.setFecha(resultado.getString("fecha_auditoria"));
 		auditoriaDTO.setUsuario(resultado.getString("usuario_auditoria"));
 	}
@@ -67,8 +67,8 @@ public class AuditoriaDAO implements IAuditoriaDAO {
 				int index = 1;
 				instruccion.setString(index++, auditoriaDTO.getTabla());
 				instruccion.setString(index++, auditoriaDTO.getOperacion());
-				instruccion.setString(index++, auditoriaDTO.getOldValor());
-				instruccion.setString(index++, auditoriaDTO.getNewValor());
+				instruccion.setString(index++, auditoriaDTO.getOldvalor());
+				instruccion.setString(index++, auditoriaDTO.getNewvalor());
 				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(auditoriaDTO.getFecha()));
 				instruccion.setString(index++, auditoriaDTO.getUsuario());
 				instruccion.setInt(index++, auditoriaDTO.getId());
@@ -98,8 +98,8 @@ public class AuditoriaDAO implements IAuditoriaDAO {
 			int index = 1;
 			instruccion.setString(index++, auditoriaDTO.getTabla());
 			instruccion.setString(index++, auditoriaDTO.getOperacion());
-			instruccion.setString(index++, auditoriaDTO.getOldValor());
-			instruccion.setString(index++, auditoriaDTO.getNewValor());
+			instruccion.setString(index++, auditoriaDTO.getOldvalor());
+			instruccion.setString(index++, auditoriaDTO.getNewvalor());
 			instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(auditoriaDTO.getFecha()));
 			instruccion.setString(index++, auditoriaDTO.getUsuario());
 			instruccion.executeUpdate();

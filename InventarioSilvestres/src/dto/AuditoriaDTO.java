@@ -5,8 +5,8 @@ public class AuditoriaDTO {
 	private Integer id;
 	private String tabla;
 	private String operacion;
-	private String oldValor;
-	private String newValor;
+	private String oldvalor;
+	private String newvalor;
 	private String fecha;
 	private String usuario;
 	
@@ -24,23 +24,23 @@ public class AuditoriaDTO {
 	}
 
 
-	public String getOldValor() {
-		return oldValor;
+	public String getOldvalor() {
+		return oldvalor;
 	}
 
 
-	public void setOldValor(String oldValor) {
-		this.oldValor = oldValor;
+	public void setOldvalor(String oldvalor) {
+		this.oldvalor = oldvalor;
 	}
 
 
-	public String getNewValor() {
-		return newValor;
+	public String getNewvalor() {
+		return newvalor;
 	}
 
 
-	public void setNewValor(String newValor) {
-		this.newValor = newValor;
+	public void setNewvalor(String newvalor) {
+		this.newvalor = newvalor;
 	}
 
 
