@@ -4,15 +4,43 @@ public class AuditoriaDTO {
 	
 	private Integer id;
 	private String tabla;
-	private String columna;
-	private String valor;
-	private String usuario;
-	private String accion;
+	private String operacion;
+	private String oldValor;
+	private String newValor;
 	private String fecha;
-	
+	private String usuario;
 	
 	public AuditoriaDTO() {
 		super();
+	}
+
+	public String getOperacion() {
+		return operacion;
+	}
+
+
+	public void setOperacion(String operacion) {
+		this.operacion = operacion;
+	}
+
+
+	public String getOldValor() {
+		return oldValor;
+	}
+
+
+	public void setOldValor(String oldValor) {
+		this.oldValor = oldValor;
+	}
+
+
+	public String getNewValor() {
+		return newValor;
+	}
+
+
+	public void setNewValor(String newValor) {
+		this.newValor = newValor;
 	}
 
 
@@ -36,25 +64,7 @@ public class AuditoriaDTO {
 	}
 
 
-	public String getColumna() {
-		return columna;
-	}
-
-
-	public void setColumna(String columna) {
-		this.columna = columna;
-	}
-
-
-	public String getValor() {
-		return valor;
-	}
-
-
-	public void setValor(String valor) {
-		this.valor = valor;
-	}
-
+	
 
 	public String getUsuario() {
 		return usuario;
@@ -65,15 +75,6 @@ public class AuditoriaDTO {
 		this.usuario = usuario;
 	}
 
-
-	public String getAccion() {
-		return accion;
-	}
-
-
-	public void setAccion(String accion) {
-		this.accion = accion;
-	}
 
 
 	public String getFecha() {

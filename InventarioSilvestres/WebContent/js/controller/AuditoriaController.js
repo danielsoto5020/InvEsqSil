@@ -10,11 +10,11 @@ app.controller("auditoriaController", [
 					$scope.auditoriaOut = {
 						"id" : message.data.id,
 						"tabla" : message.data.tabla,
-						"columna" : message.data.columna,
-						"valor" : message.data.valor,
-						"usuario" : message.data.usuario,
-						"accion" : message.data.accion,
-						"fecha" : message.data.fecha
+						"operacion" : message.data.operacion,
+						"oldvalor" : message.data.oldvalor,
+						"newvalor" : message.data.newvalor,
+						"fecha" : message.data.fecha,
+						"usuario" : message.data.usuario
 					};
 					if (message.data.id == null) {
 						alert("Auditoria no registrada");
@@ -50,31 +50,31 @@ app.controller("auditoriaController", [
 				auditoria = {
 					"id" : auditoriaIn.id,
 					"tabla" : auditoriaIn.tabla,
-					"columna" : auditoriaIn.columna,
-					"valor" : auditoriaIn.valor,
-					"usuario" : auditoriaIn.usuario,
-					"accion" : auditoriaIn.accion,
-					"fecha" : auditoriaIn.fecha
+					"operacion" : auditoriaIn.operacion,
+					"oldvalor" : auditoriaIn.oldvalor,
+					"newvalor" : auditoriaIn.newvalor,
+					"fecha" : auditoriaIn.fecha,
+					"usuario" : auditoriaIn.usuario
 				};
 
 				$scope.showForm = false;
-				
+
 				auditoriaService.saveAuditoria(auditoriaIn).then(
 						function(message) {
 							alert(message.data);
 						})
-						$scope.auditoriaIn = {};
+				$scope.auditoriaIn = {};
 			}
 			$scope.auditoriaIn = {};
 			$scope.updateAuditoria = function(auditoriaIn) {
 				auditoria = {
 					"id" : auditoriaIn.id,
 					"tabla" : auditoriaIn.tabla,
-					"columna" : auditoriaIn.columna,
-					"valor" : auditoriaIn.valor,
-					"usuario" : auditoriaIn.usuario,
-					"accion" : auditoriaIn.accion,
-					"fecha" : auditoriaIn.fecha
+					"operacion" : auditoriaIn.operacion,
+					"oldvalor" : auditoriaIn.oldvalor,
+					"newvalor" : auditoriaIn.newvalor,
+					"fecha" : auditoriaIn.fecha,
+					"usuario" : auditoriaIn.usuario
 				};
 				auditoriaService.updateAuditoria(auditoriaIn).then(
 						function(message) {

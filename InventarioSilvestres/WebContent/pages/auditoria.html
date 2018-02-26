@@ -112,11 +112,11 @@
 
 						<div data-ng-show="mostrarDatosAuditoria" id="auditoriaList">
 							<p>Tabla: {{auditoriaOut.tabla}}</p>
-							<p>Columna: {{auditoriaOut.columna}}</p>
-							<p>Valor: {{auditoriaOut.valor}}</p>
-							<p>Usuario: {{auditoriaOut.usuario}}</p>
-							<p>Acción: {{auditoriaOut.accion}}</p>
+							<p>Operación: {{auditoriaOut.operacion}}</p>
+							<p>Valor anterior: {{auditoriaOut.oldvalor}}</p>
+							<p>Valor nuevo: {{auditoriaOut.newvalor}}</p>
 							<p>Fecha: {{auditoriaOut.fecha}}</p>
+							<p>Usuario: {{auditoriaOut.usuario}}</p>
 						</div>
 					</div>
 				</div>
@@ -186,12 +186,11 @@
 							<thead>
 								<tr>
 									<th>Tabla</th>
-									<th>Columna</th>
-									<th>Valor</th>
-									<th>Usuario</th>
-									<th>Acción</th>
+									<th>Operacion</th>
+									<th>Valor Anterior</th>
+									<th>Valor Nuevo</th>
 									<th>Fecha</th>
-									<th>Acción</th>
+									<th>Usuario</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -200,11 +199,11 @@
 								</tr>
 								<tr data-ng-repeat="item in auditoriaList | orderBy:'id' | filter:search"">
 									<td>{{item.tabla}}</td>
-									<td>{{item.columna}}</td>
-									<td>{{item.valor}}</td>
-									<td>{{item.usuario}}</td>
-									<td>{{item.accion}}</td>
+									<td>{{item.operacion}}</td>
+									<td>{{item.oldvalor}}</td>
+									<td>{{item.newvalor}}</td>
 									<td>{{item.fecha | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+									<td>{{item.usuario}}</td>
 									<td><a href="#edit_modal" data-ng-click="editar(item)"
 										modal><i class="glyphicon glyphicon-edit">edit</i></a> <a
 										href="#edit_modal" data-ng-click="editar(item)" modal><i
