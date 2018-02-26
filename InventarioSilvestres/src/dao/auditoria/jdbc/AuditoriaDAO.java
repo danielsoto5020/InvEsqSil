@@ -30,9 +30,6 @@ public class AuditoriaDAO implements IAuditoriaDAO {
 				auditoriaDTO = new AuditoriaDTO();
 				setInfoAuditoria(resultado, auditoriaDTO);
 			}
-			if(auditoriaDTO.getOperacion() == "I"){//aqui voy
-				
-			}
 		} finally {
 			PersistUtil.closeResources(instruccion, resultado);
 		}
