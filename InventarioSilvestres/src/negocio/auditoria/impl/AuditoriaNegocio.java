@@ -95,6 +95,4 @@ public class AuditoriaNegocio implements IAuditoriaNegocio{
 		}
 		return listaAuditorias;
 	}
-
-
 }

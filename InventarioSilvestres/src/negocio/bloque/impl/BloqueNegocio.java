@@ -95,5 +95,4 @@ public class BloqueNegocio implements IBloqueNegocio{
 		}
 		return listaBloques;
 	}
-
 }
