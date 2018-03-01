@@ -96,7 +96,7 @@
 									</div>
 									<div class="modal-body">
 										<p>Cuidado estas a punto de borrar un registro de una
-										auditoría en la base de datos.¿seguro deseas continuar?</p>
+											auditoría en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -120,42 +120,45 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-9"><input type="button" class="btn btn-primary"
-						id="auditoriaList" name="auditoriaList"
-						value="Lista de auditorias" data-ng-click="getListAuditorias()"></input>
-					<input type="text" data-ng-model="search"><br>
-					<div data-ng-show="auditoriaList.length != 0">
-						<br />
-						<table class="table" id="datosBasicos">
-							<thead>
-								<tr>
-									<th>Tabla</th>
-									<th>Operación</th>
-									<th>Valor Anterior</th>
-									<th>Valor Nuevo</th>
-									<th>Fecha</th>
-									<th>Usuario</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="7">&nbsp;</td>
-								</tr>
-								<tr data-ng-repeat="item in auditoriaList| orderBy:'+fecha' | filter:search ">
-									<td>{{item.tabla}}</td>
-									<td>{{item.operacion}}</td>
-									<td>{{item.oldvalor}}</td>
-									<td>{{item.newvalor}}</td>
-									<td>{{item.fecha | date:'yyyy/MM/dd HH:mm:ss'}}</td>
-									<td>{{item.usuario}}</td>
-								</tr>
-							</tbody>
-						</table>
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="auditoriaList"
+							name="auditoriaList" value="Lista de auditorias"
+							data-ng-click="getListAuditorias()"></input> <input type="text"
+							data-ng-model="search"><br>
+						<div data-ng-show="auditoriaList.length != 0">
+							<br />
+							<table class="table" id="datosBasicos">
+								<thead>
+									<tr>
+										<th>Tabla</th>
+										<th>Operación</th>
+										<th>Valor Anterior</th>
+										<th>Valor Nuevo</th>
+										<th>Fecha</th>
+										<th>Usuario</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="6">&nbsp;</td>
+									</tr>
+									<tr data-ng-repeat="item in auditoriaList | filter:search | orderBy:'+fecha' ">
+										<td>{{item.tabla}}</td>
+										<td>{{item.operacion}}</td>
+										<td>{{item.oldvalor}}</td>
+										<td>{{item.newvalor}}</td>
+										<td>{{item.fecha | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+										<td>{{item.usuario}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
