@@ -120,63 +120,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-9">
-					<br>
-					<div>
-						<input type="button" class="btn btn-primary" id="showForm"
-							name="auditoriaList" data-ng-hide="showForm"
-							data-ng-click="showForm = true" value="CREAR" />
-						<div class="form-group" data-ng-show="showForm">
-							<table id="datosBasicos">
-								<tr>
-									<td>Identificador</td>
-									<td><input type="text" class="form-control" id="id"
-										name="id" data-ng-model="auditoriaIn.id"
-										placeholder="Identificador interno" min="0" disabled /></td>
-								</tr>
-								<tr>
-									<td>Tabla</td>
-									<td><input type="text" class="form-control" id="tabla"
-										name="tabla" data-ng-model="auditoriaIn.tabla"
-										placeholder="Tabla" /></td>
-								</tr>
-								<tr>
-									<td>Operación</td>
-									<td><input type="text" class="form-control" id="operacion"
-										name="columna" data-ng-model="auditoriaIn.columna"
-										placeholder="columna" /></td>
-								</tr>
-								<tr>
-									<td>Valor</td>
-									<td><input type="text" class="form-control" id="valor"
-										name="valor" data-ng-model="auditoriaIn.valor"
-										placeholder="valor" /></td>
-								</tr>
-								<tr>
-									<td>Usuario</td>
-									<td><input type="text" class="form-control" id="usuario"
-										name="usuario" data-ng-model="auditoriaIn.usuario"
-										placeholder="usuario" /></td>
-								</tr>
-								<tr>
-									<td>Acción</td>
-									<td><input type="text" class="form-control" id="accion"
-										name="accion" data-ng-model="auditoriaIn.accion"
-										placeholder="INSERT/UPDATE/DELETE" /></td>
-								</tr>
-								<tr>
-									<td>Fecha</td>
-									<td><input type="datetime" class="form-control" id="fecha"
-										name="fecha" data-ng-model="auditoriaIn.fecha"
-										data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
-								</tr>
-							</table>
-							<br /> <input type="button" class="btn btn-primary" id="guardar"
-								name="saveBtn" value="Guardar"
-								data-ng-click="saveAuditoria(auditoriaIn)" />
-						</div>
-					</div>
-					<br> <input type="button" class="btn btn-primary"
+				<div class="col-sm-9"><input type="button" class="btn btn-primary"
 						id="auditoriaList" name="auditoriaList"
 						value="Lista de auditorias" data-ng-click="getListAuditorias()"></input>
 					<input type="text" data-ng-model="search"><br>
@@ -197,17 +141,13 @@
 								<tr>
 									<td colspan="7">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in auditoriaList | orderBy:'id' | filter:search"">
+								<tr data-ng-repeat="item in auditoriaList| orderBy:'+fecha' | filter:search ">
 									<td>{{item.tabla}}</td>
 									<td>{{item.operacion}}</td>
 									<td>{{item.oldvalor}}</td>
 									<td>{{item.newvalor}}</td>
 									<td>{{item.fecha | date:'yyyy/MM/dd HH:mm:ss'}}</td>
 									<td>{{item.usuario}}</td>
-									<td><a href="#edit_modal" data-ng-click="editar(item)"
-										modal><i class="glyphicon glyphicon-edit">edit</i></a> <a
-										href="#edit_modal" data-ng-click="editar(item)" modal><i
-											class="glyphicon glyphicon-remove">delete</i></a></td>
 								</tr>
 							</tbody>
 						</table>
