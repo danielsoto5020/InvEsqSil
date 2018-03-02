@@ -5,15 +5,24 @@ public class IngresoDTO {
 	private Integer id;
 	private String cantidad;
 	private String puesto;
+	private String nivel;
 	private String lado;
 	private String fecha;
-	private String variedad;
-	private String empleado;
-	private String cama;
-	private String siembra;
+	private Integer variedad;
+	private Integer empleado;
+	private Integer cama;
+	private Integer siembra;
 	
 	public IngresoDTO() {
 		super();
+	}
+
+	public String getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
 	}
 
 	public Integer getId() {
@@ -56,36 +65,35 @@ public class IngresoDTO {
 		this.fecha = fecha;
 	}
 
-	public String getVariedad() {
+	public Integer getVariedad() {
 		return variedad;
 	}
 
-	public void setVariedad(String variedad) {
+	public void setVariedad(Integer variedad) {
 		this.variedad = variedad;
 	}
 
-	public String getEmpleado() {
+	public Integer getEmpleado() {
 		return empleado;
 	}
 
-	public void setEmpleado(String empleado) {
+	public void setEmpleado(Integer empleado) {
 		this.empleado = empleado;
 	}
 
-	public String getCama() {
+	public Integer getCama() {
 		return cama;
 	}
 
-	public void setCama(String cama) {
+	public void setCama(Integer cama) {
 		this.cama = cama;
 	}
 
-	public String getSiembra() {
+	public Integer getSiembra() {
 		return siembra;
 	}
 
-	public void setSiembra(String siembra) {
+	public void setSiembra(Integer siembra) {
 		this.siembra = siembra;
-	}
-	
+	}	
 }

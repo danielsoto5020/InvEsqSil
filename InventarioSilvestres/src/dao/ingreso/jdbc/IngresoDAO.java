@@ -1,4 +1,4 @@
-package dao.siembra.jdbc;
+package dao.ingreso.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,47 +7,50 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.siembra.ISiembraDAO;
-import dto.SiembraDTO;
+import dao.ingreso.IIngresoDAO;
+import dto.IngresoDTO;
 import negocio.cama.impl.CamaNegocio;
 import negocio.empleado.impl.EmpleadoNegocio;
+import negocio.ingreso.impl.IngresoNegocio;
 import negocio.planta.impl.PlantaNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
-public class SiembraDAO implements ISiembraDAO{
-	
+public class IngresoDAO implements IIngresoDAO{
+
 	
 	@Override
-	public SiembraDTO consultarSiembraPorId(Integer id, Connection con) throws Exception {
+	public IngresoDTO consultarIngresoPorId(Integer id, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
 		ResultSet resultado = null;
 		String query;
-		SiembraDTO siembraDTO = null;
+		IngresoDTO ingresoDTO = null;
 		try {
-			query = SiembraSQL.FIND_BY_ID;
+			query = IngresoSQL.FIND_BY_ID;
 			instruccion = con.prepareStatement(query);
 			int index = 1;
 			instruccion.setInt(index++, id);
 			resultado = instruccion.executeQuery();
 			while (resultado.next()) {
-				siembraDTO = new SiembraDTO();
-				setInfoSiembra(resultado, siembraDTO);
+				ingresoDTO = new IngresoDTO();
+				setInfoIngreso(resultado, ingresoDTO);
 			}
 		} finally {
 			PersistUtil.closeResources(instruccion, resultado);
 		}
-		return siembraDTO;
+		return ingresoDTO;
 	}
 
-	private void setInfoSiembra(ResultSet resultado, SiembraDTO siembraDTO) throws Exception {	
-		siembraDTO.setId(resultado.getInt("id_siembra"));
-		siembraDTO.setCantidad(resultado.getString("cantidad_siembra"));
-		siembraDTO.setFecha(resultado.getString("fecha_siembra"));
-		siembraDTO.setObservacion(resultado.getString("observacion_siembra"));
-		siembraDTO.setVariedad(resultado.getInt("fk_id_cama"));
-		siembraDTO.setCama(resultado.getInt("fk_id_planta"));
-		siembraDTO.setEmpleado(resultado.getInt("fk_id_empleado"));
+	private void setInfoIngreso(ResultSet resultado, IngresoDTO ingresoDTO) throws Exception {	
+		ingresoDTO.setId(resultado.getInt("id_ingreso"));
+		ingresoDTO.setCantidad(resultado.getString("cantidad_ingreso"));
+		ingresoDTO.setPuesto(resultado.getString("puesto_ingreso"));
+		ingresoDTO.setNivel(resultado.getString("nivel_ingreso"));
+		ingresoDTO.setLado(resultado.getString("lado_ingreso"));
+		ingresoDTO.setFecha(resultado.getString("fecha_ingreso"));
+		ingresoDTO.setVariedad(resultado.getInt("fk_id_cama"));
+		ingresoDTO.setCama(resultado.getInt("fk_id_planta"));
+		ingresoDTO.setEmpleado(resultado.getInt("fk_id_empleado"));
 	}
 	
 	private Boolean buscarCama(Integer cama){
@@ -85,25 +88,37 @@ public class SiembraDAO implements ISiembraDAO{
 			return false;
 		}
 	}
+	
+	private Boolean buscarIngreso(Integer id) {
+		IngresoNegocio ingresoNegocio = new IngresoNegocio();
+		if(ingresoNegocio.consultarIngresoPorId(id) != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 	@Override
-	public String actualizarSiembra(SiembraDTO siembraDTO, Connection con) throws Exception {
+	public String actualizarIngreso(IngresoDTO ingresoDTO, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
 		String message ="";
 		String query;
-		if(buscarSiembra(siembraDTO.getId())){
+		if(buscarIngreso(ingresoDTO.getId())){
 			try {
         	
-	            query = SiembraSQL.UPDATE;
+	            query = IngresoSQL.UPDATE;
 	            instruccion = con.prepareStatement(query);
 	            int index = 1;
-	            instruccion.setString(index++, siembraDTO.getCantidad());
-	            instruccion.setString(index++, siembraDTO.getFecha());
-	            instruccion.setString(index++, siembraDTO.getObservacion());
-	            instruccion.setInt(index++, siembraDTO.getVariedad());
-	            instruccion.setInt(index++, siembraDTO.getCama());
-	            instruccion.setInt(index++, siembraDTO.getEmpleado());
-	            instruccion.setInt(index++, siembraDTO.getId());
+	            instruccion.setString(index++, ingresoDTO.getCantidad());
+	            instruccion.setString(index++, ingresoDTO.getPuesto());
+	            instruccion.setString(index++, ingresoDTO.getNivel());
+	            instruccion.setString(index++, ingresoDTO.getLado());
+	            instruccion.setString(index++, ingresoDTO.getFecha());
+	            instruccion.setInt(index++, ingresoDTO.getVariedad());
+	            instruccion.setInt(index++, ingresoDTO.getCama());
+	            instruccion.setInt(index++, ingresoDTO.getEmpleado());
+	            instruccion.setInt(index++, ingresoDTO.getSiembra());
+	            instruccion.setInt(index++, ingresoDTO.getId());
 	            instruccion.executeUpdate();
 	            message ="OK";
         	}catch (SQLException sql) {
@@ -117,22 +132,25 @@ public class SiembraDAO implements ISiembraDAO{
 	}
 
 	@Override
-	public String crearSiembra(SiembraDTO siembraDTO, Connection con) throws Exception {
+	public String crearIngreso(IngresoDTO ingresoDTO, Connection con) throws Exception {
 		String message ="";
 		String query;
         PreparedStatement instruccion = null;
-        if(buscarCama(siembraDTO.getCama()) && buscarEmpleado(siembraDTO.getEmpleado()) && buscarPlanta(siembraDTO.getVariedad())){
+        if(buscarCama(ingresoDTO.getCama()) && buscarEmpleado(ingresoDTO.getEmpleado()) && buscarPlanta(ingresoDTO.getVariedad()) && buscarSiembra(ingresoDTO.getSiembra())){
         	try {
         	
-        		 query = SiembraSQL.INSERT;
+        		 query = IngresoSQL.INSERT;
                  instruccion = con.prepareStatement(query);
                  int index = 1;
- 	            instruccion.setString(index++, siembraDTO.getCantidad());
- 	            instruccion.setString(index++, siembraDTO.getFecha());
- 	            instruccion.setString(index++, siembraDTO.getObservacion());
- 	            instruccion.setInt(index++, siembraDTO.getVariedad());
- 	            instruccion.setInt(index++, siembraDTO.getCama());
- 	            instruccion.setInt(index++, siembraDTO.getEmpleado());
+ 	            instruccion.setString(index++, ingresoDTO.getCantidad());
+ 	            instruccion.setString(index++, ingresoDTO.getPuesto());
+ 	            instruccion.setString(index++, ingresoDTO.getNivel());
+ 	            instruccion.setString(index++, ingresoDTO.getLado());
+ 	            instruccion.setString(index++, ingresoDTO.getFecha());
+ 	            instruccion.setInt(index++, ingresoDTO.getVariedad());
+ 	            instruccion.setInt(index++, ingresoDTO.getCama());
+ 	            instruccion.setInt(index++, ingresoDTO.getEmpleado());
+ 	            instruccion.setInt(index++, ingresoDTO.getSiembra());
                  instruccion.executeUpdate();
                  message ="OK";
         	}catch (SQLException sql) {
@@ -146,12 +164,12 @@ public class SiembraDAO implements ISiembraDAO{
 	}
 
 	@Override
-	public String borrarSiembra(Integer id, Connection con) throws Exception {
+	public String borrarIngreso(Integer id, Connection con) throws Exception {
 		String message ="";
 		String query;
         PreparedStatement instruccion = null;
         try {
-            query = SiembraSQL.DELETE;
+            query = IngresoSQL.DELETE;
             instruccion = con.prepareStatement(query);
             int index = 1;
             instruccion.setInt(index++, id);
@@ -168,25 +186,25 @@ public class SiembraDAO implements ISiembraDAO{
 	}
 	
 	@Override
-	public List<SiembraDTO> ListarSiembras(Connection con) throws Exception {
+	public List<IngresoDTO> ListarIngresos(Connection con) throws Exception {
 		PreparedStatement instruccion = null;
 		ResultSet resultado = null;
 		String query;
-		SiembraDTO siembraDTO = null;
-		List<SiembraDTO> listaSiembras = new ArrayList<>();
+		IngresoDTO ingresoDTO = null;
+		List<IngresoDTO> listaIngresos = new ArrayList<>();
 		try {
-			query = SiembraSQL.LIST;
+			query = IngresoSQL.LIST;
 			instruccion = con.prepareStatement(query);
 			resultado = instruccion.executeQuery();
 			while (resultado.next()) {
-				siembraDTO = new SiembraDTO();
-				setInfoSiembra(resultado, siembraDTO);
-				listaSiembras.add(siembraDTO);
+				ingresoDTO = new IngresoDTO();
+				setInfoIngreso(resultado, ingresoDTO);
+				listaIngresos.add(ingresoDTO);
 			}
 		} finally {
 			PersistUtil.closeResources(instruccion, resultado);
 		}
-		return listaSiembras;
+		return listaIngresos;
 	}
 
 }

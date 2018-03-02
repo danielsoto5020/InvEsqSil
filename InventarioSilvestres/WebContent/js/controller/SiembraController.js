@@ -32,7 +32,7 @@ app.controller("siembraController", [ "$scope", "siembraService",
 			}
 
 			$scope.deleteSiembra = function(id) {
-				temperaturaService.deleteSiembra(id).then(function(message) {
+				siembraService.deleteSiembra(id).then(function(message) {
 					alert(message.data);
 				});
 			}
@@ -43,7 +43,7 @@ app.controller("siembraController", [ "$scope", "siembraService",
 
 			$scope.siembraIn = {};
 			$scope.saveSiembra = function(siembraIn) {
-				temperatura = {
+				siembra = {
 					"cantidad" : siembraIn.cantidad,
 					"fecha" : siembraIn.fecha,
 					"observacion" : siembraIn.observacion,
