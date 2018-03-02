@@ -85,6 +85,15 @@ public class SiembraDAO implements ISiembraDAO{
 			return false;
 		}
 	}
+	
+	private Boolean espacio(Integer cantidad) {
+		CamaNegocio camaNegocio = new CamaNegocio();
+		if(camaNegocio.consultarEspacio(cantidad)!= null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 	@Override
 	public String actualizarSiembra(SiembraDTO siembraDTO, Connection con) throws Exception {

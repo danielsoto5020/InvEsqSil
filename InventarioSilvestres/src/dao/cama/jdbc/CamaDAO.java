@@ -173,4 +173,33 @@ public class CamaDAO implements ICamaDAO{
 		}
 		return listaCamas;
 	}
+	
+	@Override
+	public CamaDTO consultarEspacio(Integer cantidad, Connection con) throws Exception {
+		PreparedStatement instruccion = null;
+		ResultSet resultado = null;
+		String query;
+		CamaDTO camaDTO = null;
+		try {
+			query = CamaSQL.FIND_ESPACE;
+			instruccion = con.prepareStatement(query);
+			int index = 1;
+			instruccion.setInt(index++, cantidad);
+			resultado = instruccion.executeQuery();
+			while (resultado.next()) {
+				camaDTO = new CamaDTO();
+				setInfoCama(resultado, camaDTO);
+			}
+		} finally {
+			PersistUtil.closeResources(instruccion, resultado);
+		}if((Integer.parseInt((camaDTO.getLineas()))*(Integer.parseInt(camaDTO.getNlinea())))-cantidad > 0) {
+
+			return camaDTO;
+			
+		}else {
+
+			return null;
+			
+		}
+	}
 }
