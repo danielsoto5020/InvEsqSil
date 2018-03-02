@@ -95,7 +95,7 @@
 									</div>
 									<div class="modal-body">
 										<p>Cuidado estas a punto de borrar un registro de una
-										siembra en la base de datos.¿seguro deseas continuar?</p>
+											siembra en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
@@ -120,6 +120,7 @@
 					</div>
 				</div>
 				<div class="col-sm-9">
+					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
 							name="temperaturaList" data-ng-hide="showForm"
@@ -182,15 +183,15 @@
 											placeholder="observaciones de la siembra..."></textarea></td>
 								</tr>
 							</table>
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveSiembra(siembraIn)" />
 						</div>
-						<br /> <input type="button" class="btn btn-primary" id="guardar"
-							name="saveBtn" value="Guardar"
-							data-ng-click="saveSiembra(siembraIn)" />
 					</div>
 					<br> <br> <input type="button" class="btn btn-primary"
 						id="siembraList" name="siembraList" value="Lista de Variedades"
-						data-ng-click="getListSiembra()"></input> <input type="text"
-						data-ng-model="search"> <br>
+						data-ng-click="getListSiembra()"></input> 
+						<input type="text" data-ng-model="search"> <br>
 					<div data-ng-show="siembraList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
@@ -202,7 +203,7 @@
 									<th>Cantidad</th>
 									<th>Esterilización</th>
 									<th>Fecha siembra</th>
-									<th>Observación</th>									
+									<th>Observación</th>
 									<th>Acción</th>
 								</tr>
 							</thead>
@@ -210,7 +211,8 @@
 								<tr>
 									<td colspan="8">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in siembraList | filter:search | orderBy:'+fecha'">
+								<tr
+									data-ng-repeat="item in siembraList | filter:search | orderBy:'+fecha'">
 									<td>{{item.variedad}}</td>
 									<td>{{'Cama '+item.cama}}</td>
 									<td>{{item.empleado}}</td>
@@ -218,8 +220,9 @@
 									<td>{{item.esterilizacion}}</td>
 									<td>{{item.fecha}}</td>
 									<td>{{item.observacion}}</td>
-									<td><a href="#edit_modal" data-ng-click="updateSiembra(item)"
-										modal><i class="glyphicon glyphicon-edit">edit</i></a> <a
+									<td><a href="#edit_modal"
+										data-ng-click="updateSiembra(item)" modal><i
+											class="glyphicon glyphicon-edit">edit</i></a> <a
 										href="#edit_modal" data-ng-click="editar(item)" modal><i
 											class="glyphicon glyphicon-remove">delete</i></a></td>
 								</tr>

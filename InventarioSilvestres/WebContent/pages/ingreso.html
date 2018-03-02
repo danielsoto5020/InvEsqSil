@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PLANTA</title>
+<title>INGRESO</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -10,9 +10,9 @@
 <script src="../js/ext/bootstrap.min.js"></script>
 <script src="../js/ext/angular.min.js" type="text/javascript"></script>
 <script src="../js/app.js" type="text/javascript"></script>
-<script src="../js/controller/PlantaController.js"
+<script src="../js/controller/IngresoController.js"
 	type="text/javascript"></script>
-<script src="../js/service/PlantaService.js" type="text/javascript"></script>
+<script src="../js/service/IngresoService.js" type="text/javascript"></script>
 <link href="../css/base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -120,7 +120,79 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-9">
+					<br>
+					<div>
+						<input type="button" class="btn btn-primary" id="showForm"
+							name="temperaturaList" data-ng-hide="showForm"
+							data-ng-click="showForm = true" value="CREAR" />
+						<div class="form-group" data-ng-show="showForm">
+							<table id="datosBasicos">
+								<tr>
+									<td>Bloque</td>
+									<td><input type="text" class="form-control" id="bloque"
+										name="bloque" data-ng-model="ingresoIn.bloque"
+										placeholder="Bloque" /></td>
+								</tr>
+								<tr>
+									<td>Cama</td>
+									<td><input type="text" class="form-control" id="cama"
+										name="cama" data-ng-model="ingresoIn.cama" placeholder="Cama" /></td>
+								</tr>
+								<tr>
+									<td>Variedad</td>
+									<td><input type="text" class="form-control" id="variedad"
+										name="variedad" data-ng-model="ingresoIn.variedad"
+										placeholder="Nombre de la variedad" /></td>
+								</tr>
+								<tr>
+									<td>Puesto</td>
+									<td><input type="number" class="form-control" id="puesto"
+										name="puesto" data-ng-model="ingresoIn.puesto"
+										placeholder="Puesto" /></td>
+									<td>Nivel</td>
+									<td><input type="number" class="form-control" id="nivel"
+										name="nivel" data-ng-model="ingresoIn.nivel"
+										placeholder="Nivel" /></td>
+									<td>Lado</td>
+									<td><select class="form-control" id="lado" name="lado"
+										data-ng-model="ingresoIn.lado">
+											<option>A</option>
+											<option>B</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>Cantidad</td>
+									<td><input type="number" class="form-control"
+										id="cantidad" name="cantidad" data-ng-model="cantidad"
+										placeholder="Cantidad" min="0" /></td>
+								</tr>
+								<tr>
+									<td>Fecha</td>
+									<td><input type="datetime" class="form-control" id="fecha"
+										name="fecha" data-ng-model="ingresoIn.fecha"
+										data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
+								</tr>
+								<tr>
+									<td>Empleado</td>
+									<td><input type="number" class="form-control"
+										id="empleado" name="empleado"
+										data-ng-model="ingresoIn.empleado"
+										placeholder="Codigo Empleado" min="0" /></td>
+								</tr>
+								<tr>
+									<td>código Siembra</td>
+									<td><input type="number" class="form-control" id="siembra"
+										name="siembra" data-ng-model="ingresoIn.siembra"
+										placeholder="codigo barras" min="0" /></td>
+								</tr>
+							</table>
+
+							<br /> <input type="button" class="btn btn-primary" id="guardar"
+								name="saveBtn" value="Guardar"
+								data-ng-click="saveIngreso(ingresoIn)" />
+						</div>
+					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="ingresoList" name="ingresoList" value="Lista de Ingresos"
 						data-ng-click="getListIngreso()"></input> <input type="text"
@@ -154,72 +226,6 @@
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="form-group">
-						<table id="datosBasicos">
-							<tr>
-								<td>Bloque</td>
-								<td><input type="text" class="form-control" id="bloque"
-									name="bloque" data-ng-model="ingresoIn.bloque"
-									placeholder="Bloque" /></td>
-							</tr>
-							<tr>
-								<td>Cama</td>
-								<td><input type="text" class="form-control" id="cama"
-									name="cama" data-ng-model="ingresoIn.cama" placeholder="Cama" /></td>
-							</tr>
-							<tr>
-								<td>Variedad</td>
-								<td><input type="text" class="form-control" id="variedad"
-									name="variedad" data-ng-model="ingresoIn.variedad"
-									placeholder="Nombre de la variedad" /></td>
-							</tr>
-							<tr>
-								<td>Puesto</td>
-								<td><input type="number" class="form-control" id="puesto"
-									name="puesto" data-ng-model="ingresoIn.puesto"
-									placeholder="Puesto" /></td>
-								<td>Nivel</td>
-								<td><input type="number" class="form-control" id="nivel"
-									name="nivel" data-ng-model="ingresoIn.nivel"
-									placeholder="Nivel" /></td>
-								<td>Lado</td>
-								<td><select class="form-control" id="lado" name="lado"
-									data-ng-model="ingresoIn.lado">
-										<option>A</option>
-										<option>B</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>Cantidad</td>
-								<td><input type="number" class="form-control" id="cantidad"
-									name="cantidad" data-ng-model="cantidad" placeholder="Cantidad"
-									min="0" /></td>
-							</tr>
-							<tr>
-								<td>Fecha</td>
-								<td><input type="datetime" class="form-control" id="fecha"
-									name="fecha" data-ng-model="ingresoIn.fecha"
-									data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
-							</tr>
-							<tr>
-								<td>Empleado</td>
-								<td><input type="number" class="form-control" id="empleado"
-									name="empleado" data-ng-model="ingresoIn.empleado"
-									placeholder="Codigo Empleado" min="0" /></td>
-							</tr>
-							<tr>
-								<td>código Siembra</td>
-								<td><input type="number" class="form-control" id="siembra"
-									name="siembra" data-ng-model="ingresoIn.siembra"
-									placeholder="codigo barras" min="0" /></td>
-							</tr>
-						</table>
-					</div>
-					<br /> <input type="button" class="btn btn-primary" id="guardar"
-						name="saveBtn" value="Guardar"
-						data-ng-click="saveIngreso(ingresoIn)" />
 				</div>
 			</div>
 		</div>
