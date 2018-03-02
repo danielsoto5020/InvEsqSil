@@ -3,11 +3,11 @@ package dao.productoplanta.jdbc;
 public class ProductoPlantaSQL {
 
 	private static final String TABLE_NAME="producto_planta";
-	public static final String FIND_BY_ID ="SELECT id_producto_planta, fk_id_planta, fk_id_producto FROM "+ TABLE_NAME+" where id_producto_planta = ?";
-	public static final String INSERT="INSERT INTO "+TABLE_NAME+" (fk_id_planta, fk_id_producto)  VALUES (?, ?)";
+	public static final String FIND_BY_ID ="SELECT id_producto_planta, fk_id_planta, fk_id_producto FROM "+ TABLE_NAME+" where id_producto_planta = ? and activo_producto_planta = 'Y' ";
+	public static final String INSERT="INSERT INTO "+TABLE_NAME+" (activo_producto_planta, fk_id_planta, fk_id_producto)  VALUES ('Y', ?, ?)";
 	public static final String UPDATE ="UPDATE "+TABLE_NAME+"  SET  fk_id_planta = ?, fk_id_producto = ?  where id_producto_planta = ?";
-	public static final String DELETE ="DELETE FROM "+ TABLE_NAME+" where id_producto_planta = ?";
-	public static final String LIST = "SELECT id_producto_planta, fk_id_planta, fk_id_producto  FROM "+TABLE_NAME;
+	public static final String DELETE ="UPDATE "+TABLE_NAME+"  SET  activo_producto_planta = 'N' where id_producto_planta = ?";
+	public static final String LIST = "SELECT id_producto_planta, fk_id_planta, fk_id_producto  FROM "+TABLE_NAME+" where activo_producto_planta = 'Y '";
 	
 	public ProductoPlantaSQL() {
 		super();
