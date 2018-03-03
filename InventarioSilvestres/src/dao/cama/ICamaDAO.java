@@ -15,6 +15,8 @@ public interface ICamaDAO {
 
 	public String borrarCama(Integer id, Connection con) throws Exception;
 	
+	public List<CamaDTO> SelectCamas(Connection con) throws Exception;
+	
 	public List<CamaDTO> ListarCamas(Connection con) throws Exception;
 
 	public CamaDTO consultarEspacio(Integer cantidad, Connection con) throws Exception;

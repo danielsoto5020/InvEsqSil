@@ -16,6 +16,8 @@ public interface ICamaNegocio {
 	
 	public List<CamaDTO> ListarCamas();
 	
+	public List<CamaDTO> SelectCamas();
+	
 	public CamaDTO consultarEspacio (Integer cantidad);
 
 }

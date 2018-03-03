@@ -174,6 +174,30 @@ public class CamaDAO implements ICamaDAO{
 		return listaCamas;
 	}
 	
+
+	@Override
+	public List<CamaDTO> SelectCamas(Connection con) throws Exception {
+		PreparedStatement instruccion = null;
+		ResultSet resultado = null;
+		String query;
+		CamaDTO camaDTO = null;
+		List<CamaDTO> listaCamas = new ArrayList<>();
+		try {
+			query = CamaSQL.ACTIV;
+			instruccion = con.prepareStatement(query);
+			resultado = instruccion.executeQuery();
+			while (resultado.next()) {
+				camaDTO = new CamaDTO();
+				setInfoCama(resultado, camaDTO);
+				listaCamas.add(camaDTO);
+			}
+		} finally {
+			PersistUtil.closeResources(instruccion, resultado);
+		}
+		return listaCamas;
+	}
+	
+	
 	@Override
 	public CamaDTO consultarEspacio(Integer cantidad, Connection con) throws Exception {
 		PreparedStatement instruccion = null;

@@ -62,5 +62,12 @@ public class CamaServiceWS {
 	public List<CamaDTO> ListarCamas() {
 		return camaNegocio.ListarCamas();
 	}
+	
+	@GET
+	@Path("/select-cama")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CamaDTO> SelectCamas() {
+		return camaNegocio.ListarCamas();
+	}
 
 }

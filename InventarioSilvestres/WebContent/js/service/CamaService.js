@@ -18,6 +18,15 @@ app.factory("camaService", function($q, $http) {
 				console.log(data);
 			});
 		},
+		
+		getSelectCama : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/cama/select-cama').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
 
 		deleteCama :function(id){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/cama/borrar-cama/'+id)

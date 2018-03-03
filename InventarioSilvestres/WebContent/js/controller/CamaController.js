@@ -23,6 +23,16 @@ app.controller("camaController", [ "$scope", "camaService",
 					}
 				});
 			}
+			$scope.camaSelect = {};
+			$scope.getSelectCama = function() {
+				camaService.getSelectCama().then(function(message) {
+					$scope.camaSelect = message.data;
+					if ($scope.camaSelect === {}) {
+						alert("Sin espacio en camas");
+					}
+				})
+			}
+
 			$scope.camaList = {};
 			$scope.getListCama = function() {
 				camaService.getListCama().then(function(message) {

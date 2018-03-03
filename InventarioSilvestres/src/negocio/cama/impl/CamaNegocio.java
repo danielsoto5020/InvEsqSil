@@ -97,6 +97,21 @@ public class CamaNegocio implements ICamaNegocio{
 	}
 
 	@Override
+	public List<CamaDTO> SelectCamas() {
+		Connection con = null;
+		List<CamaDTO> listaCamas = null;
+		try {
+			con = dataSource.getConnection();
+			listaCamas= camaDAO.ListarCamas(con);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}
+		return listaCamas;
+	}
+
+	@Override
 	public CamaDTO consultarEspacio(Integer cantidad) {
 		Connection con = null;
 		CamaDTO camaDTO = null;
