@@ -140,6 +140,12 @@
 										placeholder="Nombre de la variedad" /></td>
 								</tr>
 								<tr>
+									<td><select id="select" data-ng-model="nino.id_alimento">
+											<option data-ng-repeat="dato in alimentos"
+												value="{{dato.id_alimento}}"
+												data-ng-selected="{{dato.id_alimento == nino.id_alimento}}">
+												{{dato.nombre}}</option>
+									</select></td>
 									<td>Bloque</td>
 									<td><input type="number" class="form-control" id="bloque"
 										name="bloque" data-ng-model="siembraIn.bloque"
@@ -190,8 +196,8 @@
 					</div>
 					<br> <br> <input type="button" class="btn btn-primary"
 						id="siembraList" name="siembraList" value="Lista de Variedades"
-						data-ng-click="getListSiembra()"></input> 
-						<input type="text" data-ng-model="search"> <br>
+						data-ng-click="getListSiembra()"></input> <input type="text"
+						data-ng-model="search"> <br>
 					<div data-ng-show="siembraList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">

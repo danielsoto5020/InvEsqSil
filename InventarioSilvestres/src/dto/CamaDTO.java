@@ -11,10 +11,21 @@ public class CamaDTO {
 	private String estado;
 	private String esterilizacion;
 	private Integer bloque;
+	private String nbloque;
 	
 	
 	public CamaDTO() {
 		super();
+	}
+
+
+	public String getNbloque() {
+		return nbloque;
+	}
+
+
+	public void setNbloque(String nbloque) {
+		this.nbloque = nbloque;
 	}
 
 
