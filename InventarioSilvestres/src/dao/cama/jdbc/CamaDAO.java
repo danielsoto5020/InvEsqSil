@@ -58,6 +58,29 @@ public class CamaDAO implements ICamaDAO{
     		return false;
     	}
 	}
+	
+	@Override
+	public Integer buscarCama(String ncama, String nbloque, Connection con)throws Exception{
+		PreparedStatement instruccion = null;
+		ResultSet resultado = null;
+		Integer id= null;
+		String query;
+		try {
+			query = CamaSQL.FIND_ID;
+			instruccion = con.prepareStatement(query);
+			int index = 1;
+			instruccion.setString(index++, ncama);
+			instruccion.setString(index++, nbloque);
+			resultado = instruccion.executeQuery();
+			while (resultado.next()) {
+				id = resultado.getInt("id_cama");
+			}
+		} finally {
+			PersistUtil.closeResources(instruccion, resultado);
+		}
+		return id;
+	}
+	
 	private Boolean buscarCama(Integer id){
 		CamaNegocio camaNegocio = new CamaNegocio();
 		if(camaNegocio.consultarCamaPorId(id)!= null){

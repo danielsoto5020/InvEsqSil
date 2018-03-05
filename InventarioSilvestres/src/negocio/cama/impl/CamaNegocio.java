@@ -50,6 +50,23 @@ public class CamaNegocio implements ICamaNegocio{
 		}
 		return message;
 	}
+	
+
+	@Override
+	public Integer buscarCama(String ncama, String nbloque) {
+		Connection con = null;
+		Integer valor = null;
+		try {
+			con = dataSource.getConnection();
+			valor = camaDAO.buscarCama(ncama, nbloque, con);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}
+		return valor;
+		
+	}
 
 	@Override
 	public String crearCama(CamaDTO camaDTO) {

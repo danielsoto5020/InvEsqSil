@@ -30,6 +30,17 @@ app.controller("siembraController", [ "$scope", "siembraService",
 					}
 				})
 			}
+			
+			$scope.selectCama = {};
+			$scope.getSelectCama = function() {
+				siembraService.getSelectCama().then(function(message) {
+					$scope.selectCama = message.data;
+					if ($scope.selectCama === {}) {
+						alert("Sin camas disponibles");
+					}
+				})
+			}
+
 
 			$scope.deleteSiembra = function(id) {
 				siembraService.deleteSiembra(id).then(function(message) {
@@ -47,14 +58,16 @@ app.controller("siembraController", [ "$scope", "siembraService",
 					"cantidad" : siembraIn.cantidad,
 					"fecha" : siembraIn.fecha,
 					"observacion" : siembraIn.observacion,
+					"esterilizacion" : siembraIn.esterilizacion,
 					"variedad" : siembraIn.variedad,
-					"cama" : siembraIn.cama,
+					"nbloque" : siembraIn.nbloque,
+					"ncama" : siembraIn.ncama,
 					"empleado" : siembraIn.empleado
 				};
 
 				$scope.showForm = false;
 
-				siembraService.saveSimebra(siembraIn).then(function(message) {
+				siembraService.saveSiembra(siembraIn).then(function(message) {
 					alert(message.data);
 				})
 				$scope.siembraIn = {};
@@ -68,7 +81,8 @@ app.controller("siembraController", [ "$scope", "siembraService",
 					"fecha" : siembraIn.fecha,
 					"observacion" : siembraIn.observacion,
 					"variedad" : siembraIn.variedad,
-					"cama" : siembraIn.cama,
+					"nbloque" : siembraIn.nbloque,
+					"ncama" : siembraIn.ncama,
 					"empleado" : siembraIn.empleado
 				};
 				siembraService.updateSiembra(siembraIn).then(function(message) {

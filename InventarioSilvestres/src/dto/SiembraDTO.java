@@ -7,11 +7,22 @@ public class SiembraDTO {
 	private Integer cama;
 	private Integer empleado;
 	private Integer variedad;
+	private String esterelizacion;
+	private String ncama;
+	private String nbloque;
 	private String fecha;
 	private String observacion;
 	
 	public SiembraDTO() {
 		super();
+	}
+
+	public String getEsterelizacion() {
+		return esterelizacion;
+	}
+
+	public void setEsterelizacion(String esterelizacion) {
+		this.esterelizacion = esterelizacion;
 	}
 
 	public Integer getId() {
@@ -68,6 +79,22 @@ public class SiembraDTO {
 
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
+	}
+
+	public String getNcama() {
+		return ncama;
+	}
+
+	public void setNcama(String ncama) {
+		this.ncama = ncama;
+	}
+
+	public String getNbloque() {
+		return nbloque;
+	}
+
+	public void setNbloque(String nbloque) {
+		this.nbloque = nbloque;
 	}
 
 	

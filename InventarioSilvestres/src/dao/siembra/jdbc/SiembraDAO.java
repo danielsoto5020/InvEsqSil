@@ -15,9 +15,8 @@ import negocio.planta.impl.PlantaNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
-public class SiembraDAO implements ISiembraDAO{
-	
-	
+public class SiembraDAO implements ISiembraDAO {
+
 	@Override
 	public SiembraDTO consultarSiembraPorId(Integer id, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
@@ -40,7 +39,7 @@ public class SiembraDAO implements ISiembraDAO{
 		return siembraDTO;
 	}
 
-	private void setInfoSiembra(ResultSet resultado, SiembraDTO siembraDTO) throws Exception {	
+	private void setInfoSiembra(ResultSet resultado, SiembraDTO siembraDTO) throws Exception {
 		siembraDTO.setId(resultado.getInt("id_siembra"));
 		siembraDTO.setCantidad(resultado.getString("cantidad_siembra"));
 		siembraDTO.setFecha(resultado.getString("fecha_siembra"));
@@ -49,48 +48,36 @@ public class SiembraDAO implements ISiembraDAO{
 		siembraDTO.setCama(resultado.getInt("fk_id_planta"));
 		siembraDTO.setEmpleado(resultado.getInt("fk_id_empleado"));
 	}
-	
-	private Boolean buscarCama(Integer cama){
+
+	private Integer buscarCama(String ncama, String nbloque) {
 		CamaNegocio camaNegocio = new CamaNegocio();
-    	if(camaNegocio.consultarCamaPorId(cama) != null){
-    		return true;
-    	}else{
-    		return false;
-    	}
+		return (camaNegocio.buscarCama(ncama, nbloque));
+
 	}
-	
-	private Boolean buscarEmpleado(Integer id){
+
+	private Boolean buscarEmpleado(Integer id) {
 		EmpleadoNegocio empleadoNegocio = new EmpleadoNegocio();
-		if(empleadoNegocio.consultarEmpleadoPorId(id)!= null){
+		if (empleadoNegocio.consultarEmpleadoPorId(id) != null) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	
+
 	private Boolean buscarPlanta(Integer id) {
 		PlantaNegocio plantaNegocio = new PlantaNegocio();
-		if(plantaNegocio.consultarPlantaPorId(id) != null) {
+		if (plantaNegocio.consultarPlantaPorId(id) != null) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	private Boolean buscarSiembra(Integer id) {
 		SiembraNegocio siembraNegocio = new SiembraNegocio();
-		if(siembraNegocio.consultarSiembraPorId(id) != null) {
+		if (siembraNegocio.consultarSiembraPorId(id) != null) {
 			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	private Boolean espacio(Integer cantidad) {
-		CamaNegocio camaNegocio = new CamaNegocio();
-		if(camaNegocio.consultarEspacio(cantidad)!= null) {
-			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -98,84 +85,91 @@ public class SiembraDAO implements ISiembraDAO{
 	@Override
 	public String actualizarSiembra(SiembraDTO siembraDTO, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
-		String message ="";
+		String message = "";
 		String query;
-		if(buscarSiembra(siembraDTO.getId())){
+		if (buscarSiembra(siembraDTO.getId())) {
 			try {
-        	
-	            query = SiembraSQL.UPDATE;
-	            instruccion = con.prepareStatement(query);
-	            int index = 1;
-	            instruccion.setString(index++, siembraDTO.getCantidad());
-	            instruccion.setString(index++, siembraDTO.getFecha());
-	            instruccion.setString(index++, siembraDTO.getObservacion());
-	            instruccion.setInt(index++, siembraDTO.getVariedad());
-	            instruccion.setInt(index++, siembraDTO.getCama());
-	            instruccion.setInt(index++, siembraDTO.getEmpleado());
-	            instruccion.setInt(index++, siembraDTO.getId());
-	            instruccion.executeUpdate();
-	            message ="OK";
-        	}catch (SQLException sql) {
-           	 message ="ERROR";
-         	con.rollback();
-             throw new Exception(sql.toString());
-         } finally {
-            PersistUtil.closeResources(instruccion);
-         }}else{message ="La siembra no se encuentra en la Base de Datos!!!";}
-        return message;
+
+				query = SiembraSQL.UPDATE;
+				instruccion = con.prepareStatement(query);
+				int index = 1;
+				instruccion.setString(index++, siembraDTO.getCantidad());
+				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(siembraDTO.getFecha()));
+				instruccion.setString(index++, siembraDTO.getObservacion());
+				instruccion.setInt(index++, siembraDTO.getVariedad());
+				instruccion.setInt(index++, siembraDTO.getCama());
+				instruccion.setInt(index++, siembraDTO.getEmpleado());
+				instruccion.setInt(index++, siembraDTO.getId());
+				instruccion.executeUpdate();
+				message = "OK";
+			} catch (SQLException sql) {
+				message = "ERROR";
+				con.rollback();
+				throw new Exception(sql.toString());
+			} finally {
+				PersistUtil.closeResources(instruccion);
+			}
+		} else {
+			message = "La siembra no se encuentra en la Base de Datos!!!";
+		}
+		return message;
 	}
 
 	@Override
 	public String crearSiembra(SiembraDTO siembraDTO, Connection con) throws Exception {
-		String message ="";
+		String message = "";
 		String query;
-        PreparedStatement instruccion = null;
-        if(buscarCama(siembraDTO.getCama()) && buscarEmpleado(siembraDTO.getEmpleado()) && buscarPlanta(siembraDTO.getVariedad())){
-        	try {
-        	
-        		 query = SiembraSQL.INSERT;
-                 instruccion = con.prepareStatement(query);
-                 int index = 1;
- 	            instruccion.setString(index++, siembraDTO.getCantidad());
- 	            instruccion.setString(index++, siembraDTO.getFecha());
- 	            instruccion.setString(index++, siembraDTO.getObservacion());
- 	            instruccion.setInt(index++, siembraDTO.getVariedad());
- 	            instruccion.setInt(index++, siembraDTO.getCama());
- 	            instruccion.setInt(index++, siembraDTO.getEmpleado());
-                 instruccion.executeUpdate();
-                 message ="OK";
-        	}catch (SQLException sql) {
-           	 message =" ERROR";
-         	con.rollback();
-             throw new Exception(sql.toString());
-         } finally {
-            PersistUtil.closeResources(instruccion);
-         }}else{message ="los datos ingresados pueden no esta registrados en la base de datos!!!";}
-        return message;
+		PreparedStatement instruccion = null;
+		if (buscarCama(siembraDTO.getNcama(), siembraDTO.getNbloque()) != null
+				&& buscarEmpleado(siembraDTO.getEmpleado()) && buscarPlanta(siembraDTO.getVariedad())) {
+			try {
+
+				query = SiembraSQL.INSERT;
+				instruccion = con.prepareStatement(query);
+				int index = 1;
+				instruccion.setString(index++, siembraDTO.getCantidad());
+				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(siembraDTO.getFecha()));
+				instruccion.setString(index++, siembraDTO.getObservacion());
+				instruccion.setInt(index++, siembraDTO.getVariedad());
+				instruccion.setInt(index++, buscarCama(siembraDTO.getNcama(), siembraDTO.getNbloque()));
+				instruccion.setInt(index++, siembraDTO.getEmpleado());
+				instruccion.executeUpdate();
+				message = "OK";
+			} catch (SQLException sql) {
+				message = " ERROR";
+				con.rollback();
+				throw new Exception(sql.toString());
+			} finally {
+				PersistUtil.closeResources(instruccion);
+			}
+		} else {
+			message = "la cama puede no estar registrada o esta en produccion!!!";
+		}
+		return message;
 	}
 
 	@Override
 	public String borrarSiembra(Integer id, Connection con) throws Exception {
-		String message ="";
+		String message = "";
 		String query;
-        PreparedStatement instruccion = null;
-        try {
-            query = SiembraSQL.DELETE;
-            instruccion = con.prepareStatement(query);
-            int index = 1;
-            instruccion.setInt(index++, id);
-            instruccion.executeUpdate();
-            message ="OK";
-        } catch (SQLException sql) {
-        	 message ="ERROR";
-        	con.rollback();
-            throw new Exception(sql.toString());
-        } finally {
-           PersistUtil.closeResources(instruccion);
-        }
-        return message;
+		PreparedStatement instruccion = null;
+		try {
+			query = SiembraSQL.DELETE;
+			instruccion = con.prepareStatement(query);
+			int index = 1;
+			instruccion.setInt(index++, id);
+			instruccion.executeUpdate();
+			message = "OK";
+		} catch (SQLException sql) {
+			message = "ERROR";
+			con.rollback();
+			throw new Exception(sql.toString());
+		} finally {
+			PersistUtil.closeResources(instruccion);
+		}
+		return message;
 	}
-	
+
 	@Override
 	public List<SiembraDTO> ListarSiembras(Connection con) throws Exception {
 		PreparedStatement instruccion = null;

@@ -18,6 +18,16 @@ app.factory("siembraService", function($q, $http) {
 				console.log(data);
 			});
 		},
+		
+
+		getSelectCama : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/cama/select-cama').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
 
 		deleteSiembra :function(id){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/siembra/borrar-siembra/'+id)
@@ -29,7 +39,7 @@ app.factory("siembraService", function($q, $http) {
 			});
 		},
 		saveSiembra: function(siembraIn){
-			return $http.post('http://CSistemas04:8080/InventarioSilvestres/rest/siembra/crear-siembra', simebraIn).then(function(data){
+			return $http.post('http://CSistemas04:8080/InventarioSilvestres/rest/siembra/crear-siembra', siembraIn).then(function(data){
 				var msg=angular.fromJson(data);
 				return msg;
 			}).catch(function(data){

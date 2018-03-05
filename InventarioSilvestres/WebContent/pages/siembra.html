@@ -123,16 +123,10 @@
 					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
-							name="temperaturaList" data-ng-hide="showForm"
+							name="siembraList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
-								<tr>
-									<td>Identificador</td>
-									<td><input type="number" class="form-control" id="id"
-										name="id" data-ng-model="siembraIn.id"
-										placeholder="Identificador interno" min="0" disabled /></td>
-								</tr>
 								<tr>
 									<td>Variedad</td>
 									<td><input type="text" class="form-control" id="variedad"
@@ -140,19 +134,13 @@
 										placeholder="Nombre de la variedad" /></td>
 								</tr>
 								<tr>
-									<td><select id="select" data-ng-model="nino.id_alimento">
-											<option data-ng-repeat="dato in alimentos"
-												value="{{dato.id_alimento}}"
-												data-ng-selected="{{dato.id_alimento == nino.id_alimento}}">
-												{{dato.nombre}}</option>
-									</select></td>
 									<td>Bloque</td>
 									<td><input type="number" class="form-control" id="bloque"
-										name="bloque" data-ng-model="siembraIn.bloque"
+										name="bloque" data-ng-model="siembraIn.nbloque"
 										placeholder="Bloque" /></td>
 									<td>Cama</td>
 									<td><input type="number" class="form-control" id="cama"
-										name="cama" data-ng-model="siembraIn.cama"
+										name="cama" data-ng-model="siembraIn.ncama"
 										placeholder="Codigo Cama" /></td>
 								</tr>
 								<tr>
