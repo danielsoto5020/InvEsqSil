@@ -131,8 +131,9 @@ public class SiembraDAO implements ISiembraDAO {
 				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(siembraDTO.getFecha()));
 				instruccion.setString(index++, siembraDTO.getObservacion());
 				instruccion.setInt(index++, siembraDTO.getVariedad());
-				instruccion.setInt(index++, buscarCama(siembraDTO.getNcama(), siembraDTO.getNbloque()));
 				instruccion.setInt(index++, siembraDTO.getEmpleado());
+				instruccion.setInt(index++, buscarCama(siembraDTO.getNcama(), siembraDTO.getNbloque()));
+				
 				instruccion.executeUpdate();
 				message = "OK";
 			} catch (SQLException sql) {
