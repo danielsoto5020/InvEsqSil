@@ -1,5 +1,11 @@
-app.controller( "temperaturaController", [ "$scope", "temperaturaService",
-		function temperaturaController($scope, temperaturaService) {
+app
+		.controller(
+				"temperaturaController",
+				[
+						"$scope",
+						"temperaturaService",
+						function temperaturaController($scope,
+								temperaturaService) {
 							$scope.mostrarDatosTemperatura = {};
 							$scope.id = "";
 							$scope.temperaturaOut = {};
@@ -84,6 +90,6 @@ app.controller( "temperaturaController", [ "$scope", "temperaturaService",
 										temperaturaIn).then(function(message) {
 									alert(message.data);
 								});
-								
+
 							}
 						} ]);

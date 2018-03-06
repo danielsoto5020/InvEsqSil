@@ -13,12 +13,12 @@ app.controller("plantaController", [ "$scope", "plantaService",
 						"productividad" : message.data.productividad,
 						"flush" : message.data.flush,
 						"flushs" : message.data.flushs,
+						"breeder" : message.data.breeder,
+						"nbreeder" : message.data.nbreeder,
 						"color1" : message.data.color1,
 						"colores" : message.data.colores,
 						"color2" : message.data.color2,
-						"colorus" : message.data.colorus,
-						"breeder" : message.data.breeder,
-						"nbreeder" : message.data.nbreeder
+						"colorus" : message.data.colorus
 					};
 					if (message.data.id == null) {
 						alert("La variedad no existe");

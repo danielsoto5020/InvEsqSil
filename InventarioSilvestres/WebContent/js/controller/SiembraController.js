@@ -11,6 +11,7 @@ app.controller("siembraController", [ "$scope", "siembraService",
 						"fecha" : message.data.fecha,
 						"observacion" : message.data.observacion,
 						"variedad" : message.data.variedad,
+						"bloque" : message.data.bloque,
 						"cama" : message.data.cama,
 						"empleado" : message.data.empleado
 					};
@@ -23,14 +24,14 @@ app.controller("siembraController", [ "$scope", "siembraService",
 			}
 			$scope.siembraList = {};
 			$scope.getListSiembra = function() {
-				siembraService.getListSimebra().then(function(message) {
+				siembraService.getListSiembra().then(function(message) {
 					$scope.siembraList = message.data;
 					if ($scope.siembraList === {}) {
 						alert("No hay ningun registro de siembra");
 					}
 				})
 			}
-			
+
 			$scope.selectCama = {};
 			$scope.getSelectCama = function() {
 				siembraService.getSelectCama().then(function(message) {
@@ -41,7 +42,6 @@ app.controller("siembraController", [ "$scope", "siembraService",
 				})
 			}
 
-
 			$scope.deleteSiembra = function(id) {
 				siembraService.deleteSiembra(id).then(function(message) {
 					alert(message.data);
@@ -51,7 +51,6 @@ app.controller("siembraController", [ "$scope", "siembraService",
 			$scope.date = new Date();
 
 			$scope.showForm = false;
-
 			$scope.siembraIn = {};
 			$scope.saveSiembra = function(siembraIn) {
 				siembra = {
@@ -60,8 +59,8 @@ app.controller("siembraController", [ "$scope", "siembraService",
 					"observacion" : siembraIn.observacion,
 					"esterilizacion" : siembraIn.esterilizacion,
 					"variedad" : siembraIn.variedad,
-					"nbloque" : siembraIn.nbloque,
-					"ncama" : siembraIn.ncama,
+					"nombrebloque" : siembraIn.nombrebloque,
+					"cama" : siembraIn.cama,
 					"empleado" : siembraIn.empleado
 				};
 
@@ -81,7 +80,7 @@ app.controller("siembraController", [ "$scope", "siembraService",
 					"fecha" : siembraIn.fecha,
 					"observacion" : siembraIn.observacion,
 					"variedad" : siembraIn.variedad,
-					"nbloque" : siembraIn.nbloque,
+					"nombrebloque" : siembraIn.nombrebloque,
 					"ncama" : siembraIn.ncama,
 					"empleado" : siembraIn.empleado
 				};

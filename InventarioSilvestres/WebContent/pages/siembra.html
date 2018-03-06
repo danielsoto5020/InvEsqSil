@@ -135,12 +135,15 @@
 								</tr>
 								<tr>
 									<td>Bloque</td>
-									<td><input type="number" class="form-control" id="bloque"
-										name="bloque" data-ng-model="siembraIn.nbloque"
-										placeholder="Bloque" /></td>
+									<td><input type="text" class="form-control" id="bloque"
+										name="bloque" data-ng-model="siembraIn.nombrebloque"
+										placeholder="Bloque"  disabled/></td>
+								</tr>
+								<tr>
+
 									<td>Cama</td>
-									<td><input type="number" class="form-control" id="cama"
-										name="cama" data-ng-model="siembraIn.ncama"
+									<td><input type="text" class="form-control" id="cama"
+										name="cama" data-ng-model="siembraIn.cama"
 										placeholder="Codigo Cama" /></td>
 								</tr>
 								<tr>
@@ -177,8 +180,8 @@
 											placeholder="observaciones de la siembra..."></textarea></td>
 								</tr>
 							</table>
-							<br /> <input type="button" class="btn btn-primary" id="guardar"
-								name="saveBtn" value="Guardar"
+							<br> <input type="button" class="btn btn-primary"
+								id="guardar" name="saveBtn" value="Guardar"
 								data-ng-click="saveSiembra(siembraIn)" />
 						</div>
 					</div>

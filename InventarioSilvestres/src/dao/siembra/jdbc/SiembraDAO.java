@@ -49,9 +49,13 @@ public class SiembraDAO implements ISiembraDAO {
 		siembraDTO.setEmpleado(resultado.getInt("fk_id_empleado"));
 	}
 
-	private Integer buscarCama(String ncama, String nbloque) {
+	private Boolean buscarCama(Integer id) {
 		CamaNegocio camaNegocio = new CamaNegocio();
-		return (camaNegocio.buscarCama(ncama, nbloque));
+		if (camaNegocio.consultarCamaPorId(id) != null) {
+			return true;
+		} else {
+			return false;
+		}
 
 	}
 
@@ -120,8 +124,7 @@ public class SiembraDAO implements ISiembraDAO {
 		String message = "";
 		String query;
 		PreparedStatement instruccion = null;
-		if (buscarCama(siembraDTO.getNcama(), siembraDTO.getNbloque()) != null
-				&& buscarEmpleado(siembraDTO.getEmpleado()) && buscarPlanta(siembraDTO.getVariedad())) {
+		if (buscarCama(siembraDTO.getCama()) && buscarEmpleado(siembraDTO.getEmpleado()) && buscarPlanta(siembraDTO.getVariedad())) {
 			try {
 
 				query = SiembraSQL.INSERT;
@@ -132,7 +135,7 @@ public class SiembraDAO implements ISiembraDAO {
 				instruccion.setString(index++, siembraDTO.getObservacion());
 				instruccion.setInt(index++, siembraDTO.getVariedad());
 				instruccion.setInt(index++, siembraDTO.getEmpleado());
-				instruccion.setInt(index++, buscarCama(siembraDTO.getNcama(), siembraDTO.getNbloque()));
+				instruccion.setInt(index++, siembraDTO.getCama());
 				
 				instruccion.executeUpdate();
 				message = "OK";

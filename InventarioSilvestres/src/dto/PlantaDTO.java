@@ -9,12 +9,12 @@ public class PlantaDTO {
 	private String productividad;
 	private String flush;
 	private String flushs;
+	private Integer breeder;
+	private String nbreeder;
 	private Integer color1;
 	private String colores;
 	private Integer color2;
 	private String colorus;
-	private Integer breeder;
-	private String nbreeder;
 
 	public PlantaDTO() {
 	super();

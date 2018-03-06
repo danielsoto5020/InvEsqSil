@@ -1,5 +1,7 @@
 package dto;
 
+
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class SiembraDTO {
 	
 	private Integer id;
@@ -9,7 +11,6 @@ public class SiembraDTO {
 	private Integer variedad;
 	private String esterelizacion;
 	private String ncama;
-	private String nbloque;
 	private String fecha;
 	private String observacion;
 	
@@ -88,14 +89,5 @@ public class SiembraDTO {
 	public void setNcama(String ncama) {
 		this.ncama = ncama;
 	}
-
-	public String getNbloque() {
-		return nbloque;
-	}
-
-	public void setNbloque(String nbloque) {
-		this.nbloque = nbloque;
-	}
-
 	
 }

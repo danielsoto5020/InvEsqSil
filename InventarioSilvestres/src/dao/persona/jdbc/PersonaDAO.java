@@ -13,6 +13,7 @@ import util.PersistUtil;
 
 public class PersonaDAO implements IPersonaDAO{
 	
+	
 	@Override
 	public PersonaDTO consultarPersonaPorId(Integer id, Connection con) throws Exception {
 		PreparedStatement instruccion = null;

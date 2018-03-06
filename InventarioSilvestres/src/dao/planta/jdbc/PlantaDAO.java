@@ -38,6 +38,7 @@ public class PlantaDAO implements IPlantaDAO{
 
 	private void setInfoPlanta(ResultSet resultado, PlantaDTO plantaDTO) throws Exception {
 		
+
 		plantaDTO.setId(resultado.getInt("id_planta"));
 		plantaDTO.setNombre(resultado.getString("nombre_planta"));
 		plantaDTO.setRenombre(resultado.getString("renombre_planta"));
@@ -46,7 +47,7 @@ public class PlantaDAO implements IPlantaDAO{
 		plantaDTO.setFlush(resultado.getString("flush_planta"));
 		plantaDTO.setFlushs(resultado.getString("flushs_planta"));
 		plantaDTO.setBreeder(resultado.getInt("fk_id_breeder"));
-		plantaDTO.setNbreeder(resultado.getString("nombre_breeder"));
+		plantaDTO.setNbreeder(resultado.getString("g.nombre_breeder"));
 		plantaDTO.setColor1(resultado.getInt("fk_id_color1"));
 		plantaDTO.setColores(resultado.getString("a.nombre_es_color"));
 		plantaDTO.setColor2(resultado.getInt("fk_id_color2"));
