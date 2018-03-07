@@ -70,7 +70,7 @@ public class SiembraDAO implements ISiembraDAO {
 
 	private Boolean buscarPlanta(Integer id) {
 		PlantaNegocio plantaNegocio = new PlantaNegocio();
-		if (plantaNegocio.consultarPlantaPorId(id) != null) {
+		if (plantaNegocio.buscarPlantaId(id) != null) {
 			return true;
 		} else {
 			return false;
@@ -124,7 +124,7 @@ public class SiembraDAO implements ISiembraDAO {
 		String message = "";
 		String query;
 		PreparedStatement instruccion = null;
-		if (buscarCama(siembraDTO.getCama()) && buscarEmpleado(siembraDTO.getEmpleado()) && buscarPlanta(siembraDTO.getVariedad())) {
+		if (buscarCama(siembraDTO.getCama()) && buscarEmpleado(siembraDTO.getEmpleado())) {
 			try {
 
 				query = SiembraSQL.INSERT;
@@ -147,7 +147,7 @@ public class SiembraDAO implements ISiembraDAO {
 				PersistUtil.closeResources(instruccion);
 			}
 		} else {
-			message = "la cama puede no estar registrada o esta en produccion!!!";
+			message = "verifica los datos de Cama, Empleado y Variedad";
 		}
 		return message;
 	}

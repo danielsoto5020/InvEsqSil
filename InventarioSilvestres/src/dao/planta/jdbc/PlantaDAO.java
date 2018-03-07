@@ -14,6 +14,29 @@ import util.PersistUtil;
 
 public class PlantaDAO implements IPlantaDAO{
 
+	
+	@Override
+	public PlantaDTO buscarPlantaId(Integer id, Connection con) throws Exception{
+		PreparedStatement instruccion = null;
+		ResultSet resultado = null;
+		String query;
+		PlantaDTO plantaDTO = null;
+		try {
+			query = PlantaSQL.FIND_ID;
+			instruccion = con.prepareStatement(query);
+			int index = 1;
+			instruccion.setInt(index++, id);
+			resultado = instruccion.executeQuery();
+			while(resultado.next()) {
+				plantaDTO = new PlantaDTO();
+				setInfoPlanta(resultado, plantaDTO);
+			}
+		}finally {
+			PersistUtil.closeResources(instruccion, resultado);
+		}
+		return plantaDTO;
+	}
+	
 	@Override
 	public PlantaDTO consultarPlantaPorId(Integer id, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
@@ -35,6 +58,7 @@ public class PlantaDAO implements IPlantaDAO{
 		}
 		return plantaDTO;
 	}
+	
 
 	private void setInfoPlanta(ResultSet resultado, PlantaDTO plantaDTO) throws Exception {
 		
@@ -47,7 +71,7 @@ public class PlantaDAO implements IPlantaDAO{
 		plantaDTO.setFlush(resultado.getString("flush_planta"));
 		plantaDTO.setFlushs(resultado.getString("flushs_planta"));
 		plantaDTO.setBreeder(resultado.getInt("fk_id_breeder"));
-		plantaDTO.setNbreeder(resultado.getString("g.nombre_breeder"));
+		//plantaDTO.setNbreeder(resultado.getString("g.nombre_breeder"));
 		plantaDTO.setColor1(resultado.getInt("fk_id_color1"));
 		plantaDTO.setColores(resultado.getString("a.nombre_es_color"));
 		plantaDTO.setColor2(resultado.getInt("fk_id_color2"));

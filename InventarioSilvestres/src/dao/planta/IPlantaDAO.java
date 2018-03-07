@@ -7,6 +7,8 @@ import dto.PlantaDTO;
 public interface IPlantaDAO {
 
 	public PlantaDTO consultarPlantaPorId(Integer id, Connection con) throws Exception;
+	
+	public PlantaDTO buscarPlantaId(Integer id, Connection con) throws Exception;
 
 	public String actualizarPlanta(PlantaDTO personaDTO, Connection con) throws Exception;
 

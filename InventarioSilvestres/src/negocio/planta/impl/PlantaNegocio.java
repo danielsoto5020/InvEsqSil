@@ -27,8 +27,23 @@ public class PlantaNegocio implements IPlantaNegocio {
 		PlantaDTO plantaDTO = null;
 		try {
 			con = dataSource.getConnection();
-			plantaDTO= plantaDAO.consultarPlantaPorId(id, con);
+			plantaDTO = plantaDAO.consultarPlantaPorId(id, con);
 		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}
+		return plantaDTO;
+	}
+	
+	@Override
+	public PlantaDTO buscarPlantaId(Integer id) {
+		Connection con = null;
+		PlantaDTO plantaDTO = null;
+		try {
+			con = dataSource.getConnection();
+			plantaDTO = plantaDAO.buscarPlantaId(id, con);
+		} catch (Exception e){
 			System.out.println(e.toString());
 		} finally {
 			PersistUtil.closeConnection(con);
