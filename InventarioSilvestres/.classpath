@@ -14,7 +14,5 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/eclipse/postgresql-42.1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jdk-8u121-windows-x64.exe"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-8u161-windows-x64.exe"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

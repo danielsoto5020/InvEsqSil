@@ -70,7 +70,7 @@ public class SiembraDAO implements ISiembraDAO {
 
 	private Boolean buscarPlanta(Integer id) {
 		PlantaNegocio plantaNegocio = new PlantaNegocio();
-		if (plantaNegocio.buscarPlantaId(id) != null) {
+		if (plantaNegocio.consultarPlantaPorId(id) != null) {
 			return true;
 		} else {
 			return false;
@@ -124,7 +124,7 @@ public class SiembraDAO implements ISiembraDAO {
 		String message = "";
 		String query;
 		PreparedStatement instruccion = null;
-		if (buscarCama(siembraDTO.getCama()) && buscarEmpleado(siembraDTO.getEmpleado())) {
+		if (buscarCama(siembraDTO.getCama()) && buscarEmpleado(siembraDTO.getEmpleado()) && buscarPlanta(siembraDTO.getVariedad())) {
 			try {
 
 				query = SiembraSQL.INSERT;

@@ -7,8 +7,6 @@ import dto.PlantaDTO;
 public interface IPlantaNegocio {
 
 	public PlantaDTO consultarPlantaPorId(Integer id);
-	
-	public PlantaDTO buscarPlantaId(Integer id);
 
 	public String actualizarPlanta(PlantaDTO plantaDTO);
 
