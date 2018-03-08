@@ -7,7 +7,7 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 				ingresoService.ingresoSearch(id).then(function(message) {
 					$scope.ingresoOut = {
 						"id" : message.data.id,
-						"cantidad" : message.data.inv_cantidad,
+						"cantidad" : message.data.cantidad,
 						"puesto" : message.data.puesto,
 						"nivel" : message.data.nivel,
 						"lado" : message.data.lado,

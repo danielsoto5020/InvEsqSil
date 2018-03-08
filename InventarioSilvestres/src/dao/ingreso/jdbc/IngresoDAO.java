@@ -16,9 +16,8 @@ import negocio.planta.impl.PlantaNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
-public class IngresoDAO implements IIngresoDAO{
+public class IngresoDAO implements IIngresoDAO {
 
-	
 	@Override
 	public IngresoDTO consultarIngresoPorId(Integer id, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
@@ -41,7 +40,7 @@ public class IngresoDAO implements IIngresoDAO{
 		return ingresoDTO;
 	}
 
-	private void setInfoIngreso(ResultSet resultado, IngresoDTO ingresoDTO) throws Exception {	
+	private void setInfoIngreso(ResultSet resultado, IngresoDTO ingresoDTO) throws Exception {
 		ingresoDTO.setId(resultado.getInt("id_ingreso"));
 		ingresoDTO.setCantidad(resultado.getString("cantidad_ingreso"));
 		ingresoDTO.setPuesto(resultado.getString("puesto_ingreso"));
@@ -52,48 +51,48 @@ public class IngresoDAO implements IIngresoDAO{
 		ingresoDTO.setCama(resultado.getInt("fk_id_planta"));
 		ingresoDTO.setEmpleado(resultado.getInt("fk_id_empleado"));
 	}
-	
-	private Boolean buscarCama(Integer cama){
+
+	private Boolean buscarCama(Integer cama) {
 		CamaNegocio camaNegocio = new CamaNegocio();
-    	if(camaNegocio.consultarCamaPorId(cama) != null){
-    		return true;
-    	}else{
-    		return false;
-    	}
-	}
-	
-	private Boolean buscarEmpleado(Integer id){
-		EmpleadoNegocio empleadoNegocio = new EmpleadoNegocio();
-		if(empleadoNegocio.consultarEmpleadoPorId(id)!= null){
+		if (camaNegocio.consultarCamaPorId(cama) != null) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	
+
+	private Boolean buscarEmpleado(Integer id) {
+		EmpleadoNegocio empleadoNegocio = new EmpleadoNegocio();
+		if (empleadoNegocio.consultarEmpleadoPorId(id) != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	private Boolean buscarPlanta(Integer id) {
 		PlantaNegocio plantaNegocio = new PlantaNegocio();
-		if(plantaNegocio.consultarPlantaPorId(id) != null) {
+		if (plantaNegocio.consultarPlantaPorId(id) != null) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	private Boolean buscarSiembra(Integer id) {
 		SiembraNegocio siembraNegocio = new SiembraNegocio();
-		if(siembraNegocio.consultarSiembraPorId(id) != null) {
+		if (siembraNegocio.consultarSiembraPorId(id) != null) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	private Boolean buscarIngreso(Integer id) {
 		IngresoNegocio ingresoNegocio = new IngresoNegocio();
-		if(ingresoNegocio.consultarIngresoPorId(id) != null) {
+		if (ingresoNegocio.consultarIngresoPorId(id) != null) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -101,90 +100,97 @@ public class IngresoDAO implements IIngresoDAO{
 	@Override
 	public String actualizarIngreso(IngresoDTO ingresoDTO, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
-		String message ="";
+		String message = "";
 		String query;
-		if(buscarIngreso(ingresoDTO.getId())){
+		if (buscarIngreso(ingresoDTO.getId())) {
 			try {
-        	
-	            query = IngresoSQL.UPDATE;
-	            instruccion = con.prepareStatement(query);
-	            int index = 1;
-	            instruccion.setString(index++, ingresoDTO.getCantidad());
-	            instruccion.setString(index++, ingresoDTO.getPuesto());
-	            instruccion.setString(index++, ingresoDTO.getNivel());
-	            instruccion.setString(index++, ingresoDTO.getLado());
-	            instruccion.setString(index++, ingresoDTO.getFecha());
-	            instruccion.setInt(index++, ingresoDTO.getVariedad());
-	            instruccion.setInt(index++, ingresoDTO.getCama());
-	            instruccion.setInt(index++, ingresoDTO.getEmpleado());
-	            instruccion.setInt(index++, ingresoDTO.getSiembra());
-	            instruccion.setInt(index++, ingresoDTO.getId());
-	            instruccion.executeUpdate();
-	            message ="OK";
-        	}catch (SQLException sql) {
-           	 message ="ERROR";
-         	con.rollback();
-             throw new Exception(sql.toString());
-         } finally {
-            PersistUtil.closeResources(instruccion);
-         }}else{message ="La siembra no se encuentra en la Base de Datos!!!";}
-        return message;
+
+				query = IngresoSQL.UPDATE;
+				instruccion = con.prepareStatement(query);
+				int index = 1;
+				instruccion.setString(index++, ingresoDTO.getCantidad());
+				instruccion.setString(index++, ingresoDTO.getPuesto());
+				instruccion.setString(index++, ingresoDTO.getNivel());
+				instruccion.setString(index++, ingresoDTO.getLado());
+				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(ingresoDTO.getFecha()));
+				instruccion.setInt(index++, ingresoDTO.getVariedad());
+				instruccion.setInt(index++, ingresoDTO.getCama());
+				instruccion.setInt(index++, ingresoDTO.getEmpleado());
+				instruccion.setInt(index++, ingresoDTO.getSiembra());
+				instruccion.setInt(index++, ingresoDTO.getId());
+				instruccion.executeUpdate();
+				message = "OK";
+			} catch (SQLException sql) {
+				message = "ERROR";
+				con.rollback();
+				throw new Exception(sql.toString());
+			} finally {
+				PersistUtil.closeResources(instruccion);
+			}
+		} else {
+			message = "La siembra no se encuentra en la Base de Datos!!!";
+		}
+		return message;
 	}
 
 	@Override
 	public String crearIngreso(IngresoDTO ingresoDTO, Connection con) throws Exception {
-		String message ="";
+		String message = "";
 		String query;
-        PreparedStatement instruccion = null;
-        if(buscarCama(ingresoDTO.getCama()) && buscarEmpleado(ingresoDTO.getEmpleado()) && buscarPlanta(ingresoDTO.getVariedad()) && buscarSiembra(ingresoDTO.getSiembra())){
-        	try {
-        	
-        		 query = IngresoSQL.INSERT;
-                 instruccion = con.prepareStatement(query);
-                 int index = 1;
- 	            instruccion.setString(index++, ingresoDTO.getCantidad());
- 	            instruccion.setString(index++, ingresoDTO.getPuesto());
- 	            instruccion.setString(index++, ingresoDTO.getNivel());
- 	            instruccion.setString(index++, ingresoDTO.getLado());
- 	            instruccion.setString(index++, ingresoDTO.getFecha());
- 	            instruccion.setInt(index++, ingresoDTO.getVariedad());
- 	            instruccion.setInt(index++, ingresoDTO.getCama());
- 	            instruccion.setInt(index++, ingresoDTO.getEmpleado());
- 	            instruccion.setInt(index++, ingresoDTO.getSiembra());
-                 instruccion.executeUpdate();
-                 message ="OK";
-        	}catch (SQLException sql) {
-           	 message =" ERROR";
-         	con.rollback();
-             throw new Exception(sql.toString());
-         } finally {
-            PersistUtil.closeResources(instruccion);
-         }}else{message ="los datos ingresados pueden no esta registrados en la base de datos!!!";}
-        return message;
+		PreparedStatement instruccion = null;
+		if (buscarCama(ingresoDTO.getCama()) && buscarEmpleado(ingresoDTO.getEmpleado())
+				&& buscarPlanta(ingresoDTO.getVariedad()) && buscarSiembra(ingresoDTO.getSiembra())) {
+			try {
+
+				query = IngresoSQL.INSERT;
+				instruccion = con.prepareStatement(query);
+				int index = 1;
+				instruccion.setString(index++, ingresoDTO.getCantidad());
+				instruccion.setString(index++, ingresoDTO.getPuesto());
+				instruccion.setString(index++, ingresoDTO.getNivel());
+				instruccion.setString(index++, ingresoDTO.getLado());
+				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(ingresoDTO.getFecha()));
+				instruccion.setInt(index++, ingresoDTO.getVariedad());
+				instruccion.setInt(index++, ingresoDTO.getCama());
+				instruccion.setInt(index++, ingresoDTO.getEmpleado());
+				instruccion.setInt(index++, ingresoDTO.getSiembra());
+				instruccion.executeUpdate();
+				message = "OK";
+			} catch (SQLException sql) {
+				message = " ERROR";
+				con.rollback();
+				throw new Exception(sql.toString());
+			} finally {
+				PersistUtil.closeResources(instruccion);
+			}
+		} else {
+			message = "los datos ingresados pueden no esta registrados en la base de datos!!!";
+		}
+		return message;
 	}
 
 	@Override
 	public String borrarIngreso(Integer id, Connection con) throws Exception {
-		String message ="";
+		String message = "";
 		String query;
-        PreparedStatement instruccion = null;
-        try {
-            query = IngresoSQL.DELETE;
-            instruccion = con.prepareStatement(query);
-            int index = 1;
-            instruccion.setInt(index++, id);
-            instruccion.executeUpdate();
-            message ="OK";
-        } catch (SQLException sql) {
-        	 message ="ERROR";
-        	con.rollback();
-            throw new Exception(sql.toString());
-        } finally {
-           PersistUtil.closeResources(instruccion);
-        }
-        return message;
+		PreparedStatement instruccion = null;
+		try {
+			query = IngresoSQL.DELETE;
+			instruccion = con.prepareStatement(query);
+			int index = 1;
+			instruccion.setInt(index++, id);
+			instruccion.executeUpdate();
+			message = "OK";
+		} catch (SQLException sql) {
+			message = "ERROR";
+			con.rollback();
+			throw new Exception(sql.toString());
+		} finally {
+			PersistUtil.closeResources(instruccion);
+		}
+		return message;
 	}
-	
+
 	@Override
 	public List<IngresoDTO> ListarIngresos(Connection con) throws Exception {
 		PreparedStatement instruccion = null;

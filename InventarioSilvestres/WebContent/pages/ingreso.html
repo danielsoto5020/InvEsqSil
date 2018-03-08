@@ -57,7 +57,7 @@
 							</a>
 								<ul class="dropdown-menu">
 									<li><a href="../pages/siembra.html">Siembra</a></li>
-									<li><a href="../pages/ingreso.html">Ingresos</a></li>
+									<li><a href="../pages/ingreso.html">Ingreso</a></li>
 									<li><a href="../index.html">Salida</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="../pages/ciclo.html">Inventariado</a>
@@ -132,7 +132,7 @@
 									<td>Bloque</td>
 									<td><input type="text" class="form-control" id="bloque"
 										name="bloque" data-ng-model="ingresoIn.bloque"
-										placeholder="Bloque" /></td>
+										placeholder="Bloque" disabled/></td>
 								</tr>
 								<tr>
 									<td>Cama</td>
@@ -164,7 +164,7 @@
 								<tr>
 									<td>Cantidad</td>
 									<td><input type="number" class="form-control"
-										id="cantidad" name="cantidad" data-ng-model="cantidad"
+										id="cantidad" name="cantidad" data-ng-model="ingresoIn.cantidad"
 										placeholder="Cantidad" min="0" /></td>
 								</tr>
 								<tr>
@@ -209,10 +209,14 @@
 									<th>Cantidad</th>
 									<th>Fecha ingreso</th>
 									<th>Empleado</th>
-									<th>Siembra</th>
+									<th>Siembra</th>								
+									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td colspan="9">&nbsp;</td>
+								</tr>
 								<tr data-ng-repeat="item in ingresoList | filter:search">
 									<td>{{item.variedad}}</td>
 									<td>{{item.puesto}}</td>
@@ -222,6 +226,10 @@
 									<td>{{item.fecha}}</td>
 									<td>{{item.empleado}}</td>
 									<td>{{item.siembra}}</td>
+									<td><a href="#edit_modal" data-ng-click="updateSiembra(siembraIn)"
+										modal><i class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>
 						</table>
