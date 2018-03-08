@@ -1,7 +1,6 @@
 package dto;
 
 
-//@JsonIgnoreProperties(ignoreUnknown = true)
 public class SiembraDTO {
 	
 	private Integer id;

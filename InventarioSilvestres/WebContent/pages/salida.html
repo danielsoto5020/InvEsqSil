@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>INGRESO</title>
+<title>SALIDA</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -10,14 +10,14 @@
 <script src="../js/ext/bootstrap.min.js"></script>
 <script src="../js/ext/angular.min.js" type="text/javascript"></script>
 <script src="../js/app.js" type="text/javascript"></script>
-<script src="../js/controller/IngresoController.js"
+<script src="../js/controller/SalidaController.js"
 	type="text/javascript"></script>
-<script src="../js/service/IngresoService.js" type="text/javascript"></script>
+<script src="../js/service/SalidaService.js" type="text/javascript"></script>
 <link href="../css/base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="container" data-ng-app="app"
-		data-ng-controller="ingresoController">
+		data-ng-controller="salidaController">
 		<br>
 		<header>
 			<nav class="navbar navbar-default navbar-fixed-top">
@@ -58,7 +58,7 @@
 								<ul class="dropdown-menu">
 									<li><a href="../pages/siembra.html">Siembra</a></li>
 									<li><a href="../pages/ingreso.html">Ingreso</a></li>
-									<li><a href="../index.html">Salida</a></li>
+									<li><a href="../pages/salida.html">Salida</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="../pages/ciclo.html">Inventariado</a>
 							</li>
@@ -81,9 +81,9 @@
 					<div class="container">
 						<br> <input type="text" id="ingresoId" name="ingresoId"
 							data-ng-model="id" required></input> <br> <br> <input
-							type="button" class="btn btn-primary" id="ingresoSearch"
-							name="ingresoSearch" value="Buscar"
-							data-ng-click="ingresoSearch(id)"></input> <a
+							type="button" class="btn btn-primary" id="salidaSearch"
+							name="salidaSearch" value="Buscar"
+							data-ng-click="salidaSearch(id)"></input> <a
 							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
 						<div class="modal fade" id="alerta_borrar1">
 							<div class="modal-dialog">
@@ -94,29 +94,29 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p>Cuidado estas a punto de borrar un ingreso en la base
+										<p>Cuidado estas a punto de borrar una salida en la base
 											de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
 											data-dismiss="modal">CERRAR</button>
-										<input type="button" class="btn btn-danger" id="deleteIngreso"
-											name="deleteIngreso" value="BORRAR"
-											data-ng-click="deleteIngreso(id)"></input>
+										<input type="button" class="btn btn-danger" id="deleteSalida"
+											name="deleteSalida" value="BORRAR"
+											data-ng-click="deleteSalida(id)"></input>
 									</div>
 								</div>
 							</div>
 						</div>
 						<br /> <br>
-						<div data-ng-show="mostrarDatosIngreso" id="ingresoList">
-							<p>Variedad: {{ingresoOut.nombre}}</p>
-							<p>Puesto: {{ingresoOut.puesto}}</p>
-							<p>Nivel: {{ingresoOut.nivel}}</p>
-							<p>Lado: {{ingresoOut.lado}}</p>
-							<p>Cantidad: {{ingresoOut.cantidad}}</p>
-							<p>Fecha in: {{ingresoOut.fecha}}</p>
-							<p>Empleado: {{ingresoOut.empleado}}</p>
-							<p>Siembra: {{ingresoOut.siembra}}</p>
+						<div data-ng-show="mostrarDatosSalida" id="salidaList">
+							<p>Variedad: {{salidaOut.nombre}}</p>
+							<p>Puesto: {{salidaOut.puesto}}</p>
+							<p>Nivel: {{salidaOut.nivel}}</p>
+							<p>Lado: {{salidaOut.lado}}</p>
+							<p>Cantidad: {{salidaOut.cantidad}}</p>
+							<p>Fecha in: {{salidaOut.fecha}}</p>
+							<p>Empleado: {{salidaOut.empleado}}</p>
+							<p>Ingreso: {{salidaOut.ingreso}}</p>
 						</div>
 					</div>
 				</div>
@@ -124,39 +124,28 @@
 					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
-							name="ingresoList" data-ng-hide="showForm"
+							name="salidaList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
 								<tr>
-									<td>Bloque</td>
-									<td><input type="text" class="form-control" id="bloque"
-										name="bloque" data-ng-model="ingresoIn.bloque"
-										placeholder="Bloque" disabled/></td>
-								</tr>
-								<tr>
-									<td>Cama</td>
-									<td><input type="text" class="form-control" id="cama"
-										name="cama" data-ng-model="ingresoIn.cama" placeholder="Cama" /></td>
-								</tr>
-								<tr>
 									<td>Variedad</td>
 									<td><input type="text" class="form-control" id="variedad"
-										name="variedad" data-ng-model="ingresoIn.variedad"
+										name="variedad" data-ng-model="salidaIn.variedad"
 										placeholder="Nombre de la variedad" /></td>
 								</tr>
 								<tr>
 									<td>Puesto</td>
 									<td><input type="number" class="form-control" id="puesto"
-										name="puesto" data-ng-model="ingresoIn.puesto"
+										name="puesto" data-ng-model="salidaIn.puesto"
 										placeholder="Puesto" min="0" max="999"/></td>
 									<td>Nivel</td>
 									<td><input type="number" class="form-control" id="nivel"
-										name="nivel" data-ng-model="ingresoIn.nivel"
+										name="nivel" data-ng-model="salidaIn.nivel"
 										placeholder="Nivel" min="0" max="50"/></td>
 									<td>Lado</td>
 									<td><select class="form-control" id="lado" name="lado"
-										data-ng-model="ingresoIn.lado">
+										data-ng-model="salidaIn.lado">
 											<option>A</option>
 											<option>B</option>
 									</select></td>
@@ -164,40 +153,40 @@
 								<tr>
 									<td>Cantidad</td>
 									<td><input type="number" class="form-control"
-										id="cantidad" name="cantidad" data-ng-model="ingresoIn.cantidad"
+										id="cantidad" name="cantidad" data-ng-model="salidaIn.cantidad"
 										placeholder="Cantidad" min="0" /></td>
 								</tr>
 								<tr>
 									<td>Fecha</td>
 									<td><input type="datetime" class="form-control" id="fecha"
-										name="fecha" data-ng-model="ingresoIn.fecha"
+										name="fecha" data-ng-model="salidaIn.fecha"
 										data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
 								</tr>
 								<tr>
 									<td>Empleado</td>
 									<td><input type="number" class="form-control"
 										id="empleado" name="empleado"
-										data-ng-model="ingresoIn.empleado"
+										data-ng-model="salidaIn.empleado"
 										placeholder="Codigo Empleado" min="0" /></td>
 								</tr>
 								<tr>
 									<td>código Siembra</td>
 									<td><input type="number" class="form-control" id="siembra"
-										name="siembra" data-ng-model="ingresoIn.siembra"
+										name="siembra" data-ng-model="salidaIn.siembra"
 										placeholder="codigo barras" min="0" /></td>
 								</tr>
 							</table>
 
 							<br /> <input type="button" class="btn btn-primary" id="guardar"
 								name="saveBtn" value="Guardar"
-								data-ng-click="saveIngreso(ingresoIn)" />
+								data-ng-click="saveSalida(salidaIn)" />
 						</div>
 					</div>
 					<br> <input type="button" class="btn btn-primary"
-						id="ingresoList" name="ingresoList" value="Lista de Ingresos"
-						data-ng-click="getListIngreso()"></input> <input type="text"
+						id="ingresoList" name="salidaList" value="Lista de Salidas"
+						data-ng-click="getListSalida()"></input> <input type="text"
 						data-ng-model="search"> <br>
-					<div data-ng-show="ingresoList.length != 0">
+					<div data-ng-show="salidaList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
 							<thead>
@@ -217,7 +206,7 @@
 								<tr>
 									<td colspan="9">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in ingresoList | filter:search">
+								<tr data-ng-repeat="item in salidaList | filter:search">
 									<td>{{item.variedad}}</td>
 									<td>{{item.puesto}}</td>
 									<td>{{item.nivel}}</td>
@@ -226,7 +215,7 @@
 									<td>{{item.fecha}}</td>
 									<td>{{item.empleado}}</td>
 									<td>{{item.siembra}}</td>
-									<td><a href="#edit_modal" data-ng-click="updateIngreso(ingresoIn)"
+									<td><a href="#edit_modal" data-ng-click="updateSalida(salidaIn)"
 										modal><i class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
 										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
 											class="glyphicon glyphicon-remove"></i></a></td>
