@@ -7,12 +7,23 @@ public class SalidaDTO {
 	private String cantidad;
 	private String destino;
 	private String fecha;
+	private String motivo;
 	private Integer variedad;
 	private Integer empleado;
 	private Integer ingreso;
 
 	public SalidaDTO() {
 		super();
+	}
+
+
+	public String getMotivo() {
+		return motivo;
+	}
+
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
 	}
 
 

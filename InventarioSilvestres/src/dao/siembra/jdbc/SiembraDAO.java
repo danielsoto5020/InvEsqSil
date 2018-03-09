@@ -86,6 +86,15 @@ public class SiembraDAO implements ISiembraDAO {
 		}
 	}
 
+	private Boolean espacioCama(Integer id, String cantidad) {
+		CamaNegocio camaNegocio = new CamaNegocio();
+		if (camaNegocio.consultarEspacio(id, cantidad) != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	@Override
 	public String actualizarSiembra(SiembraDTO siembraDTO, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
@@ -124,7 +133,10 @@ public class SiembraDAO implements ISiembraDAO {
 		String message = "";
 		String query;
 		PreparedStatement instruccion = null;
-		if (buscarCama(siembraDTO.getCama()) && buscarEmpleado(siembraDTO.getEmpleado()) && buscarPlanta(siembraDTO.getVariedad())) {
+		if (buscarCama(siembraDTO.getCama()) 
+				&& buscarEmpleado(siembraDTO.getEmpleado())
+				&& buscarPlanta(siembraDTO.getVariedad())
+				&& espacioCama(siembraDTO.getCama(), siembraDTO.getCantidad())) {
 			try {
 
 				query = SiembraSQL.INSERT;
@@ -136,7 +148,7 @@ public class SiembraDAO implements ISiembraDAO {
 				instruccion.setInt(index++, siembraDTO.getVariedad());
 				instruccion.setInt(index++, siembraDTO.getEmpleado());
 				instruccion.setInt(index++, siembraDTO.getCama());
-				
+
 				instruccion.executeUpdate();
 				message = "OK";
 			} catch (SQLException sql) {
@@ -147,7 +159,17 @@ public class SiembraDAO implements ISiembraDAO {
 				PersistUtil.closeResources(instruccion);
 			}
 		} else {
-			message = "verifica los datos de Cama, Empleado y Variedad";
+			if (!buscarCama(siembraDTO.getCama())) {
+				message = "La cama ingresada no existe";
+			}else if (!buscarEmpleado(siembraDTO.getEmpleado())) {
+				message = "El empleado no existe";
+			}else if (!buscarPlanta(siembraDTO.getVariedad())) {
+				message = "La variedad no existe en la Base de datos";
+			}else if (!espacioCama(siembraDTO.getCama(), siembraDTO.getCantidad())) {
+				message = "La cama no tiene espacio suficiente";
+			}else {
+				message = "Datos ingresados erroneos";
+			}
 		}
 		return message;
 	}

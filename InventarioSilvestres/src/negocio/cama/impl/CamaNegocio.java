@@ -129,12 +129,12 @@ public class CamaNegocio implements ICamaNegocio{
 	}
 
 	@Override
-	public CamaDTO consultarEspacio(Integer cantidad) {
+	public CamaDTO consultarEspacio(Integer id, String cantidad) {
 		Connection con = null;
 		CamaDTO camaDTO = null;
 		try {
 			con = dataSource.getConnection();
-			camaDTO= camaDAO.consultarEspacio(cantidad, con);
+			camaDTO= camaDAO.consultarEspacio(id, cantidad, con);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
