@@ -5,17 +5,24 @@ public class SalidaDTO {
 	
 	private Integer id;
 	private String cantidad;
-	private String puesto;
-	private String nivel;
-	private String lado;
+	private String destino;
 	private String fecha;
 	private Integer variedad;
 	private Integer empleado;
 	private Integer ingreso;
-	
-	
+
 	public SalidaDTO() {
 		super();
+	}
+
+
+	public String getDestino() {
+		return destino;
+	}
+
+
+	public void setDestino(String destino) {
+		this.destino = destino;
 	}
 
 
@@ -36,36 +43,6 @@ public class SalidaDTO {
 
 	public void setCantidad(String cantidad) {
 		this.cantidad = cantidad;
-	}
-
-
-	public String getPuesto() {
-		return puesto;
-	}
-
-
-	public void setPuesto(String puesto) {
-		this.puesto = puesto;
-	}
-
-
-	public String getNivel() {
-		return nivel;
-	}
-
-
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
-	}
-
-
-	public String getLado() {
-		return lado;
-	}
-
-
-	public void setLado(String lado) {
-		this.lado = lado;
 	}
 
 

@@ -47,8 +47,8 @@ public class IngresoDAO implements IIngresoDAO {
 		ingresoDTO.setNivel(resultado.getString("nivel_ingreso"));
 		ingresoDTO.setLado(resultado.getString("lado_ingreso"));
 		ingresoDTO.setFecha(resultado.getString("fecha_ingreso"));
-		ingresoDTO.setVariedad(resultado.getInt("fk_id_cama"));
-		ingresoDTO.setCama(resultado.getInt("fk_id_planta"));
+		ingresoDTO.setCama(resultado.getInt("fk_id_cama"));
+		ingresoDTO.setVariedad(resultado.getInt("fk_id_planta"));
 		ingresoDTO.setEmpleado(resultado.getInt("fk_id_empleado"));
 	}
 
