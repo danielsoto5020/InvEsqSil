@@ -51,6 +51,20 @@ public class CamaNegocio implements ICamaNegocio{
 		return message;
 	}
 	
+	@Override
+	public String esterilizarCama(Integer id) {
+		Connection con = null;
+		String message="";
+		try {
+			con = dataSource.getConnection();
+			message = camaDAO.esterilizarCama(id, con);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}
+		return message;		
+	}
 
 	@Override
 	public Integer buscarCama(String ncama, String nbloque) {

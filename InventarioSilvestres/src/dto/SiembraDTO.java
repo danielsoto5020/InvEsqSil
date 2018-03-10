@@ -8,7 +8,7 @@ public class SiembraDTO {
 	private Integer cama;
 	private Integer empleado;
 	private Integer variedad;
-	private String esterelizacion;
+	private String esterilizacion;
 	private String ncama;
 	private String fecha;
 	private String observacion;
@@ -17,12 +17,12 @@ public class SiembraDTO {
 		super();
 	}
 
-	public String getEsterelizacion() {
-		return esterelizacion;
+	public String getEsterilizacion() {
+		return esterilizacion;
 	}
 
-	public void setEsterelizacion(String esterelizacion) {
-		this.esterelizacion = esterelizacion;
+	public void setEsterilizacion(String esterilizacion) {
+		this.esterilizacion = esterilizacion;
 	}
 
 	public Integer getId() {

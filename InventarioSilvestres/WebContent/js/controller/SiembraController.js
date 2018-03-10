@@ -70,6 +70,7 @@ app.controller("siembraController", [ "$scope", "siembraService",
 					alert(message.data);
 				})
 				$scope.siembraIn = {};
+				$scope.date = new Date();
 
 			}
 			$scope.siembraIn = {};

@@ -11,6 +11,8 @@ public interface ICamaDAO {
 
 	public String actualizarCama(CamaDTO camaDTO, Connection con) throws Exception;
 
+	public String esterilizarCama(Integer id, Connection con) throws Exception;
+
 	public String crearCama(CamaDTO camaDTO,Connection con) throws Exception;
 
 	public String borrarCama(Integer id, Connection con) throws Exception;

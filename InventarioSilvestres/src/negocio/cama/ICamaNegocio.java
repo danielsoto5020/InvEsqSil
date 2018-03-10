@@ -16,6 +16,8 @@ public interface ICamaNegocio {
 	
 	public Integer buscarCama(String ncama, String nbloque);
 	
+	public String esterilizarCama(Integer id);
+	
 	public List<CamaDTO> ListarCamas();
 	
 	public List<CamaDTO> SelectCamas();

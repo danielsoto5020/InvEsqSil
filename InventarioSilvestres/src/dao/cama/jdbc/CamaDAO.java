@@ -152,6 +152,28 @@ public class CamaDAO implements ICamaDAO{
          }}else{message ="El bloque no esta registrada en la base de datos!!!";}
         return message;
 	}
+	
+	@Override
+	public String esterilizarCama(Integer id, Connection con) throws Exception {
+		String message ="";
+		String query;
+        PreparedStatement instruccion = null;
+        try {
+            query = CamaSQL.ESTERIL;
+            instruccion = con.prepareStatement(query);
+            int index = 1;
+            instruccion.setInt(index++, id);
+            instruccion.executeUpdate();
+            message ="Cama esterilizada";
+        } catch (SQLException sql) {
+        	 message ="ERROR";
+        	con.rollback();
+            throw new Exception(sql.toString());
+        } finally {
+           PersistUtil.closeResources(instruccion);
+        }
+        return message;
+	}
 
 	@Override
 	public String borrarCama(Integer id, Connection con) throws Exception {

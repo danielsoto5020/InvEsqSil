@@ -157,6 +157,10 @@ public class SiembraDAO implements ISiembraDAO {
 		String message = "";
 		String query;
 		PreparedStatement instruccion = null;
+		if (siembraDTO.getEsterilizacion() == "true" ) {
+			CamaNegocio camaNegocio = new CamaNegocio();
+			message = camaNegocio.esterilizarCama(siembraDTO.getCama());
+		}
 		if (buscarCama(siembraDTO.getCama()) 
 				&& buscarEmpleado(siembraDTO.getEmpleado())
 				&& buscarPlanta(siembraDTO.getVariedad())
@@ -174,7 +178,7 @@ public class SiembraDAO implements ISiembraDAO {
 				instruccion.setInt(index++, siembraDTO.getCama());
 
 				instruccion.executeUpdate();
-				message = "OK";
+				message = message + " OK";
 			} catch (SQLException sql) {
 				message = " ERROR";
 				con.rollback();
