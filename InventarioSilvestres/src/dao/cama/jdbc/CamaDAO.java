@@ -222,7 +222,7 @@ public class CamaDAO implements ICamaDAO{
 	
 	
 	@Override
-	public CamaDTO consultarEspacio(Integer id, String cantidad, Connection con) throws Exception {
+	public CamaDTO consultarEspacio(Integer id, Integer cantidad, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
 		ResultSet resultado = null;
 		String query;
@@ -240,7 +240,7 @@ public class CamaDAO implements ICamaDAO{
 		} finally {
 			PersistUtil.closeResources(instruccion, resultado);
 		}
-		if((Integer.parseInt(camaDTO.getLineas())*(Integer.parseInt(camaDTO.getNlinea()))) >= (Integer.parseInt(cantidad))) {
+		if((Integer.parseInt(camaDTO.getLineas())*(Integer.parseInt(camaDTO.getNlinea()))) >= cantidad) {
 
 			return camaDTO;
 			

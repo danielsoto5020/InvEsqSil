@@ -97,6 +97,20 @@ public class SiembraNegocio implements ISiembraNegocio{
 		return listaSiembras;
 	}
 
+	@Override
+	public Integer stockSiembra(Integer id) {
+		Connection con = null;
+		Integer capacidad = 0;
+		try {
+			con = dataSource.getConnection();
+			capacidad = siembraDAO.stockSiembra(id, con);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}		
+		return  capacidad;
+	}
 
 
 }

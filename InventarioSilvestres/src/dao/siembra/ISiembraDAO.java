@@ -8,6 +8,8 @@ import dto.SiembraDTO;
 public interface ISiembraDAO {
 	
 	public SiembraDTO consultarSiembraPorId(Integer id, Connection con) throws Exception;
+	
+	public Integer stockSiembra(Integer id, Connection con) throws Exception;
 
 	public String actualizarSiembra(SiembraDTO siembraDTO, Connection con) throws Exception;
 

@@ -129,7 +129,7 @@ public class CamaNegocio implements ICamaNegocio{
 	}
 
 	@Override
-	public CamaDTO consultarEspacio(Integer id, String cantidad) {
+	public CamaDTO consultarEspacio(Integer id, Integer cantidad) {
 		Connection con = null;
 		CamaDTO camaDTO = null;
 		try {

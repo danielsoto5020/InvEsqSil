@@ -38,6 +38,27 @@ public class SiembraDAO implements ISiembraDAO {
 		}
 		return siembraDTO;
 	}
+	
+	@Override
+	public Integer stockSiembra(Integer id, Connection con) throws Exception {
+		PreparedStatement instruccion = null;
+		ResultSet resultado = null;
+		String query;
+		Integer capacidad = 0;
+		try {
+			query = SiembraSQL.STOCK;
+			instruccion = con.prepareStatement(query);
+			int index = 1;
+			instruccion.setInt(index++, id);
+			resultado = instruccion.executeQuery();
+			while (resultado.next()) {
+				capacidad = resultado.getInt("sum");
+			}
+		} finally {
+			PersistUtil.closeResources(instruccion, resultado);
+		}
+			return capacidad;
+	}
 
 	private void setInfoSiembra(ResultSet resultado, SiembraDTO siembraDTO) throws Exception {
 		siembraDTO.setId(resultado.getInt("id_siembra"));
@@ -85,10 +106,13 @@ public class SiembraDAO implements ISiembraDAO {
 			return false;
 		}
 	}
-
+	
 	private Boolean espacioCama(Integer id, String cantidad) {
 		CamaNegocio camaNegocio = new CamaNegocio();
-		if (camaNegocio.consultarEspacio(id, cantidad) != null) {
+		SiembraNegocio siembraNegocio = new SiembraNegocio();
+		Integer asembrar = 0;
+		asembrar =  Integer.parseInt(cantidad) + siembraNegocio.stockSiembra(id);
+		if (camaNegocio.consultarEspacio(id, asembrar) != null) {
 			return true;
 		} else {
 			return false;

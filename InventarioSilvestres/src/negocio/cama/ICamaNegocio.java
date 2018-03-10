@@ -20,6 +20,6 @@ public interface ICamaNegocio {
 	
 	public List<CamaDTO> SelectCamas();
 	
-	public CamaDTO consultarEspacio (Integer id, String cantidad);
+	public CamaDTO consultarEspacio (Integer id, Integer cantidad);
 
 }
