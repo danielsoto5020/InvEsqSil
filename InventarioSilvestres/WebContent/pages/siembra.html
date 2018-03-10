@@ -109,9 +109,9 @@
 						</div>
 						<br /> <br>
 						<div data-ng-show="mostrarDatosSiembra" id="siembraList">
-							<p>Variedad: {{siembraOut.variedad}}</p>
+							<p>Variedad: {{siembraOut.nvariedad}}</p>
 							<p>Cama: {{siembraOut.cama}}</p>
-							<p>Empleado: {{siembraOut.empleado}}</p>
+							<p>Empleado: {{siembraOut.nempleado}}</p>
 							<p>Cantidad: {{siembraOut.cantidad}}</p>
 							<p>Esterilización: {{siembraOut.esterilizacion}}</p>
 							<p>Fecha: {{siembraOut.fecha}}</p>
@@ -210,9 +210,9 @@
 								</tr>
 								<tr
 									data-ng-repeat="item in siembraList | filter:search | orderBy:'+fecha'">
-									<td>{{item.variedad}}</td>
+									<td>{{item.nvariedad}}</td>
 									<td>{{'Cama '+item.cama}}</td>
-									<td>{{item.empleado}}</td>
+									<td>{{item.nempleado}}</td>
 									<td>{{item.cantidad}}</td>
 									<td>{{item.esterilizacion}}</td>
 									<td>{{item.fecha}}</td>
