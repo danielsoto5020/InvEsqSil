@@ -6,7 +6,9 @@ public class SiembraDTO {
 	private Integer id;
 	private String cantidad;
 	private Integer cama;
+	private String nempleado;
 	private Integer empleado;
+	private String nvariedad;
 	private Integer variedad;
 	private String esterilizacion;
 	private String ncama;
@@ -15,6 +17,22 @@ public class SiembraDTO {
 	
 	public SiembraDTO() {
 		super();
+	}
+
+	public String getNempleado() {
+		return nempleado;
+	}
+
+	public void setNempleado(String nempleado) {
+		this.nempleado = nempleado;
+	}
+
+	public String getNvariedad() {
+		return nvariedad;
+	}
+
+	public void setNvariedad(String nvariedad) {
+		this.nvariedad = nvariedad;
 	}
 
 	public String getEsterilizacion() {

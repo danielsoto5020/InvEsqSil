@@ -67,7 +67,9 @@ public class SiembraDAO implements ISiembraDAO {
 		siembraDTO.setObservacion(resultado.getString("observacion_siembra"));
 		siembraDTO.setCama(resultado.getInt("fk_id_cama"));
 		siembraDTO.setVariedad(resultado.getInt("fk_id_planta"));
+		siembraDTO.setNvariedad(resultado.getString("nombre_planta"));
 		siembraDTO.setEmpleado(resultado.getInt("fk_id_empleado"));
+		siembraDTO.setNempleado(resultado.getString("nombre_empleado")+" "+resultado.getString("apellido_empleado"));
 	}
 
 	private Boolean buscarCama(Integer id) {
