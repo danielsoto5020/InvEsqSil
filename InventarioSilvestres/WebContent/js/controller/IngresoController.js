@@ -13,7 +13,7 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 						"lado" : message.data.lado,
 						"fecha" : message.data.fecha,
 						"variedad" : message.data.variedad,
-						"empleado" : message.data.empleado,
+						"nempleado" : message.data.nempleado,
 						"cama" : message.data.cama,
 						"siembra" : message.data.siembra
 					};
@@ -51,8 +51,6 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 					"nivel" : ingresoIn.nivel,
 					"lado" : ingresoIn.lado,
 					"fecha" : ingresoIn.fecha,
-					"variedad" : ingresoIn.variedad,
-					"cama" : ingresoIn.cama,
 					"empleado" : ingresoIn.empleado,
 					"siembra" : ingresoIn.siembra
 				};
@@ -63,6 +61,7 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 					alert(message.data);
 				})
 				$scope.ingresoIn = {};
+				$scope.date = new Date();
 
 			}
 			$scope.ingresoIn = {};
@@ -74,8 +73,6 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 					"nivel" : ingresoIn.nivel,
 					"lado" : ingresoIn.lado,
 					"fecha" : ingresoIn.fecha,
-					"variedad" : ingresoIn.variedad,
-					"cama" : ingresoIn.cama,
 					"empleado" : ingresoIn.empleado,
 					"siembra" : ingresoIn.siembra
 				};

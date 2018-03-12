@@ -8,9 +8,10 @@ public class IngresoDTO {
 	private String nivel;
 	private String lado;
 	private String fecha;
-	private Integer variedad;
+	private String variedad;
 	private Integer empleado;
-	private Integer cama;
+	private String nempleado;
+	private String origen;
 	private Integer siembra;
 	
 	public IngresoDTO() {
@@ -23,6 +24,22 @@ public class IngresoDTO {
 
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
+	}
+
+	public Integer getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Integer empleado) {
+		this.empleado = empleado;
+	}
+
+	public String getNempleado() {
+		return nempleado;
+	}
+
+	public void setNempleado(String nempleado) {
+		this.nempleado = nempleado;
 	}
 
 	public Integer getId() {
@@ -65,28 +82,19 @@ public class IngresoDTO {
 		this.fecha = fecha;
 	}
 
-	public Integer getVariedad() {
+	public String getVariedad() {
 		return variedad;
 	}
 
-	public void setVariedad(Integer variedad) {
+	public void setVariedad(String variedad) {
 		this.variedad = variedad;
 	}
-
-	public Integer getEmpleado() {
-		return empleado;
+	public String getOrigen() {
+		return origen;
 	}
 
-	public void setEmpleado(Integer empleado) {
-		this.empleado = empleado;
-	}
-
-	public Integer getCama() {
-		return cama;
-	}
-
-	public void setCama(Integer cama) {
-		this.cama = cama;
+	public void setOrigen(String origen) {
+		this.origen = origen;
 	}
 
 	public Integer getSiembra() {

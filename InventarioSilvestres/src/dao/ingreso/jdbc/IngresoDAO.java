@@ -9,10 +9,8 @@ import java.util.List;
 
 import dao.ingreso.IIngresoDAO;
 import dto.IngresoDTO;
-import negocio.cama.impl.CamaNegocio;
 import negocio.empleado.impl.EmpleadoNegocio;
 import negocio.ingreso.impl.IngresoNegocio;
-import negocio.planta.impl.PlantaNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
@@ -47,18 +45,10 @@ public class IngresoDAO implements IIngresoDAO {
 		ingresoDTO.setNivel(resultado.getString("nivel_ingreso"));
 		ingresoDTO.setLado(resultado.getString("lado_ingreso"));
 		ingresoDTO.setFecha(resultado.getString("fecha_ingreso"));
-		ingresoDTO.setCama(resultado.getInt("fk_id_cama"));
-		ingresoDTO.setVariedad(resultado.getInt("fk_id_planta"));
-		ingresoDTO.setEmpleado(resultado.getInt("fk_id_empleado"));
-	}
-
-	private Boolean buscarCama(Integer cama) {
-		CamaNegocio camaNegocio = new CamaNegocio();
-		if (camaNegocio.consultarCamaPorId(cama) != null) {
-			return true;
-		} else {
-			return false;
-		}
+		ingresoDTO.setOrigen(resultado.getString("nombre_bloque")+","+resultado.getString("numero_cama"));
+		ingresoDTO.setVariedad(resultado.getString("nombre_planta"));
+		ingresoDTO.setNempleado(resultado.getString("nombre_empleado")+" "+resultado.getString("apellido_empleado"));
+		ingresoDTO.setSiembra(resultado.getInt("fk_id_siembra"));
 	}
 
 	private Boolean buscarEmpleado(Integer id) {
@@ -69,14 +59,9 @@ public class IngresoDAO implements IIngresoDAO {
 			return false;
 		}
 	}
-
-	private Boolean buscarPlanta(Integer id) {
-		PlantaNegocio plantaNegocio = new PlantaNegocio();
-		if (plantaNegocio.consultarPlantaPorId(id) != null) {
-			return true;
-		} else {
-			return false;
-		}
+	
+	private Boolean buscarEspacio(String pueto, String nivel, String lado) {
+		return true;
 	}
 
 	private Boolean buscarSiembra(Integer id) {
@@ -113,8 +98,6 @@ public class IngresoDAO implements IIngresoDAO {
 				instruccion.setString(index++, ingresoDTO.getNivel());
 				instruccion.setString(index++, ingresoDTO.getLado());
 				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(ingresoDTO.getFecha()));
-				instruccion.setInt(index++, ingresoDTO.getVariedad());
-				instruccion.setInt(index++, ingresoDTO.getCama());
 				instruccion.setInt(index++, ingresoDTO.getEmpleado());
 				instruccion.setInt(index++, ingresoDTO.getSiembra());
 				instruccion.setInt(index++, ingresoDTO.getId());
@@ -138,8 +121,7 @@ public class IngresoDAO implements IIngresoDAO {
 		String message = "";
 		String query;
 		PreparedStatement instruccion = null;
-		if (buscarCama(ingresoDTO.getCama()) && buscarEmpleado(ingresoDTO.getEmpleado())
-				&& buscarPlanta(ingresoDTO.getVariedad()) && buscarSiembra(ingresoDTO.getSiembra())) {
+		if (buscarEmpleado(ingresoDTO.getEmpleado()) && buscarEspacio(ingresoDTO.getPuesto(), ingresoDTO.getNivel(), ingresoDTO.getLado())&& buscarSiembra(ingresoDTO.getSiembra())) {
 			try {
 
 				query = IngresoSQL.INSERT;
@@ -150,8 +132,6 @@ public class IngresoDAO implements IIngresoDAO {
 				instruccion.setString(index++, ingresoDTO.getNivel());
 				instruccion.setString(index++, ingresoDTO.getLado());
 				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(ingresoDTO.getFecha()));
-				instruccion.setInt(index++, ingresoDTO.getVariedad());
-				instruccion.setInt(index++, ingresoDTO.getCama());
 				instruccion.setInt(index++, ingresoDTO.getEmpleado());
 				instruccion.setInt(index++, ingresoDTO.getSiembra());
 				instruccion.executeUpdate();

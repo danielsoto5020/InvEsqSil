@@ -115,7 +115,7 @@
 							<p>Lado: {{ingresoOut.lado}}</p>
 							<p>Cantidad: {{ingresoOut.cantidad}}</p>
 							<p>Fecha in: {{ingresoOut.fecha}}</p>
-							<p>Empleado: {{ingresoOut.empleado}}</p>
+							<p>Empleado: {{ingresoOut.nempleado}}</p>
 							<p>Siembra: {{ingresoOut.siembra}}</p>
 						</div>
 					</div>
@@ -127,23 +127,12 @@
 							name="ingresoList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
-							<table id="datosBasicos">
+							<table id="datosBasicos">								
 								<tr>
-									<td>Bloque</td>
-									<td><input type="text" class="form-control" id="bloque"
-										name="bloque" data-ng-model="ingresoIn.bloque"
-										placeholder="Bloque" disabled/></td>
-								</tr>
-								<tr>
-									<td>Cama</td>
-									<td><input type="text" class="form-control" id="cama"
-										name="cama" data-ng-model="ingresoIn.cama" placeholder="Cama" /></td>
-								</tr>
-								<tr>
-									<td>Variedad</td>
-									<td><input type="text" class="form-control" id="variedad"
-										name="variedad" data-ng-model="ingresoIn.variedad"
-										placeholder="Nombre de la variedad" /></td>
+									<td>código Siembra</td>
+									<td><input type="number" class="form-control" id="siembra"
+										name="siembra" data-ng-model="ingresoIn.siembra"
+										placeholder="codigo barras" min="0" /></td>
 								</tr>
 								<tr>
 									<td>Puesto</td>
@@ -179,12 +168,6 @@
 										id="empleado" name="empleado"
 										data-ng-model="ingresoIn.empleado"
 										placeholder="Codigo Empleado" min="0" /></td>
-								</tr>
-								<tr>
-									<td>código Siembra</td>
-									<td><input type="number" class="form-control" id="siembra"
-										name="siembra" data-ng-model="ingresoIn.siembra"
-										placeholder="codigo barras" min="0" /></td>
 								</tr>
 							</table>
 
@@ -224,7 +207,7 @@
 									<td>{{item.lado}}</td>
 									<td>{{item.cantidad}}</td>
 									<td>{{item.fecha}}</td>
-									<td>{{item.empleado}}</td>
+									<td>{{item.nempleado}}</td>
 									<td>{{item.siembra}}</td>
 									<td><a href="#edit_modal" data-ng-click="updateIngreso(ingresoIn)"
 										modal><i class="glyphicon glyphicon-edit">&nbsp;</i></a> <a

@@ -13,7 +13,7 @@ app.controller("siembraController", [ "$scope", "siembraService",
 						"variedad" : message.data.nvariedad,
 						"bloque" : message.data.bloque,
 						"cama" : message.data.cama,
-						"empleado" : message.data.nempleado
+						"nempleado" : message.data.nempleado
 					};
 					if (message.data.id == null) {
 						alert("El registro de siembra no existe");
