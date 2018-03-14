@@ -113,6 +113,7 @@
 							<p>Puesto: {{ingresoOut.puesto}}</p>
 							<p>Nivel: {{ingresoOut.nivel}}</p>
 							<p>Lado: {{ingresoOut.lado}}</p>
+							<p>Origen: {{ingresoOut.origen}}</p>
 							<p>Cantidad: {{ingresoOut.cantidad}}</p>
 							<p>Fecha in: {{ingresoOut.fecha}}</p>
 							<p>Empleado: {{ingresoOut.nempleado}}</p>
@@ -192,7 +193,7 @@
 									<th>Cantidad</th>
 									<th>Fecha ingreso</th>
 									<th>Empleado</th>
-									<th>Siembra</th>								
+									<th>Origen</th>						
 									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
@@ -208,7 +209,7 @@
 									<td>{{item.cantidad}}</td>
 									<td>{{item.fecha}}</td>
 									<td>{{item.nempleado}}</td>
-									<td>{{item.siembra}}</td>
+									<td>{{item.origen}}</td>
 									<td><a href="#edit_modal" data-ng-click="updateIngreso(ingresoIn)"
 										modal><i class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
 										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i

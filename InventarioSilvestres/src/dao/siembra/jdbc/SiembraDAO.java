@@ -65,7 +65,8 @@ public class SiembraDAO implements ISiembraDAO {
 		siembraDTO.setCantidad(resultado.getString("cantidad_siembra"));
 		siembraDTO.setFecha(resultado.getString("fecha_siembra"));
 		siembraDTO.setObservacion(resultado.getString("observacion_siembra"));
-		siembraDTO.setCama(resultado.getInt("fk_id_cama"));
+		siembraDTO.setNcama(resultado.getString("nombre_bloque")+"/"+resultado.getString("numero_cama"));
+		siembraDTO.setEsterilizacion(resultado.getString("esterilizacion_cama"));
 		siembraDTO.setVariedad(resultado.getInt("fk_id_planta"));
 		siembraDTO.setNvariedad(resultado.getString("nombre_planta"));
 		siembraDTO.setEmpleado(resultado.getInt("fk_id_empleado"));

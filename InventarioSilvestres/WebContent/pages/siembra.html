@@ -110,8 +110,8 @@
 						<br /> <br>
 						<div data-ng-show="mostrarDatosSiembra" id="siembraList">
 							<p>Variedad: {{siembraOut.nvariedad}}</p>
-							<p>Cama: {{siembraOut.cama}}</p>
-							<p>Empleado: {{siembraOut.nempleado}}</p>
+							<p>Cama: {{siembraOut.ncama}}</p>
+							<p>Sembrador: {{siembraOut.nempleado}}</p>
 							<p>Cantidad: {{siembraOut.cantidad}}</p>
 							<p>Esterilización: {{siembraOut.esterilizacion}}</p>
 							<p>Fecha: {{siembraOut.fecha}}</p>
@@ -147,7 +147,7 @@
 										placeholder="Codigo Cama" /></td>
 								</tr>
 								<tr>
-									<td>Empleado</td>
+									<td>Sembrador</td>
 									<td><input type="number" class="form-control"
 										id="empleado" name="empleado"
 										data-ng-model="siembraIn.empleado"
@@ -195,8 +195,8 @@
 							<thead>
 								<tr>
 									<th>Variedad</th>
-									<th>Cama</th>
-									<th>Empleado</th>
+									<th>Bloque/Cama</th>
+									<th>Sembrador</th>
 									<th>Cantidad</th>
 									<th>Esterilización</th>
 									<th>Fecha siembra</th>
@@ -211,7 +211,7 @@
 								<tr
 									data-ng-repeat="item in siembraList | filter:search | orderBy:'+fecha'">
 									<td>{{item.nvariedad}}</td>
-									<td>{{'Cama '+item.cama}}</td>
+									<td>{{'Bloque/Cama '+item.ncama}}</td>
 									<td>{{item.nempleado}}</td>
 									<td>{{item.cantidad}}</td>
 									<td>{{item.esterilizacion}}</td>

@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.ingreso.IIngresoDAO;
+import dao.inventario.jdbc.InventarioSQL;
 import dto.IngresoDTO;
+import dto.InventarioDTO;
 import negocio.empleado.impl.EmpleadoNegocio;
 import negocio.ingreso.impl.IngresoNegocio;
+import negocio.inventario.impl.InventarioNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
@@ -45,7 +48,7 @@ public class IngresoDAO implements IIngresoDAO {
 		ingresoDTO.setNivel(resultado.getString("nivel_ingreso"));
 		ingresoDTO.setLado(resultado.getString("lado_ingreso"));
 		ingresoDTO.setFecha(resultado.getString("fecha_ingreso"));
-		ingresoDTO.setOrigen(resultado.getString("nombre_bloque")+","+resultado.getString("numero_cama"));
+		ingresoDTO.setOrigen(resultado.getString("nombre_bloque")+"/"+resultado.getString("numero_cama"));
 		ingresoDTO.setVariedad(resultado.getString("nombre_planta"));
 		ingresoDTO.setNempleado(resultado.getString("nombre_empleado")+" "+resultado.getString("apellido_empleado"));
 		ingresoDTO.setSiembra(resultado.getInt("fk_id_siembra"));
@@ -192,5 +195,60 @@ public class IngresoDAO implements IIngresoDAO {
 		}
 		return listaIngresos;
 	}
+	private Integer obtenerOrigen(String origen) {		
+		IngresoNegocio ingresoNegocio = new IngresoNegocio();
+		return (ingresoNegocio.obtenerOrigen(origen));
+			
+	}
+	private Integer obtenerIdPlanta(String planta) {
+		IngresoNegocio ingresoNegocio = new IngresoNegocio();
+		return (ingresoNegocio.obtenerIdPlanta(planta));
+	}
+	
+	@Override
+	public List<IngresoDTO> PedidoSalida(String planta, Integer cantidad, String origen, Connection con) throws Exception {
+		PreparedStatement instruccion = null;
+		ResultSet resultado = null;
+		String query;
+		IngresoDTO ingresoDTO = null;
+		List<IngresoDTO> listaPedidos = new ArrayList<>();
+		Integer iorigen;
+		iorigen = obtenerOrigen(origen);
+		Integer iplanta;
+		iplanta = obtenerIdPlanta(planta);
+		if(iplanta != null && iorigen != null) {
+		try {
+			Integer cantidadRegistro = 0;
+			Integer cantidadNecesaria  = cantidad;
+			while(cantidadNecesaria > 0){
+				query = IngresoSQL.FIND_LAST;
+	    		instruccion = con.prepareStatement(query);
+	    		int index = 1;	
+	    		instruccion.setInt(index++, iorigen);
+	    		instruccion.setInt(index++, iplanta);
+	    		resultado = instruccion.executeQuery();
+				while (resultado.next()) {
+					ingresoDTO = new IngresoDTO();
+					setInfoIngreso(resultado, ingresoDTO);
+	    		}
+	    		cantidadRegistro = Integer.parseInt(ingresoDTO.getCantidad());
+	    		if(cantidadNecesaria >= cantidadRegistro){
+	    			listaPedidos.add(ingresoDTO);
+	    			cantidadNecesaria = cantidadNecesaria - cantidadRegistro;
+        			ingresoDTO = null;
+	    		}else{
+	    			IngresoNegocio ingresoNegocio = new IngresoNegocio();
+	    			Integer a = cantidadRegistro - cantidadNecesaria;
+	    			ingresoDTO.setCantidad(a.toString());
+	    			ingresoNegocio.actualizarIngreso(ingresoDTO);
+	                break; 
+	    		}
+			}
+		}finally {
+			PersistUtil.closeResources(instruccion, resultado);
+		}}
+		return listaPedidos;
+	}
+
 
 }

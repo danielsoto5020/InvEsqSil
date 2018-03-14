@@ -10,9 +10,9 @@ app.controller("siembraController", [ "$scope", "siembraService",
 						"cantidad" : message.data.cantidad,
 						"fecha" : message.data.fecha,
 						"observacion" : message.data.observacion,
+						"esterilizacion" : message.data.esterilizacion,
 						"variedad" : message.data.nvariedad,
-						"bloque" : message.data.bloque,
-						"cama" : message.data.cama,
+						"ncama" : message.data.ncama,
 						"nempleado" : message.data.nempleado
 					};
 					if (message.data.id == null) {

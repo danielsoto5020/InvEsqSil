@@ -17,6 +17,8 @@ public interface IIngresoDAO {
 	public String borrarIngreso(Integer id, Connection con) throws Exception;
 	
 	public List<IngresoDTO> ListarIngresos(Connection con) throws Exception;
+	
+	public List<IngresoDTO> PedidoSalida(String planta, Integer cantidad, String origen, Connection con) throws Exception;
 
 }
 

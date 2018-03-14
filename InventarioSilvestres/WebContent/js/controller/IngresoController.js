@@ -14,8 +14,7 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 						"fecha" : message.data.fecha,
 						"variedad" : message.data.variedad,
 						"nempleado" : message.data.nempleado,
-						"cama" : message.data.cama,
-						"siembra" : message.data.siembra
+						"origen" : message.data.origen
 					};
 					if (message.data.id == null) {
 						alert("El ingreso no existe");
