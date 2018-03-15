@@ -8,12 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.ingreso.IIngresoDAO;
-import dao.inventario.jdbc.InventarioSQL;
 import dto.IngresoDTO;
-import dto.InventarioDTO;
 import negocio.empleado.impl.EmpleadoNegocio;
 import negocio.ingreso.impl.IngresoNegocio;
-import negocio.inventario.impl.InventarioNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
