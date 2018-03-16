@@ -47,7 +47,7 @@ public class IngresoDAO implements IIngresoDAO {
 		ingresoDTO.setNivel(resultado.getString("nivel_ingreso"));
 		ingresoDTO.setLado(resultado.getString("lado_ingreso"));
 		ingresoDTO.setFecha(resultado.getString("fecha_ingreso"));
-		ingresoDTO.setOrigen(resultado.getString("nombre_bloque")+"/"+resultado.getString("numero_cama"));
+		ingresoDTO.setOrigen(resultado.getString("nombre_bloque")+"/"+resultado.getString("numero_cama")+"/"+resultado.getString("nombre_origen"));
 		ingresoDTO.setVariedad(resultado.getString("nombre_planta"));
 		ingresoDTO.setNempleado(resultado.getString("nombre_empleado")+" "+resultado.getString("apellido_empleado"));
 		ingresoDTO.setSiembra(resultado.getInt("fk_id_siembra"));
@@ -101,6 +101,7 @@ public class IngresoDAO implements IIngresoDAO {
 				instruccion.setString(index++, ingresoDTO.getLado());
 				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(ingresoDTO.getFecha()));
 				instruccion.setInt(index++, ingresoDTO.getEmpleado());
+				instruccion.setInt(index++, obtenerOrigen(ingresoDTO.getOrigen()));
 				instruccion.setInt(index++, ingresoDTO.getSiembra());
 				instruccion.setInt(index++, ingresoDTO.getId());
 				instruccion.executeUpdate();
@@ -123,7 +124,7 @@ public class IngresoDAO implements IIngresoDAO {
 		String message = "";
 		String query;
 		PreparedStatement instruccion = null;
-		if (buscarEmpleado(ingresoDTO.getEmpleado()) && buscarEspacio(ingresoDTO.getPuesto(), ingresoDTO.getNivel(), ingresoDTO.getLado())&& buscarSiembra(ingresoDTO.getSiembra())) {
+		if (buscarEmpleado(ingresoDTO.getEmpleado()) && obtenerOrigen(ingresoDTO.getOrigen().toUpperCase()) != null && buscarEspacio(ingresoDTO.getPuesto(), ingresoDTO.getNivel(), ingresoDTO.getLado()) && buscarSiembra(ingresoDTO.getSiembra())) {
 			try {
 
 				query = IngresoSQL.INSERT;
@@ -135,6 +136,7 @@ public class IngresoDAO implements IIngresoDAO {
 				instruccion.setString(index++, ingresoDTO.getLado());
 				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(ingresoDTO.getFecha()));
 				instruccion.setInt(index++, ingresoDTO.getEmpleado());
+				instruccion.setInt(index++, obtenerOrigen(ingresoDTO.getOrigen().toUpperCase()));
 				instruccion.setInt(index++, ingresoDTO.getSiembra());
 				instruccion.executeUpdate();
 				message = "OK";

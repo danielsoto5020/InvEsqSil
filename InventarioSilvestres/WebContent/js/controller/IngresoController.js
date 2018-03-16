@@ -60,6 +60,7 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 					"lado" : ingresoIn.lado,
 					"fecha" : ingresoIn.fecha,
 					"empleado" : ingresoIn.empleado,
+					"origen" : ingresoIn.origen,
 					"siembra" : ingresoIn.siembra
 				};
 
@@ -82,6 +83,7 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 					"lado" : ingresoIn.lado,
 					"fecha" : ingresoIn.fecha,
 					"empleado" : ingresoIn.empleado,
+					"origen" : ingresoIn.origen,
 					"siembra" : ingresoIn.siembra
 				};
 				ingresoService.updateIngreso(ingresoIn).then(function(message) {

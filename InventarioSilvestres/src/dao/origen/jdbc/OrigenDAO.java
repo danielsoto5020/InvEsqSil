@@ -70,19 +70,24 @@ public class OrigenDAO implements IOrigenDAO{
 		String message ="";
 		String query;
         PreparedStatement instruccion = null;
+        if(origenDTO.getNombre()!="") {
         try {
             query = OrigenSQL.INSERT;
             instruccion = con.prepareStatement(query);
             int index = 1;
             instruccion.setString(index++, origenDTO.getNombre());
+            instruccion.executeUpdate();
             message ="OK";
         } catch (SQLException sql) {
         	 message ="ERROR";
         	con.rollback();
             throw new Exception(sql.toString());
-        } finally {
+        }finally {
            PersistUtil.closeResources(instruccion);
         }
+        }else {
+			message = "El nombre del origen debe de ser valido.";
+		}
         return message;
 	}
 

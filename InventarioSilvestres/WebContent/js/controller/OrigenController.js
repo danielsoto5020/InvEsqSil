@@ -28,12 +28,16 @@ app.controller("origenController",  ["$scope",  "origenService", function origen
 			alert(message.data);
 		});
 	}
+	$scope.showForm = false;
 	$scope.origenIn={};
 	$scope.saveOrigen=function(origenIn){
 		origen={"id":origenIn.id, "nombre":origenIn.nombre};
+		$scope.showForm = false;
 		origenService.saveOrigen(origenIn).then(function(message){
 			alert(message.data);
 		})
+
+		$scope.origenIn={};
 	}
 	$scope.origenIn={};
 	$scope.updateOrigen= function(origenIn){
