@@ -18,7 +18,14 @@ app.factory("ingresoService", function($q, $http) {
 				console.log(data);
 			});
 		},
-
+		getPedidoList : function(pedido,inv_origen,pla_id){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/ingreso/pedido-ingreso/'+planta+'&'+origen+'&'+cantidad).then(function(data){
+				var receiveddata = angular.fromJson(data);
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
 		deleteIngreso :function(id){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/ingreso/borrar-ingreso/'+id)
 			.then(function(data){

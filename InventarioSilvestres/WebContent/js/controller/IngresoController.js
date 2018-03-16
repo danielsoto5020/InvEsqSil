@@ -32,6 +32,15 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 					}
 				});
 			}
+			$scope.pedidoList={};
+			$scope.getPedidoList=function(planta,origen,cantidad){
+				ingresoService.getPedidoList(planta,origen,cantidad).then(function (message){
+					$scope.pedidoList=message.data;
+					if($scope.pedidoList ==={}){
+						alert("No hay ningun registro");
+					}
+				});
+			}
 			$scope.deleteIngreso = function(id) {
 				ingresoService.deleteIngreso(id).then(function(message) {
 					alert(message.data);

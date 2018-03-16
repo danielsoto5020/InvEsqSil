@@ -62,6 +62,14 @@ public class IngresoServiceWS {
 	public List<IngresoDTO> ListarIngresos() {
 		return ingresoNegocio.ListarIngresos();
 	}
+	
+	@GET
+	@Path("/pedido-ingreso/{planta}&{origen}&{cantidad}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<IngresoDTO> PedidoSalida(@PathParam("planta") String planta, 
+			@PathParam("origen") String origen, @PathParam("cantidad") Integer cantidad ) {
+		return ingresoNegocio.pedidoSalida(planta, origen, cantidad);
+	}
 
 
 }

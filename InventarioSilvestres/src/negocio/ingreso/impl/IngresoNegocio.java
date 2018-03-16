@@ -95,5 +95,20 @@ public class IngresoNegocio implements IIngresoNegocio{
 		}
 		return listaIngresos;
 	}
+	
+	@Override
+	public List<IngresoDTO> pedidoSalida(String planta, String origen, Integer cantidad) {
+		Connection con = null;
+		List<IngresoDTO> listaPedidos = null;
+		try {
+			con = dataSource.getConnection();
+			listaPedidos= ingresoDAO.pedidoSalida(planta, origen, cantidad, con);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}
+		return listaPedidos;
+	}
 
 }

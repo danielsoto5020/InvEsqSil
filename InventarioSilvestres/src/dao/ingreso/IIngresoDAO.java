@@ -18,7 +18,7 @@ public interface IIngresoDAO {
 	
 	public List<IngresoDTO> ListarIngresos(Connection con) throws Exception;
 	
-	public List<IngresoDTO> PedidoSalida(String planta, Integer cantidad, String origen, Connection con) throws Exception;
+	public List<IngresoDTO> pedidoSalida(String planta, String origen, Integer cantidad, Connection con) throws Exception;
 
 }
 

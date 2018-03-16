@@ -205,7 +205,7 @@ public class IngresoDAO implements IIngresoDAO {
 	}
 	
 	@Override
-	public List<IngresoDTO> PedidoSalida(String planta, Integer cantidad, String origen, Connection con) throws Exception {
+	public List<IngresoDTO> pedidoSalida(String planta, String origen, Integer cantidad, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
 		ResultSet resultado = null;
 		String query;

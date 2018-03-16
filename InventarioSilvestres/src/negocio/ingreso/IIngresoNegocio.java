@@ -16,6 +16,7 @@ public interface IIngresoNegocio {
 	public String borrarIngreso(Integer id);
 	
 	public List<IngresoDTO> ListarIngresos();
-
+	
+	public List<IngresoDTO> pedidoSalida(String planta, String origen, Integer cantidad);
 
 }
