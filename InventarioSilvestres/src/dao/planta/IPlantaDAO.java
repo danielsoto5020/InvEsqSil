@@ -13,6 +13,8 @@ public interface IPlantaDAO {
 	public String crearPlanta(PlantaDTO plantaDTO,Connection con) throws Exception;
 
 	public String borrarPlanta(Integer id, Connection con) throws Exception;
+
+	public Integer obtenerIdPlanta(String planta, Connection con) throws Exception;
 	
 	public List<PlantaDTO> ListarPlantas(Connection con) throws Exception;
 

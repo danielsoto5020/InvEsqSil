@@ -1,48 +1,93 @@
-package negocio.planta.impl;
+package negocio.origen.impl;
 
 import java.sql.Connection;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import dao.planta.IPlantaDAO;
-import dao.planta.jdbc.PlantaDAO;
-import dto.PlantaDTO;
-import negocio.planta.IPlantaNegocio;
+import dao.origen.IOrigenDAO;
+import dao.origen.jdbc.OrigenDAO;
+import dto.OrigenDTO;
+import negocio.origen.IOrigenNegocio;
 import util.PersistUtil;
 
-public class PlantaNegocio implements IPlantaNegocio {
+public class OrigenNegocio implements IOrigenNegocio{
 	
-    private IPlantaDAO plantaDAO;
+	private IOrigenDAO origenDAO;
     private DataSource dataSource;
 	
-	public PlantaNegocio(){
+	public OrigenNegocio(){
 		dataSource = PersistUtil.getDataSource();
-		plantaDAO = new PlantaDAO();
+		origenDAO = new OrigenDAO();
 	}
 	
 	@Override
-	public PlantaDTO consultarPlantaPorId(Integer id) {
+	public OrigenDTO consultarOrigenPorId(Integer id) {
 		Connection con = null;
-		PlantaDTO plantaDTO = null;
+		OrigenDTO origenDTO = null;
 		try {
 			con = dataSource.getConnection();
-			plantaDTO = plantaDAO.consultarPlantaPorId(id, con);
+			origenDTO= origenDAO.consultarOrigenPorId(id, con);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
 			PersistUtil.closeConnection(con);
 		}
-		return plantaDTO;
+		return origenDTO;
+	}
+
+	@Override
+	public String actualizarOrigen(OrigenDTO origenDTO) {
+		Connection con = null;
+		String message="";
+		try {
+			con = dataSource.getConnection();
+			message = origenDAO.actualizarOrigen(origenDTO, con);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}
+		return message;
+	}
+
+	@Override
+	public String crearOrigen(OrigenDTO origenDTO){
+		Connection con = null;
+		String message="";
+		try {
+			con = dataSource.getConnection();
+			message = origenDAO.crearOrigen(origenDTO, con);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}
+		return message;
+	}
+
+	@Override
+	public String borrarOrigen(Integer id){
+		Connection con = null;
+		String message="";
+		try {
+			con = dataSource.getConnection();
+			message = origenDAO.borrarOrigen(id, con);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			PersistUtil.closeConnection(con);
+		}
+		return message;
 	}
 	
 	@Override
-	public Integer obtenerIdPlanta(String planta) {
+	public Integer obtenerOrigen(String nombre){
 		Connection con = null;
 		Integer id = null;
 		try {
 			con = dataSource.getConnection();
-			id = plantaDAO.obtenerIdPlanta(planta, con);
+			id = origenDAO.obtenerOrigen(nombre, con);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
@@ -52,63 +97,17 @@ public class PlantaNegocio implements IPlantaNegocio {
 	}
 
 	@Override
-	public String actualizarPlanta(PlantaDTO plantaDTO) {
+	public List<OrigenDTO> ListarOrigens(){
 		Connection con = null;
-		String message="";
+		List<OrigenDTO> listaOrigens = null;
 		try {
 			con = dataSource.getConnection();
-			message = plantaDAO.actualizarPlanta(plantaDTO, con);
+			listaOrigens = origenDAO.ListarOrigens(con);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
 			PersistUtil.closeConnection(con);
 		}
-		return message;
+		return listaOrigens;
 	}
-
-	@Override
-	public String crearPlanta(PlantaDTO plantaDTO) {
-		Connection con = null;
-		String message="";
-		try {
-			con = dataSource.getConnection();
-			message = plantaDAO.crearPlanta(plantaDTO, con);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		} finally {
-			PersistUtil.closeConnection(con);
-		}
-		return message;
-	}
-
-	@Override
-	public String borrarPlanta(Integer id) {
-		Connection con = null;
-		String message="";
-		try {
-			con = dataSource.getConnection();
-			message = plantaDAO.borrarPlanta(id, con);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		} finally {
-			PersistUtil.closeConnection(con);
-		}
-		return message;
-	}
-
-	@Override
-	public List<PlantaDTO> ListarPlantas() {
-		Connection con = null;
-		List<PlantaDTO> listaPlantas = null;
-		try {
-			con = dataSource.getConnection();
-			listaPlantas= plantaDAO.ListarPlantas(con);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		} finally {
-			PersistUtil.closeConnection(con);
-		}
-		return listaPlantas;
-	}
-
 }

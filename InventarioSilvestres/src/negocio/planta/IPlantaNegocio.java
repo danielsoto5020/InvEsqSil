@@ -13,6 +13,8 @@ public interface IPlantaNegocio {
 	public String crearPlanta(PlantaDTO plantaDTO);
 
 	public String borrarPlanta(Integer id);
+
+	public Integer obtenerIdPlanta(String planta);
 	
 	public List<PlantaDTO> ListarPlantas();
 	

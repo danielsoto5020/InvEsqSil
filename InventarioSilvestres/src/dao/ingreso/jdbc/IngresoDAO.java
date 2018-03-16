@@ -11,6 +11,8 @@ import dao.ingreso.IIngresoDAO;
 import dto.IngresoDTO;
 import negocio.empleado.impl.EmpleadoNegocio;
 import negocio.ingreso.impl.IngresoNegocio;
+import negocio.origen.impl.OrigenNegocio;
+import negocio.planta.impl.PlantaNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
@@ -193,13 +195,13 @@ public class IngresoDAO implements IIngresoDAO {
 		return listaIngresos;
 	}
 	private Integer obtenerOrigen(String origen) {		
-		IngresoNegocio ingresoNegocio = new IngresoNegocio();
-		return (ingresoNegocio.obtenerOrigen(origen));
+		OrigenNegocio origenNegocio = new OrigenNegocio();
+		return (origenNegocio.obtenerOrigen(origen));
 			
 	}
 	private Integer obtenerIdPlanta(String planta) {
-		IngresoNegocio ingresoNegocio = new IngresoNegocio();
-		return (ingresoNegocio.obtenerIdPlanta(planta));
+		PlantaNegocio plantaNegocio = new PlantaNegocio();
+		return (plantaNegocio.obtenerIdPlanta(planta));
 	}
 	
 	@Override

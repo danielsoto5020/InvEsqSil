@@ -52,7 +52,7 @@ public class IngresoServiceWS {
 	@Path("/borrar-ingreso/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String borrarFinca(@PathParam("id") Integer id) {
+	public String borrarIngreso(@PathParam("id") Integer id) {
 		return ingresoNegocio.borrarIngreso(id);
 	}
 

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>AUDITORIA</title>
+<title>Origen</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -10,13 +10,14 @@
 <script src="../js/ext/bootstrap.min.js"></script>
 <script src="../js/ext/angular.min.js" type="text/javascript"></script>
 <script src="../js/app.js" type="text/javascript"></script>
-<script src="../js/controller/TipoController.js" type="text/javascript"></script>
-<script src="../js/service/TipoService.js" type="text/javascript"></script>
+<script src="../js/controller/OrigenController.js"
+	type="text/javascript"></script>
+<script src="../js/service/OrigenService.js" type="text/javascript"></script>
 <link href="../css/base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="container" data-ng-app="app"
-		data-ng-controller="tipoController">
+		data-ng-controller="origenController">
 		<br>
 		<header>
 			<nav class="navbar navbar-default navbar-fixed-top">
@@ -64,7 +65,7 @@
 									class="glyphicon glyphicon-user"></span> Registrar</a></li>
 							<li><a href="../pages/login.html"><span
 									class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
-							<li><a href="../pages/index.html"><span
+							<li><a href="../pages/login.html"><span
 									class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 						</ul>
 					</div>
@@ -75,12 +76,12 @@
 			<div class="row content">
 				<div class="col-sm-3">
 					<div class="container">
-						<br> <input type="text" id="tipoId" name="tipoId"
+						<br> <input type="text" id="origenId" name="origenId"
 							data-ng-model="id" required></input> <br> <br> <input
-							type="button" class="btn btn-primary" id="tipoSearch"
-							name="tipoSearch" value="Buscar" data-ng-click="tipoSearch(id)"></input>
-						<a href="#alerta_borrar1" class="btn btn-danger"
-							data-toggle="modal">Eliminar</a>
+							type="button" class="btn btn-primary" id="origenSearch"
+							name="origenSearch" value="Buscar"
+							data-ng-click="origenSearch(id)"></input> <a
+							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
 						<div class="modal fade" id="alerta_borrar1">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -90,24 +91,22 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p>Cuidado estas a punto de borrar un tipo de Flor en la
-											base de datos.¿seguro deseas continuar?</p>
+										<p>Cuidado estas a punto de borrar un registro de un
+											origen en la base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
 											data-dismiss="modal">CERRAR</button>
-										<input type="button" class="btn btn-danger" id="deleteTipo"
-											name="deleteTipo" value="BORRAR"
-											data-ng-click="deleteTipo(id)"></input>
+										<input type="button" class="btn btn-danger" id="deleteOrigen"
+											name="deleteOrigen" value="BORRAR"
+											data-ng-click="deleteOrigen(id)"></input>
 									</div>
 								</div>
 							</div>
 						</div>
-						<br /> <br />
-
-						<div data-ng-show="mostrarDatosTipo" id="tipoList">
-							<p>Identificador: {{tipoOut.id}}</p>
-							<p>Tipo Flor: {{tipoOut.nombre}}</p>
+						<br /> <br>
+						<div data-ng-show="mostrarDatosOrigen" id="origenList">
+							<p>Origen: {{origenOut.nombre}}</p>
 						</div>
 					</div>
 				</div>
@@ -115,51 +114,50 @@
 					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
-							name="plantaList" data-ng-hide="showForm"
+							name="origenList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
 								<tr>
 									<td>Identificador</td>
-									<td><input type="text" class="form-control" id="id"
-										name="id" data-ng-model="tipoIn.id"
+									<td><input type="number" class="form-control" id="id"
+										name="id" data-ng-model="origenIn.id"
 										placeholder="Identificador interno" min="0" disabled /></td>
 								</tr>
 								<tr>
-									<td>Tipo de Flor</td>
+									<td>Nombre</td>
 									<td><input type="text" class="form-control" id="nombre"
-										name="nombre" data-ng-model="tipoIn.nombre"
-										placeholder="Tipo de Flor" /></td>
+										name="nombre" data-ng-model="origenIn.nombre"
+										placeholder="Nombre de la variedad" /></td>
 								</tr>
 							</table>
-							<br /> <input type="button" class="btn btn-primary" id="guardar"
-								name="saveBtn" value="Guardar" data-ng-click="saveTipo(tipoIn)" />
+							<br> <input type="button" class="btn btn-primary"
+								id="guardar" name="saveBtn" value="Guardar"
+								data-ng-click="saveOrigen(origenIn)" />
 						</div>
 					</div>
 					<br> <input type="button" class="btn btn-primary"
-						id="tipoList" name="tipoList" value="Lista Tipo de Flor"
-						data-ng-click="getListTipo()"></input> <input type="text"
+						id="origenList" name="origenList" value="Listado de origenes"
+						data-ng-click="getListOrigen()"></input> <input type="text"
 						data-ng-model="search"> <br>
-					<div data-ng-show="tipoList.length != 0">
+					<div data-ng-show="origenList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
 							<thead>
 								<tr>
-									<th>Identificador</th>
-									<th>Tipo Flor</th>
-									<th>Editar/Eliminar</th>
+									<th>Nombre de origen</th>
+									<th>Accion</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="3">&nbsp;</td>
+									<td colspan="10">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in tipoList | orderBy:'+nombre'">
-									<td>{{item.id}}</td>
+								<tr data-ng-repeat="item in origenList | filter:search  | orderBy:'+nombre'">
 									<td>{{item.nombre}}</td>
-									<td><a href="#edit_modal"
-										data-ng-click="updatePlanta(plantaIn)" modal><i
-											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+									<td>{{item.breeder}}</td>
+									<td><a href="#edit_modal" data-ng-click="updateOrigen(origenIn)"
+										modal><i class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
 										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
 											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>

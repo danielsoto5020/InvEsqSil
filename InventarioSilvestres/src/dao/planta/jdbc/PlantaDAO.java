@@ -57,6 +57,27 @@ public class PlantaDAO implements IPlantaDAO{
 		
 	}
 	
+	@Override
+	public Integer obtenerIdPlanta(String planta, Connection con) throws Exception {
+		PreparedStatement instruccion = null;
+		ResultSet resultado = null;
+		String query;
+		Integer id = null;
+		try {
+			query = PlantaSQL.FIND_ID;
+			instruccion = con.prepareStatement(query);
+			int index = 1;
+			instruccion.setString(index++, planta);
+			resultado = instruccion.executeQuery();
+			while (resultado.next()) {
+				id = resultado.getInt("id_planta");
+			}
+		} finally {
+			PersistUtil.closeResources(instruccion, resultado);
+		}
+		return id;
+	}
+	
 	private Boolean buscarBreeder(Integer breeder){
 		BreederNegocio breederNegocio = new BreederNegocio();
     	if(breederNegocio.consultarBreederPorId(breeder) != null){
