@@ -45,8 +45,7 @@ app
 										});
 							}
 
-							$scope.date = new Date();
-
+							$scope.showForm = false;
 							$scope.tipoPlantaIn = {};
 							$scope.saveTipoPlanta = function(tipoPlantaIn) {
 								tipoPlanta = {
@@ -54,6 +53,7 @@ app
 									"planta" : tipoPlantaIn.planta,
 									"tipo" : tipoPlantaIn.tipo
 								};
+								$scope.showForm = false;
 								tipoPlantaService.saveTipoPlanta(tipoPlantaIn)
 										.then(function(message) {
 											alert(message.data);

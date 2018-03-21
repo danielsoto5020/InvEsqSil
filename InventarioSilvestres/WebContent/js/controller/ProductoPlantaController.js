@@ -45,6 +45,7 @@ app
 											alert(message.data);
 										});
 							}
+							$scope.showForm = false;
 							$scope.productoPlantaIn = {};
 							$scope.saveProductoPlanta = function(
 									personaPlantaIn) {
@@ -53,6 +54,7 @@ app
 									"producto" : productoPlantaIn.producto,
 									"planta" : productoPlantaIn.planta
 								};
+								$scope.showForm = false;
 								productoPlantaService.saveProductoPlanta(
 										productoPlantaIn).then(
 										function(message) {
