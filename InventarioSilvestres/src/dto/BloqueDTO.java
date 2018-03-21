@@ -6,6 +6,7 @@ public class BloqueDTO {
 	private String nombre;
 	private String ncama;
 	private Integer finca;
+	private String nfinca;
 
 	public BloqueDTO() {
 		super();
@@ -19,6 +20,18 @@ public class BloqueDTO {
 		this.id = id;
 	}
 
+	public String getNfinca() {
+		return nfinca;
+	}
+
+	public void setNfinca(String nfinca) {
+		this.nfinca = nfinca;
+	}
+
+	public void setFinca(Integer finca) {
+		this.finca = finca;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -28,19 +41,15 @@ public class BloqueDTO {
 	}
 
 
+	public Integer getFinca() {
+		return finca;
+	}
+
 	public String getNcama() {
 		return ncama;
 	}
 
 	public void setNcama(String ncama) {
 		this.ncama = ncama;
-	}
-
-	public Integer getFinca() {
-		return finca;
-	}
-
-	public void setFinca(Integer finca) {
-		this.finca = finca;
 	}
 }

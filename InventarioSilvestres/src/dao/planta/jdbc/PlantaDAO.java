@@ -48,11 +48,8 @@ public class PlantaDAO implements IPlantaDAO{
 		plantaDTO.setProductividad(resultado.getString("productividad_planta"));
 		plantaDTO.setFlush(resultado.getString("flush_planta"));
 		plantaDTO.setFlushs(resultado.getString("flushs_planta"));
-		plantaDTO.setBreeder(resultado.getInt("fk_id_breeder"));
 		plantaDTO.setNbreeder(resultado.getString("nombre_breeder"));
-		plantaDTO.setColor1(resultado.getInt("fk_id_color1"));
 		plantaDTO.setColores(resultado.getString("a.nombre_es_color"));
-		plantaDTO.setColor2(resultado.getInt("fk_id_color2"));
 		plantaDTO.setColorus(resultado.getString("c.nombre_es_color"));
 		
 	}

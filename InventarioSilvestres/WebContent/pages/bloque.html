@@ -108,7 +108,7 @@
 						<div data-ng-show="mostrarDatosBloque" id="bloqueList">
 							<p>Nombre: {{bloqueOut.nombre}}</p>
 							<p>N. Camas: {{bloqueOut.ncama}}</p>
-							<p>Finca: {{bloqueOut.finca}}</p>
+							<p>Finca: {{bloqueOut.nfinca}}</p>
 						</div>
 					</div>
 				</div>
@@ -172,7 +172,7 @@
 								<tr data-ng-repeat="item in bloqueList | orderBy:'+nombre' | filter:search"">
 									<td>{{'BLOQUE '+item.nombre}}</td>
 									<td>{{item.ncama}}</td>
-									<td>{{item.finca}}</td>
+									<td>{{item.nfinca}}</td>
 									<td><a href="#edit_modal"
 										data-ng-click="updateBloque(item)" modal><i
 											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a

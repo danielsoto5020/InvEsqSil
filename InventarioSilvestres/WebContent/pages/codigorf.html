@@ -109,7 +109,7 @@
 						<div data-ng-show="mostrarDatosCodigorf" id="codigorfList">
 							<p>Id: {{codigorfOut.id}}</p>
 							<p>Código RedFlor: {{codigorfOut.codigo}}</p>
-							<p>Id. Planta: {{codigorfOut.planta}}</p>
+							<p>Variedad: {{codigorfOut.nplanta}}</p>
 						</div>
 					</div>
 				</div>
@@ -156,7 +156,7 @@
 							<thead>
 								<tr>
 									<th>Código RedFlor</th>
-									<th>Id. Planta</th>
+									<th>Variedad</th>
 									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
@@ -167,7 +167,7 @@
 								<tr
 									data-ng-repeat="item in codigorfList | orderBy:'+planta' | filter:search">
 									<td>{{item.codigo}}</td>
-									<td>{{item.planta}}</td>
+									<td>{{item.nplanta}}</td>
 									<td><a href="#edit_modal"
 										data-ng-click="updatePlanta(plantaIn)" modal><i
 											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a

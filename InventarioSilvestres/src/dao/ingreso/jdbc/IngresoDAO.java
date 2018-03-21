@@ -216,7 +216,7 @@ public class IngresoDAO implements IIngresoDAO {
 		Integer iorigen;
 		iorigen = obtenerOrigen(origen);
 		Integer iplanta;
-		iplanta = obtenerIdPlanta(planta);
+		iplanta = Integer.parseInt(planta);
 		if(iplanta != null && iorigen != null) {
 		try {
 			Integer cantidadRegistro = 0;
@@ -238,10 +238,8 @@ public class IngresoDAO implements IIngresoDAO {
 	    			cantidadNecesaria = cantidadNecesaria - cantidadRegistro;
         			ingresoDTO = null;
 	    		}else{
-	    			IngresoNegocio ingresoNegocio = new IngresoNegocio();
-	    			Integer a = cantidadRegistro - cantidadNecesaria;
-	    			ingresoDTO.setCantidad(a.toString());
-	    			ingresoNegocio.actualizarIngreso(ingresoDTO);
+	    			ingresoDTO.setCantidad(cantidadNecesaria.toString());
+	    			listaPedidos.add(ingresoDTO);
 	                break; 
 	    		}
 			}

@@ -79,55 +79,48 @@
 		<div class="container">
 			<div class="row content">
 				<div class="col-sm-12">
-					<br>
-					<div class="form-group row">
-						<div class="col-xs-5">
-							<input type="text" class="form-control" id="planta" name="planta"
-								data-ng-model="planta" placeholder="planta" />
+					<div class="col-xs-3">
+						<div class="container">
+							<br><input type="text" class="form-control" id="planta" name="planta"
+								data-ng-model="planta" placeholder="planta" /><br> <input
+								type="text" class="form-control" id="origen" name="nivel"
+								data-ng-model="origen" placeholder="Origen" /><br> <input
+								type="number" class="form-control" id="cantidad" name="cantidad"
+								data-ng-model="cantidad" placeholder="Cantidad" /><br> <br>
+							<input type="button" class="btn btn-primary" id="pedidoList"
+								name="pedidoList" value="Lista pedidos"
+								data-ng-click="getPedidoList(planta,origen,cantidad)"></input>
 						</div>
-						<div class="col-xs-4">
-							<input type="text" class="form-control" id="origen" name="nivel"
-								data-ng-model="origen" placeholder="Origen" />
-						</div>
-						<div class="col-xs-3">
-							<input type="number" class="form-control" id="cantidad"
-								name="cantidad" data-ng-model="cantidad" placeholder="Cantidad" />
-
-						</div>
-						<br> <input type="button" class="btn btn-primary"
-							id="pedidoList" name="pedidoList" value="Lista pedidos"
-							data-ng-click="getPedidoList(planta,origen,cantidad)"></input>
-
-						<div data-ng-show="pedidoList.length != 0">
-							<br />
-							<table class="table " id="datosBasicos ">
-								<thead>
-									<tr>
-										<th>Variedad</th>
-										<th>Puesto</th>
-										<th>Nivel</th>
-										<th>Lado</th>
-										<th>Cantidad</th>
-										<th>Fecha ingreso</th>
-										<th>Origen</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td colspan="7">&nbsp;</td>
-									</tr>
-									<tr data-ng-repeat="item in pedidoList">
-										<td>{{item.variedad}}</td>
-										<td>{{item.puesto}}</td>
-										<td>{{item.nivel}}</td>
-										<td>{{item.lado}}</td>
-										<td>{{item.cantidad}}</td>
-										<td>{{item.fecha}}</td>
-										<td>{{item.origen}}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+					</div>
+					<div data-ng-show="pedidoList.length != 0">
+						<br />
+						<table class="table " id="datosBasicos ">
+							<thead>
+								<tr>
+									<th>Variedad</th>
+									<th>Puesto</th>
+									<th>Nivel</th>
+									<th>Lado</th>
+									<th>Cantidad</th>
+									<th>Fecha ingreso</th>
+									<th>Origen</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="7">&nbsp;</td>
+								</tr>
+								<tr data-ng-repeat="item in pedidoList">
+									<td>{{item.variedad}}</td>
+									<td>{{item.puesto}}</td>
+									<td>{{item.nivel}}</td>
+									<td>{{item.lado}}</td>
+									<td>{{item.cantidad}}</td>
+									<td>{{item.fecha}}</td>
+									<td>{{item.origen}}</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

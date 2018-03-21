@@ -18,7 +18,7 @@ app.factory("ingresoService", function($q, $http) {
 				console.log(data);
 			});
 		},
-		getPedidoList : function(pedido,inv_origen,pla_id){
+		getPedidoList : function(planta,origen,cantidad){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/ingreso/pedido-ingreso/'+planta+'&'+origen+'&'+cantidad).then(function(data){
 				var receiveddata = angular.fromJson(data);
 				return receiveddata;

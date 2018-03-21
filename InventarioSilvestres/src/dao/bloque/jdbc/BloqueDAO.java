@@ -42,7 +42,7 @@ public class BloqueDAO implements IBloqueDAO{
 		bloqueDTO.setId(resultado.getInt("id_bloque"));
 		bloqueDTO.setNombre(resultado.getString("nombre_bloque"));
 		bloqueDTO.setNcama(resultado.getString("ncama_bloque"));
-		bloqueDTO.setFinca(resultado.getInt("fk_id_finca"));
+		bloqueDTO.setNfinca(resultado.getString("nombre_finca"));
 	}
 	
 	private Boolean buscarFinca(Integer finca){

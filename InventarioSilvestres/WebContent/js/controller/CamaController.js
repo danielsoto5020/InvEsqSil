@@ -14,7 +14,7 @@ app.controller("camaController", [ "$scope", "camaService",
 						"nlinea" : message.data.nlinea,
 						"estado" : message.data.estado,
 						"esterilizacion" : message.data.esterilizacion,
-						"bloque" : message.data.bloque
+						"nbloque" : message.data.nbloque
 					};
 					if (message.data.id == null) {
 						alert("La cama no existe");

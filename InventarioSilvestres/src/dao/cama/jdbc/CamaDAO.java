@@ -47,7 +47,7 @@ public class CamaDAO implements ICamaDAO{
 		camaDTO.setNlinea(resultado.getString("nlinea_cama"));
 		camaDTO.setEstado(resultado.getString("estado_cama"));
 		camaDTO.setEsterilizacion(resultado.getString("esterilizacion_cama"));
-		camaDTO.setBloque(resultado.getInt("fk_id_bloque"));
+		camaDTO.setNbloque(resultado.getString("nombre_bloque"));
 	}
 	
 	private Boolean buscarBloque(Integer bloque){

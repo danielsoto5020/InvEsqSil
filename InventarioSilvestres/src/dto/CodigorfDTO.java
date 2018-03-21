@@ -4,10 +4,19 @@ public class CodigorfDTO {
 	
 	private Integer id;
 	private String codigo;
+	private String nplanta;
 	private Integer planta;
 	
 	public CodigorfDTO() {
 		super();
+	}
+
+	public String getNplanta() {
+		return nplanta;
+	}
+
+	public void setNplanta(String nplanta) {
+		this.nplanta = nplanta;
 	}
 
 	public Integer getId() {

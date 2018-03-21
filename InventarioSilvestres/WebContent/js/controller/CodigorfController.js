@@ -13,7 +13,7 @@ app.controller("codigorfController", [
 													$scope.codigorfOut = {
 														"id" : message.data.id,
 														"codigo" : message.data.codigo,
-														"planta" : message.data.planta
+														"nplanta" : message.data.nplanta
 													};
 													if (message.data.id == null) {
 														alert("Codigo RedFlor no registrado en Base de Datos!!!");

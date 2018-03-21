@@ -41,7 +41,7 @@ public class CodigorfDAO implements ICodigorfDAO{
 	private void setInfoCodigorf(ResultSet resultado, CodigorfDTO codigorfDTO) throws Exception {	
 		codigorfDTO.setId(resultado.getInt("id_codigorf"));
 		codigorfDTO.setCodigo(resultado.getString("nombre_codigorf"));
-		codigorfDTO.setPlanta(resultado.getInt("fk_id_planta"));
+		codigorfDTO.setNplanta(resultado.getString("nombre_planta"));
 	}
 	
 	

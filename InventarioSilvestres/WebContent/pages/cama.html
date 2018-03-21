@@ -105,7 +105,7 @@
 						</div>
 						<br /> <br>
 						<div data-ng-show="mostrarDatosCama" id="camaList">
-							<p>Bloque: {{camaOut.bloque}}</p>
+							<p>Bloque: {{camaOut.nbloque}}</p>
 							<p>Numero: {{camaOut.numero}}</p>
 							<p>Ancho: {{camaOut.ancho}}</p>
 							<p>Largo: {{camaOut.largo}}</p>
@@ -194,7 +194,7 @@
 								<table class="table" id="datosBasicos">
 									<thead>
 										<tr>
-											<th>Bloque #</th>
+											<th>Bloque Nombre</th>
 											<th>N.</th>
 											<th>Ancho</th>
 											<th>largo</th>
@@ -210,7 +210,7 @@
 											<td colspan="9">&nbsp;</td>
 										</tr>
 										<tr data-ng-repeat="item in camaList | filter:search | orderBy:'+bloque'">
-											<td>{{'BLOQUE '+item.bloque}}</td>
+											<td>{{'BLOQUE '+item.nbloque}}</td>
 											<td>{{item.numero}}</td>
 											<td>{{item.ancho+' cm'}}</td>
 											<td>{{item.largo+' cm'}}</td>

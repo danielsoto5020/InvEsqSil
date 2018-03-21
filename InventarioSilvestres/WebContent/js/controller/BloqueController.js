@@ -9,7 +9,7 @@ app.controller("bloqueController", [ "$scope", "bloqueService",
 						"id" : message.data.id,
 						"nombre" : message.data.nombre,
 						"ncama" : message.data.ncama,
-						"finca" : message.data.finca
+						"nfinca" : message.data.nfinca
 					};
 					if (message.data.id == null) {
 						alert("El bloque no existe");
