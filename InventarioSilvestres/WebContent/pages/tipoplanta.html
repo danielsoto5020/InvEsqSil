@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EMPLEADO</title>
+<title>TIPOPLANTA</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -10,14 +10,13 @@
 <script src="../js/ext/bootstrap.min.js"></script>
 <script src="../js/ext/angular.min.js" type="text/javascript"></script>
 <script src="../js/app.js" type="text/javascript"></script>
-<script src="../js/controller/EmpleadoController.js"
-	type="text/javascript"></script>
-<script src="../js/service/EmpleadoService.js" type="text/javascript"></script>
+<script src="../js/controller/TipoPlantaController.js" type="text/javascript"></script>
+<script src="../js/service/TipoPlantaService.js" type="text/javascript"></script>
 <link href="../css/base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="container" data-ng-app="app"
-		data-ng-controller="empleadoController">
+		data-ng-controller="tipoPlantaController">
 		<br>
 		<header>
 			<nav class="navbar navbar-default navbar-fixed-top">
@@ -78,12 +77,12 @@
 			<div class="row content">
 				<div class="col-sm-3">
 					<div class="container">
-						<br> <input type="text" id="empleadoId" name="empleadoId"
+						<br> <input type="text" id="tipoPlantaId" name="tipoPlantaId"
 							data-ng-model="id" required></input> <br> <br> <input
-							type="button" class="btn btn-primary" id="empleadoSearch"
-							name="empleadoSearch" value="Buscar"
-							data-ng-click="empleadoSearch(id)"></input> <a
-							href="#alerta_borrar1" class="btn btn-danger" data-toggle="modal">Eliminar</a>
+							type="button" class="btn btn-primary" id="tipoPlantaSearch"
+							name="tipoPlantaSearch" value="Buscar" data-ng-click="tipoPlantaSearch(id)"></input>
+						<a href="#alerta_borrar1" class="btn btn-danger"
+							data-toggle="modal">Eliminar</a>
 						<div class="modal fade" id="alerta_borrar1">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -93,26 +92,25 @@
 										<h4 class="modal-title">PRECAUCION</h4>
 									</div>
 									<div class="modal-body">
-										<p>Cuidado estas a punto de borrar un registro de un
-											empleado en la base de datos.¿seguro deseas continuar?</p>
+										<p>Cuidado estas a punto de borrar un tipo de Flor en la
+											base de datos.¿seguro deseas continuar?</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-primary"
 											data-dismiss="modal">CERRAR</button>
-										<input type="button" class="btn btn-danger"
-											id="deleteEmpleado" name="deleteEmpleado" value="BORRAR"
-											data-ng-click="deleteEmpleado(id)"></input>
+										<input type="button" class="btn btn-danger" id="deleteTipoPlanta"
+											name="deleteTipoPlanta" value="BORRAR"
+											data-ng-click="deleteTipoPlanta(id)"></input>
 									</div>
 								</div>
 							</div>
 						</div>
 						<br /> <br />
 
-						<div data-ng-show="mostrarDatosEmpleado" id="empleadoList">
-							<p>Tipo documento: {{empleadoOut.tipodoc}}</p>
-							<p>Documento: {{empleadoOut.documento}}</p>
-							<p>Nombre: {{empleadoOut.nombre}}</p>
-							<p>Apellido: {{empleadoOut.apellido}}</p>
+						<div data-ng-show="mostrarDatosTipo" id="tipoPlantaList">
+							<p>Identificador: {{tipoPlantaOut.id}}</p>
+							<p>Tipo Flor: {{tipoPlantaOut.ntipo}}</p>
+							<p>Variedad: {{tipoPlantaOut.nplanta}}</p>
 						</div>
 					</div>
 				</div>
@@ -120,79 +118,60 @@
 					<br>
 					<div>
 						<input type="button" class="btn btn-primary" id="showForm"
-							name="empleadoList" data-ng-hide="showForm"
+							name="tipoPlantaList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
 								<tr>
-									<td>Identificación</td>
+									<td>Identificador</td>
 									<td><input type="text" class="form-control" id="id"
-										name="id" data-ng-model="empleadoIn.id"
+										name="id" data-ng-model="tipoPlantaIn.id"
 										placeholder="Identificador interno" min="0" disabled /></td>
 								</tr>
 								<tr>
-									<td>Tipo Documento</td>
-									<td><select class="form-control" id="tipodoc"
-										name="tipodoc" data-ng-model="empleadoIn.tipodoc">
-											<option>Tarjeta de identidad</option>
-											<option>Cédula de ciudadanía</option>
-											<option>Tarjeta de extranjería</option>
-											<option>Cédula de extranjería</option>
-											<option>NIT</option>
-											<option>Pasaporte</option>
-											<option>Documento de identificación extranjero</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td>Documento</td>
-									<td><input type="text" class="form-control" id="documento"
-										name="documento" data-ng-model="empleadoIn.documento"
-										placeholder="Documento de identificacion" /></td>
-								<tr>
-									<td>Nombres</td>
+									<td>Tipo de Flor</td>
 									<td><input type="text" class="form-control" id="nombre"
-										name="nombre" data-ng-model="empleadoIn.nombre"
-										placeholder="Nombres" /></td>
+										name="nombre" data-ng-model="tipoPlantaIn.tipo"
+										placeholder="Id Tipo de Flor" /></td>
+								</tr>								
 								<tr>
-									<td>Apellidos</td>
-									<td><input type="text" class="form-control" id="apellido"
-										name="apellido" data-ng-model="empleadoIn.apellido"
-										placeholder="Apellidos" /></td>
+									<td>Variedad</td>
+									<td><input type="text" class="form-control" id="nombre"
+										name="nombre" data-ng-model="tipoPlantaIn.planta"
+										placeholder="Id Variedad" /></td>
+								</tr>
 							</table>
 							<br /> <input type="button" class="btn btn-primary" id="guardar"
-								name="saveBtn" value="Guardar"
-								data-ng-click="saveEmpleado(empleadoIn)" />
+								name="saveBtn" value="Guardar" data-ng-click="saveTipoPlanta(tipoPlantaIn)" />
 						</div>
 					</div>
 					<br> <input type="button" class="btn btn-primary"
-						id="empleadoList" name="empleadoList" value="Listado empleados"
-						data-ng-click="getListEmpleado()"></input> <input type="text"
+						id="tipoList" name="tipoList" value="Lista Tipo de Flor"
+						data-ng-click="getListTipoPlanta()"></input> <input type="text"
 						data-ng-model="search"> <br>
-					<div data-ng-show="empleadoList.length != 0">
+					<div data-ng-show="tipoPlantaList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
 							<thead>
 								<tr>
-									<th>Tipo de documento</th>
-									<th>Documento</th>
-									<th>Nombre</th>
-									<th>Apellido</th>
+									<th>Id</th>
+									<th>Tipo Flor</th>
+									<th>Variedad</th>
 									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="5">&nbsp;</td>
+									<td colspan="4">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in empleadoList | orderBy:'+nombre' | filter:search">
-									<td>{{item.tipodoc}}</td>
-									<td>{{item.documento}}</td>
-									<td>{{item.nombre}}</td>
-									<td>{{item.apellido}}</td>
+								<tr data-ng-repeat="item in tipoPlantaList | orderBy:'+nombre'">
+									<td>{{item.id}}</td>
+									<td>{{item.ntipo}}</td>
+									<td>{{item.nplanta}}</td>
 									<td><a href="#edit_modal"
-										data-ng-click="updateEmpleado(empleadoIn)" modal><i
+										data-ng-click="updateTipoPlanta(tipoPlantaIn)" modal><i
 											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
-										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
+										href="#alerta_borrar1" data-ng-click="deleteTipoPlanta(item.id)" modal><i
 											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
 							</tbody>

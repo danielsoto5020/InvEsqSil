@@ -47,9 +47,9 @@
 									<li><a href="../pages/planta.html">Esquejes</a></li>
 									<li><a href="../pages/codigorf.html">Código RedFlor</a></li>
 									<li><a href="../pages/empleado.html">Empleado</a></li>
-									<li><a href="../pages/auditoria.html">Auditorías</a></li>
-									<li><a href="../pages/temperatura.html">Temperatura en
-											bloque</a></li>
+									<li><a href="../pages/origen.html">Origen</a></li>
+									<li><a href="../pages/tipoplanta.html">Tipo Planta</a></li>
+									<li><a href="../pages/productoplanta.html">Producto Planta</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button"> Movimientos <span
@@ -89,7 +89,7 @@
 								data-ng-model="cantidad" placeholder="Cantidad" /><br> <br>
 							<input type="button" class="btn btn-primary" id="pedidoList"
 								name="pedidoList" value="Lista pedidos"
-								data-ng-click="getPedidoList(planta,origen,cantidad)"></input>
+								data-ng-click="getPedidoList(planta,origen,cantidad)"></input><br>
 						</div>
 					</div>
 					<div data-ng-show="pedidoList.length != 0">
@@ -98,9 +98,7 @@
 							<thead>
 								<tr>
 									<th>Variedad</th>
-									<th>Puesto</th>
-									<th>Nivel</th>
-									<th>Lado</th>
+									<th>Ubicacion</th>
 									<th>Cantidad</th>
 									<th>Fecha ingreso</th>
 									<th>Origen</th>
@@ -112,9 +110,7 @@
 								</tr>
 								<tr data-ng-repeat="item in pedidoList">
 									<td>{{item.variedad}}</td>
-									<td>{{item.puesto}}</td>
-									<td>{{item.nivel}}</td>
-									<td>{{item.lado}}</td>
+									<td>{{item.puesto+'/'+item.nivel+'/'+item.lado}}</td>
 									<td>{{item.cantidad}}</td>
 									<td>{{item.fecha}}</td>
 									<td>{{item.origen}}</td>

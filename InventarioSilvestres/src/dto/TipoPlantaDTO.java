@@ -4,10 +4,28 @@ public class TipoPlantaDTO {
 
 	private Integer id;
 	private Integer tipo;
+	private String ntipo;
+	private String nplanta;
 	private Integer planta;
 	
 	public TipoPlantaDTO() {
 		super();
+	}
+
+	public String getNtipo() {
+		return ntipo;
+	}
+
+	public void setNtipo(String ntipo) {
+		this.ntipo = ntipo;
+	}
+
+	public String getNplanta() {
+		return nplanta;
+	}
+
+	public void setNplanta(String nplanta) {
+		this.nplanta = nplanta;
 	}
 
 	public Integer getId() {

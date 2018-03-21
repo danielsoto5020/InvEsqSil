@@ -15,7 +15,8 @@ app
 												function(message) {
 													$scope.tipoPlantaOut = {
 														"id" : message.data.id,
-														"nombre" : message.data.nombre
+														"ntipo" : message.data.ntipo,
+														"nplanta" : message.data.nplanta
 													};
 													if (message.data.id == null) {
 														alert("El registro relacion Esqueje-Tipo de flor no existe");

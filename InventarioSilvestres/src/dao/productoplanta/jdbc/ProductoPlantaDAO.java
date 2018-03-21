@@ -42,8 +42,9 @@ public class ProductoPlantaDAO implements IProductoPlantaDAO{
 
 	private void setInfoProductoPlanta(ResultSet resultado, ProductoPlantaDTO productoPlantaDTO) throws Exception {	
 		productoPlantaDTO.setId(resultado.getInt("id_producto_planta"));
-		productoPlantaDTO.setPlanta(resultado.getInt("fk_id_planta"));
-		productoPlantaDTO.setProducto(resultado.getInt("fk_id_producto"));
+		
+		productoPlantaDTO.setNplanta(resultado.getString("nombre_planta"));
+		productoPlantaDTO.setNproducto(resultado.getString("nombre_producto"));
 	}
 	
 	

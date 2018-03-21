@@ -41,7 +41,9 @@ public class TipoPlantaDAO implements ITipoPlantaDAO{
 	private void setInfoTipoPlanta(ResultSet resultado, TipoPlantaDTO tipoPlantaDTO) throws Exception {	
 		tipoPlantaDTO.setId(resultado.getInt("id_tipo_planta"));
 		tipoPlantaDTO.setPlanta(resultado.getInt("fk_id_planta"));
+		tipoPlantaDTO.setNtipo(resultado.getString("nombre_tipo"));
 		tipoPlantaDTO.setTipo(resultado.getInt("fk_id_tipo"));
+		tipoPlantaDTO.setNplanta(resultado.getString("nombre_planta"));
 	}
 	
 	

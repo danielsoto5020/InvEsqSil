@@ -4,8 +4,26 @@ public class ProductoPlantaDTO {
 
 	private Integer id;
 	private Integer producto;
+	private String nproducto;
+	private String nplanta;
 	private Integer planta;
 	
+	public String getNproducto() {
+		return nproducto;
+	}
+
+	public void setNproducto(String nproducto) {
+		this.nproducto = nproducto;
+	}
+
+	public String getNplanta() {
+		return nplanta;
+	}
+
+	public void setNplanta(String nplanta) {
+		this.nplanta = nplanta;
+	}
+
 	public ProductoPlantaDTO() {
 		super();
 	}
