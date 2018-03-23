@@ -19,6 +19,15 @@ app.factory("temperaturaService", function($q, $http) {
 			});
 		},
 
+		getListBloque : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/bloque/listar-bloque').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
+
 		deleteTemperatura :function(id){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/temperatura/borrar-temperatura/'+id)
 			.then(function(data){

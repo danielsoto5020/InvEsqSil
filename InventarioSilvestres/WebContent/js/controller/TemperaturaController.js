@@ -43,6 +43,13 @@ app
 													}
 												})
 							}
+							$scope.bloqueList = {};
+							$scope.getListBloque = function() {
+								temperaturaService.getListBloque().then(
+										function(message){
+										$scope.bloqueList = message.data;
+										})
+							}
 
 							$scope.deleteTemperatura = function(id) {
 								temperaturaService.deleteTemperatura(id).then(

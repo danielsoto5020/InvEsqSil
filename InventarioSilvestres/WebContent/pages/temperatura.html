@@ -166,24 +166,13 @@
 								</tr>
 								<tr>
 									<td>
-										<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle" type="button"
-												id="dropdownMenu1" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="true">
-												{{selectedItem}} <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-												<li data-ng-repeat="item in subjects"><a
-													data-ng-click="dropboxitemselected(item)">{{item.nombre_bloque}}</a></li>
-											</ul>
-											<select data-st-search="selectValueBloque">
-												<option value="">All</option>
-												<option
-													data-ng-repeat="row in rowCollectionBloque | unique:'selectValueBloque'"
-													value="{{row.selectValueBloque}}">{{row.selectValueBloque}}</option>
-											</select>
-										</div>
-									</td>
+										<select 
+										name="repeatSelect" id="repeatSelect"
+										data-ng-click="getListBloque()"
+										data-ng-model="item.id">
+											<option data-ng-repeat="item in bloqueList"
+												value="{{item.id}}">{{item.nombre}}</option>
+									</select></td>
 									<td>Bloque</td>
 									<td><input type="number" class="form-control"
 										id="observacion" name="observacion"
