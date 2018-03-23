@@ -38,6 +38,13 @@ app
 													}
 												})
 							}
+							$scope.variedadList = {};
+							$scope.getListVariedad = function() {
+								productoPlantaService.getListVariedad().then(
+										function(message){
+										$scope.variedadList = message.data;
+										})
+							}
 
 							$scope.deleteProductoPlanta = function(id) {
 								productoPlantaService.deleteProductoPlanta(id)

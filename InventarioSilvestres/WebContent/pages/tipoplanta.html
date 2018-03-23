@@ -128,7 +128,12 @@
 								</tr>								
 								<tr>
 									<td>Variedad</td>
-									<td><input type="text" class="form-control" id="nombre"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListVariedad()"
+										data-ng-model="tipoPlantaIn.planta">
+											<option data-ng-repeat="item in variedadList"
+												data-ng-value="{{item.id}}">{{item.nombre+' / '+item.renombre}}</option>
+									</select><input type="text" class="form-control" id="nombre"
 										name="nombre" data-ng-model="tipoPlantaIn.planta"
 										placeholder="Id Variedad" /></td>
 								</tr>

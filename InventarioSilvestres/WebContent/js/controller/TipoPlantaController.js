@@ -37,6 +37,13 @@ app
 													}
 												})
 							}
+							$scope.variedadList = {};
+							$scope.getListVariedad = function() {
+								tipoPlantaService.getListVariedad().then(
+										function(message){
+										$scope.variedadList = message.data;
+										})
+							}
 
 							$scope.deleteTipoPlanta = function(id) {
 								tipoPlantaService.deleteTipoPlanta(id).then(

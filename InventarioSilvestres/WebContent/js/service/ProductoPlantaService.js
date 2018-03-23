@@ -18,6 +18,15 @@ app.factory("productoPlantaService", function($q, $http) {
 				console.log(data);
 			});
 		},
+		
+		getListVariedad : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/planta/listar-planta').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
 
 		deleteProductoPlanta :function(id){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/productoplanta/borrar-productoplanta/'+id)
