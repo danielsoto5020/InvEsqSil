@@ -199,11 +199,6 @@ public class IngresoDAO implements IIngresoDAO {
 	private Integer obtenerOrigen(String origen) {		
 		OrigenNegocio origenNegocio = new OrigenNegocio();
 		return (origenNegocio.obtenerOrigen(origen));
-			
-	}
-	private Integer obtenerIdPlanta(String planta) {
-		PlantaNegocio plantaNegocio = new PlantaNegocio();
-		return (plantaNegocio.obtenerIdPlanta(planta));
 	}
 	
 	@Override
