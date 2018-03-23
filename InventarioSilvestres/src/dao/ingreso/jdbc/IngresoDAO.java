@@ -12,7 +12,6 @@ import dto.IngresoDTO;
 import negocio.empleado.impl.EmpleadoNegocio;
 import negocio.ingreso.impl.IngresoNegocio;
 import negocio.origen.impl.OrigenNegocio;
-import negocio.planta.impl.PlantaNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
