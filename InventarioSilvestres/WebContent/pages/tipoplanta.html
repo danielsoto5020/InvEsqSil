@@ -74,7 +74,7 @@
 			</nav>
 		</header>
 		<div class="container">
-			<div class="row content">
+			<div class="row">
 				<div class="col-sm-3">
 					<div class="container">
 						<br> <input type="text" id="tipoPlantaId" name="tipoPlantaId"
@@ -106,9 +106,7 @@
 							</div>
 						</div>
 						<br /> <br />
-
-						<div data-ng-show="mostrarDatosTipo" id="tipoPlantaList">
-							<p>Identificador: {{tipoPlantaOut.id}}</p>
+						<div data-ng-show="mostrarDatosTipoPlanta" id="tipoPlantaList">
 							<p>Tipo Flor: {{tipoPlantaOut.ntipo}}</p>
 							<p>Variedad: {{tipoPlantaOut.nplanta}}</p>
 						</div>
@@ -122,12 +120,6 @@
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
-								<tr>
-									<td>Identificador</td>
-									<td><input type="text" class="form-control" id="id"
-										name="id" data-ng-model="tipoPlantaIn.id"
-										placeholder="Identificador interno" min="0" disabled /></td>
-								</tr>
 								<tr>
 									<td>Tipo de Flor</td>
 									<td><input type="text" class="form-control" id="nombre"
@@ -154,7 +146,6 @@
 						<table class="table" id="datosBasicos">
 							<thead>
 								<tr>
-									<th>Id</th>
 									<th>Tipo Flor</th>
 									<th>Variedad</th>
 									<th>Editar/Eliminar</th>
@@ -164,8 +155,7 @@
 								<tr>
 									<td colspan="4">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in tipoPlantaList | orderBy:'+nombre'">
-									<td>{{item.id}}</td>
+								<tr data-ng-repeat="item in tipoPlantaList | filter:search | orderBy:'+nombre'">
 									<td>{{item.ntipo}}</td>
 									<td>{{item.nplanta}}</td>
 									<td><a href="#edit_modal"

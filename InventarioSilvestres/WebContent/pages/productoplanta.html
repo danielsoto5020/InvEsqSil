@@ -109,7 +109,6 @@
 						<br /> <br />
 
 						<div data-ng-show="mostrarDatosProductoPlanta" id="productoPlantaList">
-							<p>Identificador: {{productoPlantaOut.id}}</p>
 							<p>Producto: {{productoPlantaOut.nproducto}}</p>
 							<p>Variedad: {{productoPlantaOut.nplanta}}</p>
 						</div>
@@ -123,12 +122,6 @@
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
-								<tr>
-									<td>Identificador</td>
-									<td><input type="text" class="form-control" id="id"
-										name="id" data-ng-model="productoPlantaIn.id"
-										placeholder="Identificador interno" min="0" disabled /></td>
-								</tr>
 								<tr>
 									<td>Producto</td>
 									<td><input type="number" class="form-control" id="nombre"
@@ -156,18 +149,16 @@
 						<table class="table" id="datosBasicos">
 							<thead>
 								<tr>
-									<th>Id</th>
 									<th>Producto</th>
-									<th>Variedad</th>
+									<th>Nombre Variedad</th>
 									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td colspan="4">&nbsp;</td>
+									<td colspan="3">&nbsp;</td>
 								</tr>
 								<tr data-ng-repeat="item in productoPlantaList | orderBy:'+nombre' | filter:search">
-									<td>{{item.id}}</td>
 									<td>{{item.nproducto}}</td>
 									<td>{{item.nplanta}}</td>
 									<td><a href="#edit_modal"
