@@ -41,6 +41,20 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 					}
 				});
 			}
+			$scope.origenList = {};
+			$scope.getListOrigen = function() {
+				ingresoService.getListOrigen().then(
+						function(message){
+						$scope.origenList = message.data;
+						})
+			}
+			$scope.empleadoList = {};
+			$scope.getListEmpleado = function() {
+				ingresoService.getListEmpleado().then(
+						function(message){
+						$scope.empleadoList = message.data;
+						})
+			}
 			$scope.deleteIngreso = function(id) {
 				ingresoService.deleteIngreso(id).then(function(message) {
 					alert(message.data);

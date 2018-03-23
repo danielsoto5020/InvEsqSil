@@ -49,7 +49,8 @@
 									<li><a href="../pages/empleado.html">Empleado</a></li>
 									<li><a href="../pages/origen.html">Origen</a></li>
 									<li><a href="../pages/tipoplanta.html">Tipo Planta</a></li>
-									<li><a href="../pages/productoplanta.html">Producto Planta</a></li>
+									<li><a href="../pages/productoplanta.html">Producto
+											Planta</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button"> Movimientos <span
@@ -58,7 +59,7 @@
 								<ul class="dropdown-menu">
 									<li><a href="../pages/siembra.html">Siembra</a></li>
 									<li><a href="../pages/ingreso.html">Ingreso</a></li>
-									<li><a href="../pages/pedido.html">Pedido</a></li>									
+									<li><a href="../pages/pedido.html">Pedido</a></li>
 									<li><a href="../index.html">Salida</a></li>
 								</ul></li>
 						</ul>
@@ -127,7 +128,7 @@
 							name="ingresoList" data-ng-hide="showForm"
 							data-ng-click="showForm = true" value="CREAR" />
 						<div class="form-group" data-ng-show="showForm">
-							<table id="datosBasicos">								
+							<table id="datosBasicos">
 								<tr>
 									<td>código Siembra</td>
 									<td><input type="number" class="form-control" id="siembra"
@@ -138,11 +139,11 @@
 									<td>Puesto</td>
 									<td><input type="number" class="form-control" id="puesto"
 										name="puesto" data-ng-model="ingresoIn.puesto"
-										placeholder="Puesto" min="0" max="999"/></td>
+										placeholder="Puesto" min="0" max="999" /></td>
 									<td>Nivel</td>
 									<td><input type="number" class="form-control" id="nivel"
 										name="nivel" data-ng-model="ingresoIn.nivel"
-										placeholder="Nivel" min="0" max="50"/></td>
+										placeholder="Nivel" min="0" max="50" /></td>
 									<td>Lado</td>
 									<td><select class="form-control" id="lado" name="lado"
 										data-ng-model="ingresoIn.lado">
@@ -152,15 +153,21 @@
 								</tr>
 								<tr>
 									<td>Origen</td>
-									<td><input type="text" class="form-control"
-										id="origen" name="origen" data-ng-model="ingresoIn.origen"
-										placeholder="Origen"/></td>
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListOrigen()"
+										data-ng-model="ingresoIn.origen">
+											<option data-ng-repeat="item in origenList"
+												data-ng-value="{{item.id}}">{{item.nombre}}</option>
+									</select><input type="text" class="form-control" id="origen"
+										name="origen" data-ng-model="ingresoIn.origen"
+										placeholder="Origen" /></td>
 								</tr>
 								<tr>
 									<td>Cantidad</td>
 									<td><input type="number" class="form-control"
-										id="cantidad" name="cantidad" data-ng-model="ingresoIn.cantidad"
-										placeholder="Cantidad" min="0" /></td>
+										id="cantidad" name="cantidad"
+										data-ng-model="ingresoIn.cantidad" placeholder="Cantidad"
+										min="0" /></td>
 								</tr>
 								<tr>
 									<td>Fecha</td>
@@ -169,11 +176,16 @@
 										data-ng-value="date | date:'yyyy/MM/dd HH:mm:ss'" /></td>
 								</tr>
 								<tr>
-									<td>Empleado</td>
-									<td><input type="number" class="form-control"
+									<td>Cosechador</td>
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListEmpleado()"
+										data-ng-model="ingresoIn.empleado">
+											<option data-ng-repeat="item in empleadoList"
+												data-ng-value="{{item.id}}">{{item.nombre+' '+ item.apellido}}</option>
+									</select><input type="number" class="form-control"
 										id="empleado" name="empleado"
 										data-ng-model="ingresoIn.empleado"
-										placeholder="Codigo Empleado" min="0" /></td>
+										placeholder="Codigo Cosechador" /></td>
 								</tr>
 							</table>
 
@@ -198,7 +210,7 @@
 									<th>Cantidad</th>
 									<th>Fecha ingreso</th>
 									<th>Empleado</th>
-									<th>Origen</th>						
+									<th>Origen</th>
 									<th>Editar/Eliminar</th>
 								</tr>
 							</thead>
@@ -215,8 +227,9 @@
 									<td>{{item.fecha}}</td>
 									<td>{{item.nempleado}}</td>
 									<td>{{item.origen}}</td>
-									<td><a href="#edit_modal" data-ng-click="updateIngreso(ingresoIn)"
-										modal><i class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
+									<td><a href="#edit_modal"
+										data-ng-click="updateIngreso(ingresoIn)" modal><i
+											class="glyphicon glyphicon-edit">&nbsp;</i></a> <a
 										href="#alerta_borrar1" data-ng-click="editar(item.id)" modal><i
 											class="glyphicon glyphicon-remove"></i></a></td>
 								</tr>
