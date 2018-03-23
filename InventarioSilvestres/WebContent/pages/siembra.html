@@ -128,9 +128,14 @@
 							<table id="datosBasicos">
 								<tr>
 									<td>Variedad</td>
-									<td><input type="text" class="form-control" id="variedad"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListVariedad()"
+										data-ng-model="siembraIn.variedad">
+											<option data-ng-repeat="item in variedadList"
+												data-ng-value="{{item.id}}">{{item.nombre+' / '+item.renombre}}</option>
+									</select><input type="text" class="form-control" id="variedad"
 										name="variedad" data-ng-model="siembraIn.variedad"
-										placeholder="Nombre de la variedad" /></td>
+										placeholder="variedad" /></td>
 								</tr>
 								<tr>
 									<td>Bloque</td>
@@ -147,7 +152,12 @@
 								</tr>
 								<tr>
 									<td>Sembrador</td>
-									<td><input type="number" class="form-control"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListEmpleado()"
+										data-ng-model="siembraIn.empleado">
+											<option data-ng-repeat="item in empleadoList"
+												data-ng-value="{{item.id}}">{{item.nombre+' '+item.apellido}}</option>
+									</select><input type="number" class="form-control"
 										id="empleado" name="empleado"
 										data-ng-model="siembraIn.empleado"
 										placeholder="Codigo empleado" min="0" /></td>

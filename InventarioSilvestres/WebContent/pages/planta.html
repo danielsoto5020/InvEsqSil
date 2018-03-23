@@ -174,19 +174,34 @@
 								</tr>
 								<tr>
 									<td>Color 1</td>
-									<td><input type="number" class="form-control" id="color"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListColor()"
+										data-ng-model="plantaIn.color1">
+											<option data-ng-repeat="item in colorList"
+												data-ng-value="{{item.id}}">{{item.nombre+' / '+item.name}}</option>
+									</select><input type="number" class="form-control" id="color"
 										name="color" data-ng-model="plantaIn.color1"
 										placeholder="Color1" min="0" /></td>
 								</tr>
 								<tr>
 									<td>Color 2</td>
-									<td><input type="number" class="form-control" id="color"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListColor()"
+										data-ng-model="plantaIn.color2">
+											<option data-ng-repeat="item in colorList"
+												data-ng-value="{{item.id}}">{{item.nombre+' / '+item.name}}</option>
+									</select><input type="number" class="form-control" id="color"
 										name="color" data-ng-model="plantaIn.color2"
 										placeholder="Color2" min="0" /></td>
 								</tr>
 								<tr>
 									<td>Breeder</td>
-									<td><input type="number" class="form-control" id="breeder"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListBreeder()"
+										data-ng-model="plantaIn.breeder">
+											<option data-ng-repeat="item in breederList"
+												data-ng-value="{{item.id}}">{{item.nombre}}</option>
+									</select><input type="number" class="form-control" id="breeder"
 										name="breeder" data-ng-model="plantaIn.breeder"
 										placeholder="Breeder" /></td>
 								</tr>

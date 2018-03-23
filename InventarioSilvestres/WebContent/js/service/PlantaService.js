@@ -18,6 +18,22 @@ app.factory("plantaService", function($q, $http) {
 				console.log(data);
 			});
 		},
+		getListColor : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/color/listar-color').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
+		getListBreeder : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/breeder/listar-breeder').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
 
 		deletePlanta :function(id){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/planta/borrar-planta/'+id)

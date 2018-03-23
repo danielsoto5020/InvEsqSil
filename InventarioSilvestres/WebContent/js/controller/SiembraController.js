@@ -31,6 +31,20 @@ app.controller("siembraController", [ "$scope", "siembraService",
 					}
 				})
 			}
+			$scope.variedadList = {};
+			$scope.getListVariedad = function() {
+				siembraService.getListVariedad().then(
+						function(message){
+						$scope.variedadList = message.data;
+						})
+			}
+			$scope.empleadoList = {};
+			$scope.getListEmpleado = function() {
+				siembraService.getListEmpleado().then(
+						function(message){
+						$scope.empleadoList = message.data;
+						})
+			}
 
 			$scope.selectCama = {};
 			$scope.getSelectCama = function() {

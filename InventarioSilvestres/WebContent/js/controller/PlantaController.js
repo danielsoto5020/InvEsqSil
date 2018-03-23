@@ -33,6 +33,20 @@ app.controller("plantaController", [ "$scope", "plantaService",
 					}
 				})
 			}
+			$scope.colorList = {};
+			$scope.getListColor = function() {
+				plantaService.getListColor().then(
+						function(message){
+						$scope.colorList = message.data;
+						})
+			}
+			$scope.breederList = {};
+			$scope.getListBreeder = function() {
+				plantaService.getListBreeder().then(
+						function(message){
+						$scope.breederList = message.data;
+						})
+			}
 
 			$scope.deletePlanta = function(id) {
 				plantaService.deletePlanta(id).then(function(message) {
