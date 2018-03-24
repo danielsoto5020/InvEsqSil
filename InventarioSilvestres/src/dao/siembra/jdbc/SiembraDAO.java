@@ -115,7 +115,7 @@ public class SiembraDAO implements ISiembraDAO {
 		SiembraNegocio siembraNegocio = new SiembraNegocio();
 		Integer asembrar = 0;
 		asembrar =  Integer.parseInt(cantidad) + siembraNegocio.stockSiembra(id);
-		if (camaNegocio.consultarEspacio(id, asembrar) != null) {
+		if (camaNegocio.consultarEspacio(id, asembrar)) {
 			return true;
 		} else {
 			return false;
@@ -181,7 +181,7 @@ public class SiembraDAO implements ISiembraDAO {
 				instruccion.setInt(index++, siembraDTO.getCama());
 
 				instruccion.executeUpdate();
-				message = message + " OK";
+				message = message + " Siembra Infresada correctamente";
 			} catch (SQLException sql) {
 				message = " ERROR";
 				con.rollback();

@@ -11,7 +11,6 @@ import dao.ingreso.IIngresoDAO;
 import dto.IngresoDTO;
 import negocio.empleado.impl.EmpleadoNegocio;
 import negocio.ingreso.impl.IngresoNegocio;
-import negocio.origen.impl.OrigenNegocio;
 import negocio.siembra.impl.SiembraNegocio;
 import util.PersistUtil;
 
@@ -100,7 +99,7 @@ public class IngresoDAO implements IIngresoDAO {
 				instruccion.setString(index++, ingresoDTO.getLado());
 				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(ingresoDTO.getFecha()));
 				instruccion.setInt(index++, ingresoDTO.getEmpleado());
-				instruccion.setInt(index++, obtenerOrigen(ingresoDTO.getOrigen()));
+				instruccion.setInt(index++, Integer.parseInt(ingresoDTO.getOrigen()));
 				instruccion.setInt(index++, ingresoDTO.getSiembra());
 				instruccion.setInt(index++, ingresoDTO.getId());
 				instruccion.executeUpdate();
@@ -123,7 +122,7 @@ public class IngresoDAO implements IIngresoDAO {
 		String message = "";
 		String query;
 		PreparedStatement instruccion = null;
-		if (buscarEmpleado(ingresoDTO.getEmpleado()) && obtenerOrigen(ingresoDTO.getOrigen().toUpperCase()) != null && buscarEspacio(ingresoDTO.getPuesto(), ingresoDTO.getNivel(), ingresoDTO.getLado()) && buscarSiembra(ingresoDTO.getSiembra())) {
+		if (buscarEmpleado(ingresoDTO.getEmpleado()) && buscarEspacio(ingresoDTO.getPuesto(), ingresoDTO.getNivel(), ingresoDTO.getLado()) && buscarSiembra(ingresoDTO.getSiembra())) {
 			try {
 
 				query = IngresoSQL.INSERT;
@@ -135,7 +134,7 @@ public class IngresoDAO implements IIngresoDAO {
 				instruccion.setString(index++, ingresoDTO.getLado());
 				instruccion.setTimestamp(index++, PersistUtil.convertStringToDate(ingresoDTO.getFecha()));
 				instruccion.setInt(index++, ingresoDTO.getEmpleado());
-				instruccion.setInt(index++, obtenerOrigen(ingresoDTO.getOrigen().toUpperCase()));
+				instruccion.setInt(index++, Integer.parseInt(ingresoDTO.getOrigen()));
 				instruccion.setInt(index++, ingresoDTO.getSiembra());
 				instruccion.executeUpdate();
 				message = "OK";
@@ -195,10 +194,6 @@ public class IngresoDAO implements IIngresoDAO {
 		}
 		return listaIngresos;
 	}
-	private Integer obtenerOrigen(String origen) {		
-		OrigenNegocio origenNegocio = new OrigenNegocio();
-		return (origenNegocio.obtenerOrigen(origen));
-	}
 	
 	@Override
 	public List<IngresoDTO> pedidoSalida(String planta, String origen, Integer cantidad, Connection con) throws Exception {
@@ -208,7 +203,7 @@ public class IngresoDAO implements IIngresoDAO {
 		IngresoDTO ingresoDTO = null;
 		List<IngresoDTO> listaPedidos = new ArrayList<>();
 		Integer iorigen;
-		iorigen = obtenerOrigen(origen);
+		iorigen = Integer.parseInt(origen);
 		Integer iplanta;
 		iplanta = Integer.parseInt(planta);
 		if(iplanta != null && iorigen != null) {

@@ -131,7 +131,12 @@
 							<table id="datosBasicos">
 								<tr>
 									<td>código Siembra</td>
-									<td><input type="number" class="form-control" id="siembra"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListIngreso()"
+										data-ng-model="ingresoIn.siembra">
+											<option data-ng-repeat="item in siembraList"
+												data-ng-value="{{item.id}}">{{item.ncama+', '+item.nvariedad}}</option>
+									</select><input type="number" class="form-control" id="siembra"
 										name="siembra" data-ng-model="ingresoIn.siembra"
 										placeholder="codigo barras" min="0" /></td>
 								</tr>

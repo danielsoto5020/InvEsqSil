@@ -28,6 +28,15 @@ app.factory("ingresoService", function($q, $http) {
 			});
 		},
 
+		getListSiembra : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/siembra/listar-siembra').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
+
 		getListEmpleado : function(){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/empleado/listar-empleado').then(function(data){
 				var receiveddata = angular.fromJson(data);			

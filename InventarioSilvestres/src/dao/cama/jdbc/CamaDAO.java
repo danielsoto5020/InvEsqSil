@@ -164,7 +164,7 @@ public class CamaDAO implements ICamaDAO{
             int index = 1;
             instruccion.setInt(index++, id);
             instruccion.executeUpdate();
-            message ="Cama esterilizada";
+            message ="Cama esterilizada,";
         } catch (SQLException sql) {
         	 message ="ERROR";
         	con.rollback();
@@ -244,11 +244,12 @@ public class CamaDAO implements ICamaDAO{
 	
 	
 	@Override
-	public CamaDTO consultarEspacio(Integer id, Integer cantidad, Connection con) throws Exception {
+	public Boolean consultarEspacio(Integer id, Integer cantidad, Connection con) throws Exception {
 		PreparedStatement instruccion = null;
 		ResultSet resultado = null;
 		String query;
-		CamaDTO camaDTO = null;
+		Integer lineas = 0;
+		Integer nlineas = 0;
 		try {
 			query = CamaSQL.FIND_ESPACE;
 			instruccion = con.prepareStatement(query);
@@ -256,15 +257,15 @@ public class CamaDAO implements ICamaDAO{
 			instruccion.setInt(index++, id);
 			resultado = instruccion.executeQuery();
 			while (resultado.next()) {
-				camaDTO = new CamaDTO();
-				setInfoCama(resultado, camaDTO);
+				lineas = Integer.parseInt(resultado.getString("lineas_cama"));
+				nlineas = Integer.parseInt(resultado.getString("nlinea_cama"));
 			}
 		} finally {
 			PersistUtil.closeResources(instruccion, resultado);
 		}
-		if((Integer.parseInt(camaDTO.getLineas())*(Integer.parseInt(camaDTO.getNlinea()))) >= cantidad) {
+		if(lineas * nlineas >= cantidad) {
 
-			return camaDTO;
+			return true;
 			
 		}else {
 

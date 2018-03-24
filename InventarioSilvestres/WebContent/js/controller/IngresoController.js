@@ -48,6 +48,13 @@ app.controller("ingresoController", [ "$scope", "ingresoService",
 						$scope.origenList = message.data;
 						})
 			}
+			$scope.siembraList = {};
+			$scope.getListSiembra = function() {
+				ingresoService.getListSiembra().then(
+						function(message){
+						$scope.siembraList = message.data;
+						})
+			}
 			$scope.empleadoList = {};
 			$scope.getListEmpleado = function() {
 				ingresoService.getListEmpleado().then(

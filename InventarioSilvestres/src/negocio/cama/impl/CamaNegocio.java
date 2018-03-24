@@ -143,18 +143,18 @@ public class CamaNegocio implements ICamaNegocio{
 	}
 
 	@Override
-	public CamaDTO consultarEspacio(Integer id, Integer cantidad) {
+	public Boolean consultarEspacio(Integer id, Integer cantidad) {
 		Connection con = null;
-		CamaDTO camaDTO = null;
+		Boolean a = false;
 		try {
 			con = dataSource.getConnection();
-			camaDTO= camaDAO.consultarEspacio(id, cantidad, con);
+			a = camaDAO.consultarEspacio(id, cantidad, con);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
 			PersistUtil.closeConnection(con);
 		}
-		return camaDTO;
+		return a;
 		
 	}
 
