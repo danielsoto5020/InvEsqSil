@@ -49,7 +49,8 @@
 									<li><a href="../pages/empleado.html">Empleado</a></li>
 									<li><a href="../pages/origen.html">Origen</a></li>
 									<li><a href="../pages/tipoplanta.html">Tipo Planta</a></li>
-									<li><a href="../pages/productoplanta.html">Producto Planta</a></li>
+									<li><a href="../pages/productoplanta.html">Producto
+											Planta</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button"> Movimientos <span
@@ -58,7 +59,7 @@
 								<ul class="dropdown-menu">
 									<li><a href="../pages/siembra.html">Siembra</a></li>
 									<li><a href="../pages/ingreso.html">Ingreso</a></li>
-									<li><a href="../pages/pedido">Pedido</a></li>									
+									<li><a href="../pages/pedido">Pedido</a></li>
 									<li><a href="../index.html">Salida</a></li>
 								</ul></li>
 						</ul>
@@ -123,12 +124,6 @@
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
 								<tr>
-									<td>Identificación</td>
-									<td><input type="text" class="form-control" id="id"
-										name="id" data-ng-model="bloqueIn.id"
-										placeholder="Identificador" min="0" disabled /></td>
-								</tr>
-								<tr>
 									<td>Nombre</td>
 									<td><input type="text" class="form-control" id="nombre"
 										name="nombre" data-ng-model="bloqueIn.nombre"
@@ -142,9 +137,13 @@
 								</tr>
 								<tr>
 									<td>Finca</td>
-									<td><input type="text" class="form-control" id="finca"
-										name="finca" data-ng-model="bloqueIn.finca"
-										placeholder="Id Finca" /></td>
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListFinca()"
+										data-ng-model="bloqueIn.finca">
+											<option data-ng-repeat="item in fincaList"
+												data-ng-value="{{item.id}}">{{item.nombre}}</option>
+									</select><input type="text" class="form-control" id="finca" name="finca"
+										data-ng-model="bloqueIn.finca" placeholder="Id Finca" /></td>
 								</tr>
 							</table>
 							<br /> <input type="button" class="btn btn-primary" id="guardar"
@@ -154,8 +153,8 @@
 					</div>
 					<br> <input type="button" class="btn btn-primary"
 						id="bloqueList" name="bloqueList" value="Lista de Bloques"
-						data-ng-click="getListBloque()"></input> <input
-						type="text" data-ng-model="search"> <br>
+						data-ng-click="getListBloque()"></input> <input type="text"
+						data-ng-model="search"> <br>
 					<div data-ng-show="bloqueList.length != 0">
 						<br />
 						<table class="table" id="datosBasicos">
@@ -171,7 +170,8 @@
 								<tr>
 									<td colspan="4">&nbsp;</td>
 								</tr>
-								<tr data-ng-repeat="item in bloqueList | orderBy:'+nombre' | filter:search"">
+								<tr
+									data-ng-repeat="item in bloqueList | orderBy:'+nombre' | filter:search"">
 									<td>{{'BLOQUE '+item.nombre}}</td>
 									<td>{{item.ncama}}</td>
 									<td>{{item.nfinca}}</td>

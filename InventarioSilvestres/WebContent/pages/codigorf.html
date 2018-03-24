@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>REDFLORr</title>
+<title>REDFLOR</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -49,7 +49,8 @@
 									<li><a href="../pages/empleado.html">Empleado</a></li>
 									<li><a href="../pages/origen.html">Origen</a></li>
 									<li><a href="../pages/tipoplanta.html">Tipo Planta</a></li>
-									<li><a href="../pages/productoplanta.html">Producto Planta</a></li>
+									<li><a href="../pages/productoplanta.html">Producto
+											Planta</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button"> Movimientos <span
@@ -58,7 +59,7 @@
 								<ul class="dropdown-menu">
 									<li><a href="../pages/siembra.html">Siembra</a></li>
 									<li><a href="../pages/ingreso.html">Ingreso</a></li>
-									<li><a href="../pages/pedido.html">Pedido</a></li>									
+									<li><a href="../pages/pedido.html">Pedido</a></li>
 									<li><a href="../index.html">Salida</a></li>
 								</ul></li>
 						</ul>
@@ -136,8 +137,14 @@
 										placeholder="Codigo de Red Flor" /></td>
 								</tr>
 								<tr>
-									<td>Id. Variedad</td>
-									<td><input type="text" class="form-control" id="planta"
+									<td>Variedad</td>
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListVariedad()"
+										data-ng-model="codigorfIn.planta">
+											<option data-ng-repeat="item in variedadList"
+												data-ng-value="{{item.id}}">{{item.nombre+' /
+												'+item.renombre}}</option>
+									</select><input type="text" class="form-control" id="planta"
 										name="planta" data-ng-model="codigorfIn.planta"
 										placeholder="Identificador de la variedad" /></td>
 								</tr>

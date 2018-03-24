@@ -48,7 +48,8 @@
 									<li><a href="../pages/empleado.html">Empleado</a></li>
 									<li><a href="../pages/origen.html">Origen</a></li>
 									<li><a href="../pages/tipoplanta.html">Tipo Planta</a></li>
-									<li><a href="../pages/productoplanta.html">Producto Planta</a></li>
+									<li><a href="../pages/productoplanta.html">Producto
+											Planta</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button"> Movimientos <span
@@ -57,7 +58,7 @@
 								<ul class="dropdown-menu">
 									<li><a href="../pages/siembra.html">Siembra</a></li>
 									<li><a href="../pages/ingreso.html">Ingreso</a></li>
-									<li><a href="../pages/pedido.html">Pedido</a></li>									
+									<li><a href="../pages/pedido.html">Pedido</a></li>
 									<li><a href="../index.html">Salida</a></li>
 								</ul></li>
 						</ul>
@@ -126,16 +127,15 @@
 						<div class="form-group" data-ng-show="showForm">
 							<table id="datosBasicos">
 								<tr>
-									<td>Identificación</td>
-									<td><input type="text" class="form-control" id="id"
-										name="id" data-ng-model="camaIn.id"
-										placeholder="Identificador interno" min="0" disabled /></td>
-								</tr>
-								<tr>
 									<td>Bloque</td>
-									<td><input type="number" class="form-control" id="bloque"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListBloque()"
+										data-ng-model="camaIn.bloque">
+											<option data-ng-repeat="item in bloqueList"
+												data-ng-value="{{item.id}}">{{item.nombre}}</option>
+									</select><input type="number" class="form-control" id="bloque"
 										name="bloque" data-ng-model="camaIn.bloque"
-										placeholder="Bloque" min="0" /></td>
+										placeholder="Bloque" /></td>
 								</tr>
 								<tr>
 									<td>Numero</td>
@@ -171,8 +171,8 @@
 									<td>Estado</td>
 									<td><select class="form-control" id="estado" name="estado"
 										data-ng-model="camaIn.estado">
-											<option>Vacía</option>
-											<option>Producción</option>
+											<option>VACIA</option>
+											<option>PRODUCCION</option>
 									</select></td>
 								</tr>
 								<tr>
@@ -211,7 +211,8 @@
 										<tr>
 											<td colspan="9">&nbsp;</td>
 										</tr>
-										<tr data-ng-repeat="item in camaList | filter:search | orderBy:'+bloque'">
+										<tr
+											data-ng-repeat="item in camaList | filter:search | orderBy:'+bloque'">
 											<td>{{'BLOQUE '+item.nbloque}}</td>
 											<td>{{item.numero}}</td>
 											<td>{{item.ancho+' cm'}}</td>

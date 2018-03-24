@@ -138,15 +138,13 @@
 										placeholder="variedad" /></td>
 								</tr>
 								<tr>
-									<td>Bloque</td>
-									<td><input type="text" class="form-control" id="bloque"
-										name="bloque" data-ng-model="siembraIn.nombrebloque"
-										placeholder="Bloque"  disabled/></td>
-								</tr>
-								<tr>
-
 									<td>Cama</td>
-									<td><input type="text" class="form-control" id="cama"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListCama()"
+										data-ng-model="siembraIn.cama">
+											<option data-ng-repeat="item in camaList"
+												data-ng-value="{{item.id}}">{{'Bloque '+item.nbloque+' / '+item.numero}}</option>
+									</select><input type="text" class="form-control" id="cama"
 										name="cama" data-ng-model="siembraIn.cama"
 										placeholder="Codigo Cama" /></td>
 								</tr>

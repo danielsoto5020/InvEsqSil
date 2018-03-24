@@ -122,7 +122,12 @@
 							<table id="datosBasicos">
 								<tr>
 									<td>Tipo de Flor</td>
-									<td><input type="text" class="form-control" id="nombre"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListTipo()"
+										data-ng-model="tipoPlantaIn.tipo">
+											<option data-ng-repeat="item in tipoList"
+												data-ng-value="{{item.id}}">{{item.nombre}}</option>
+									</select><input type="text" class="form-control" id="nombre"
 										name="nombre" data-ng-model="tipoPlantaIn.tipo"
 										placeholder="Id Tipo de Flor" /></td>
 								</tr>								

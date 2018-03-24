@@ -18,6 +18,14 @@ app.factory("bloqueService", function($q, $http) {
 				console.log(data);
 			});
 		},
+		getListFinca : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/finca/listar-finca').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
 
 		deleteBloque :function(id){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/bloque/borrar-bloque/'+id)

@@ -38,6 +38,13 @@ app.controller("siembraController", [ "$scope", "siembraService",
 						$scope.variedadList = message.data;
 						})
 			}
+			$scope.camaList = {};
+			$scope.getListCama = function() {
+				siembraService.getListCama().then(
+						function(message){
+						$scope.camaList = message.data;
+						})
+			}
 			$scope.empleadoList = {};
 			$scope.getListEmpleado = function() {
 				siembraService.getListEmpleado().then(

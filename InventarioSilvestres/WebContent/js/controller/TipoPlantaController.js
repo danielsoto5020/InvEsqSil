@@ -44,6 +44,13 @@ app
 										$scope.variedadList = message.data;
 										})
 							}
+							$scope.tipoList = {};
+							$scope.getListTipo = function() {
+								tipoPlantaService.getListTipo().then(
+										function(message){
+										$scope.tipoList = message.data;
+										})
+							}
 
 							$scope.deleteTipoPlanta = function(id) {
 								tipoPlantaService.deleteTipoPlanta(id).then(

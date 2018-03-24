@@ -1,4 +1,7 @@
-app.controller("codigorfController", [
+app
+		.controller(
+				"codigorfController",
+				[
 						"$scope",
 						"codigorfService",
 						function codigorfController($scope, codigorfService) {
@@ -33,6 +36,14 @@ app.controller("codigorfController", [
 														alert("No hay ningun codigo de RedFlor registrado!!!");
 													}
 												})
+							}
+
+							$scope.variedadList = {};
+							$scope.getListVariedad = function() {
+								codigorfService.getListVariedad().then(
+										function(message) {
+											$scope.variedadList = message.data;
+										})
 							}
 
 							$scope.deleteCodigorf = function(id) {

@@ -45,6 +45,13 @@ app
 										$scope.variedadList = message.data;
 										})
 							}
+							$scope.productoList = {};
+							$scope.getListProducto = function() {
+								productoPlantaService.getListProducto().then(
+										function(message){
+										$scope.productoList = message.data;
+										})
+							}
 
 							$scope.deleteProductoPlanta = function(id) {
 								productoPlantaService.deleteProductoPlanta(id)

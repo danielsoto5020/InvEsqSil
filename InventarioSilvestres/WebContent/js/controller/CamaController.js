@@ -43,6 +43,14 @@ app.controller("camaController", [ "$scope", "camaService",
 				})
 			}
 
+			$scope.bloqueList = {};
+			$scope.getListBloque = function() {
+				camaService.getListBloque().then(
+						function(message){
+						$scope.bloqueList = message.data;
+						})
+			}
+
 			$scope.date = new Date();
 
 			$scope.deleteCama = function(id) {

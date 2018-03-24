@@ -27,6 +27,13 @@ app.controller("bloqueController", [ "$scope", "bloqueService",
 					}
 				})
 			}
+			$scope.fincaList = {};
+			$scope.getListFinca = function() {
+				bloqueService.getListFinca().then(
+						function(message){
+						$scope.fincaList = message.data;
+						})
+			}
 
 			$scope.deleteBloque = function(id) {
 				bloqueService.deleteBloque(id).then(function(message) {

@@ -124,7 +124,12 @@
 							<table id="datosBasicos">
 								<tr>
 									<td>Producto</td>
-									<td><input type="number" class="form-control" id="nombre"
+									<td><select class="form-control" name="repeatSelect"
+										id="repeatSelect" data-ng-click="getListProducto()"
+										data-ng-model="productoPlantaIn.producto">
+											<option data-ng-repeat="item in productoList"
+												data-ng-value="{{item.id}}">{{item.nombre}}</option>
+									</select><input type="number" class="form-control" id="nombre"
 										name="nombre" data-ng-model="productoPlantaIn.producto"
 										placeholder="Id Producto" /></td>
 								</tr>

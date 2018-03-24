@@ -28,6 +28,15 @@ app.factory("siembraService", function($q, $http) {
 			});
 		},
 
+		getListCama : function(){
+			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/cama/listar-cama').then(function(data){
+				var receiveddata = angular.fromJson(data);			
+				return receiveddata;
+			}).catch(function(data){
+				console.log(data);
+			});
+		},
+
 		getListEmpleado : function(){
 			return $http.get('http://CSistemas04:8080/InventarioSilvestres/rest/empleado/listar-empleado').then(function(data){
 				var receiveddata = angular.fromJson(data);			
